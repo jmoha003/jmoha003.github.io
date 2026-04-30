@@ -342,7 +342,7 @@ const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.
 document.querySelectorAll('.fi').forEach(el=>o.observe(el));
 document.querySelectorAll('#nv a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('nv').classList.remove('active'))});
 window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('pb').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';document.getElementById('btt').classList.toggle('show',window.scrollY>300)});
-const cO=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;e.target.querySelectorAll('.n[data-t]').forEach(el=>{const t=+el.dataset.t,p=el.dataset.p||'',s=el.dataset.s||'';let c=0;const st=Math.ceil(t/40),ti=setInterval(()=>{c+=st;if(c>=t){c=t;clearInterval(ti)}el.textContent=p+c+s},30)});cO.unobserve(e.target)})},{threshold:0.5});
+const cO=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;setTimeout(()=>{e.target.querySelectorAll('.n[data-t]').forEach(el=>{const t=+el.dataset.t,p=el.dataset.p||'',s=el.dataset.s||'';let c=0;const st=Math.ceil(t/35);const ti=setInterval(()=>{c+=st;if(c>=t){c=t;clearInterval(ti)}el.textContent=p+c+s},25)})},300);cO.unobserve(e.target)})},{threshold:0.2});
 document.querySelectorAll('.mc').forEach(el=>cO.observe(el));
 </script>
 </body>
