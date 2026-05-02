@@ -208,7 +208,16 @@ footer a:hover{color:var(--blue)}
 .fi{opacity:0;transform:translateY(14px);transition:opacity 0.4s,transform 0.4s}.fi.v{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){.cg,.pg,.er,.sg{grid-template-columns:1fr}.pr{grid-template-columns:1fr}.awg{grid-template-columns:repeat(2,1fr)}.prg{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){nav ul{display:none}nav ul.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(245,245,247,0.97);backdrop-filter:blur(14px);padding:0.8rem 2rem;border-bottom:1px solid var(--border)}.ham{display:flex}.hg{grid-template-columns:1fr;gap:1.5rem}section{padding:1.2rem 1rem}.th{flex-direction:column}.awg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+/* IN PICTURES */
+.ips{overflow:hidden;padding:1.2rem 0}
+.ipt{display:flex;align-items:center;gap:0.6rem;animation:ips 55s linear infinite;width:max-content}
+.ipt:hover{animation-play-state:paused}
+@keyframes ips{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ipi{overflow:hidden;border-radius:10px;border:1px solid var(--border);flex-shrink:0;transition:all 0.2s}
+.ipi:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.ipi img{width:280px;height:190px;object-fit:cover;display:block;transition:transform 0.3s}
+.ipi:hover img{transform:scale(1.04)}
+@media(max-width:768px){nav ul{display:none}nav ul.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(245,245,247,0.97);backdrop-filter:blur(14px);padding:0.8rem 2rem;border-bottom:1px solid var(--border)}.ham{display:flex}.hg{grid-template-columns:1fr;gap:1.5rem}section{padding:1.2rem 1rem}.th{flex-direction:column}.awg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.ipi img{width:240px;height:160px}}
 </style>
 </head>
 <body>
@@ -387,6 +396,33 @@ footer a:hover{color:var(--blue)}
   <div class="aw"><div class="awy">2017</div><p>Product Design, Dassault Syst&egrave;mes</p></div>
   <div class="aw"><div class="awy">2016</div><p>Best Innovation, DST, Govt. of India</p></div>
 </div></section>
+
+<section id="gallery"><div class="lb fi">In Pictures</div><h2 class="hd fi">Conferences, Research & Fieldwork</h2>
+<div class="ips" style="margin-top:0.8rem"><div class="ipt">
+  <div class="ipi"><img src="images/hicss-presenting.png" alt="Joshit Mohanty presenting A vs I in AI at HICSS 2026 Hawaii International Conference on System Sciences" loading="lazy"></div>
+  <div class="ipi"><img src="images/cubesat-lab.png" alt="Joshit Mohanty with CubeSat satellite hardware at German Orbital Systems Berlin" loading="lazy"></div>
+  <div class="ipi"><img src="images/iaa-rome.png" alt="Joshit Mohanty presenting Interplanetary Communication Architecture at 5th IAA Conference Rome" loading="lazy"></div>
+  <div class="ipi"><img src="images/fmms-navy.png" alt="Joshit Mohanty at ASNE Fleet Maintenance and Modernization Symposium" loading="lazy"></div>
+  <div class="ipi"><img src="images/poster-session.png" alt="Joshit Mohanty presenting GraphTreeMed and TAMOS research posters at conference" loading="lazy"></div>
+  <div class="ipi"><img src="images/asem-conference.png" alt="Joshit Mohanty with research team at ASEM International Annual Conference" loading="lazy"></div>
+  <div class="ipi"><img src="images/dod-presentation.png" alt="Joshit Mohanty with team after federal Department of Defense presentation" loading="lazy"></div>
+  <div class="ipi"><img src="images/tamos-poster.png" alt="TAMOS Task-Aware Multi-Agent Observer System research poster Old Dominion University" loading="lazy"></div>
+  <div class="ipi"><img src="images/conference-group.png" alt="Joshit Mohanty at research conference group photo" loading="lazy"></div>
+  <div class="ipi"><img src="images/cyber-security.png" alt="Joshit Mohanty at Cyber Security research presentation" loading="lazy"></div>
+  <div class="ipi"><img src="images/newspaper-feature.png" alt="Indian Express full page feature on student rocketry VSSUT Joshit Mohanty" loading="lazy"></div>
+  <!-- duplicate for seamless scroll -->
+  <div class="ipi"><img src="images/hicss-presenting.png" alt="Joshit Mohanty presenting A vs I in AI at HICSS 2026" loading="lazy"></div>
+  <div class="ipi"><img src="images/cubesat-lab.png" alt="Joshit Mohanty with CubeSat hardware German Orbital Systems" loading="lazy"></div>
+  <div class="ipi"><img src="images/iaa-rome.png" alt="Joshit Mohanty presenting at IAA Conference Rome" loading="lazy"></div>
+  <div class="ipi"><img src="images/fmms-navy.png" alt="Joshit Mohanty at Fleet Maintenance Symposium" loading="lazy"></div>
+  <div class="ipi"><img src="images/poster-session.png" alt="Joshit Mohanty at research poster session" loading="lazy"></div>
+  <div class="ipi"><img src="images/asem-conference.png" alt="Joshit Mohanty at ASEM Conference" loading="lazy"></div>
+  <div class="ipi"><img src="images/dod-presentation.png" alt="Joshit Mohanty DoD presentation" loading="lazy"></div>
+  <div class="ipi"><img src="images/tamos-poster.png" alt="TAMOS research poster" loading="lazy"></div>
+  <div class="ipi"><img src="images/conference-group.png" alt="Research conference group photo" loading="lazy"></div>
+  <div class="ipi"><img src="images/cyber-security.png" alt="Cyber Security presentation" loading="lazy"></div>
+  <div class="ipi"><img src="images/newspaper-feature.png" alt="Indian Express rocketry feature" loading="lazy"></div>
+</div></div></section>
 
 <section><div class="lb fi">Press</div><h2 class="hd fi">Media Coverage</h2>
 <div class="prg fi" style="margin-top:0.8rem">
