@@ -9,20 +9,14 @@
 <meta name="author" content="Joshit Mohanty">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://joshitmohanty.com">
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Joshit Mohanty | Senior Research Engineer | Modeling & Simulation, Digital Twins">
 <meta property="og:description" content="5+ years building production simulation platforms, digital twins, and NLP systems. $500K+ in funded systems. NSF and Department of Defense funded researcher. 72 Google Scholar citations.">
 <meta property="og:url" content="https://joshitmohanty.com">
 <meta property="og:site_name" content="Joshit Mohanty">
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Joshit Mohanty | Senior Research Engineer">
 <meta name="twitter:description" content="Modeling & Simulation, Operations Research, Digital Twin Architecture, NLP. 5+ years in production systems.">
-
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,13 +54,12 @@ nav ul a:hover{color:var(--blue)}
 .btn{padding:0.6rem 1.3rem;border-radius:8px;font-family:var(--sans);font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer}
 .btn-b{background:var(--blue);color:#fff;border:none}.btn-b:hover{background:var(--blueD)}
 .btn-g{background:transparent;color:var(--text);border:1.5px solid var(--border)}.btn-g:hover{border-color:var(--blue);color:var(--blue)}
-section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
+section{padding:3rem 2rem;max-width:1040px;margin:0 auto}
 .lb{font-family:var(--mono);font-size:0.75rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
 .hd{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,1.9rem);line-height:1.2;margin-bottom:0.3rem}
 .sub{font-size:0.95rem;color:var(--muted);max-width:520px;margin-bottom:1.5rem}
 
-/* HERO */
-.hero{display:flex;align-items:center;padding-top:4rem;padding-bottom:1rem}
+.hero{display:flex;align-items:center;padding-top:4.5rem;padding-bottom:1.5rem}
 .hg{display:grid;grid-template-columns:1.1fr 0.9fr;gap:2.5rem;align-items:center;width:100%}
 .hero-eye{font-family:var(--mono);font-size:0.8rem;color:var(--green);letter-spacing:0.06em;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem}
 .hero-eye .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pu 2s infinite}
@@ -79,7 +72,6 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .hero-cta .upd{font-size:0.75rem;color:var(--muted);font-family:var(--mono);margin-left:0.2rem}
 .hero .auth{margin-top:0.7rem;font-size:0.8rem;color:var(--green);font-family:var(--mono)}
 
-/* METRICS */
 .mc{background:var(--card);border-radius:16px;padding:1.8rem;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
 .mc .ml{font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
 .mg{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem}
@@ -87,15 +79,12 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .mi .n{font-family:var(--serif);font-size:1.8rem;color:var(--blue);line-height:1;margin-bottom:0.15rem;font-weight:700}
 .mi .d{font-size:0.78rem;color:var(--muted)}
 
-/* LOGO STRIP */
-.ls{overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card)}
-.lt{display:flex;align-items:center;gap:2.5rem;animation:sc 50s linear infinite;width:max-content}
-.lt:hover{animation-play-state:paused}
-@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.lt img{height:48px;filter:none;transition:all 0.3s;flex-shrink:0;object-fit:contain}
-.lt img:hover{transform:scale(1.12)}
+/* STATIC LOGO STRIP */
+.ls{padding:2rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card)}
+.ls-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.ls img{height:40px;filter:grayscale(0.3);opacity:0.75;transition:all 0.3s;object-fit:contain}
+.ls img:hover{filter:grayscale(0);opacity:1;transform:scale(1.08)}
 
-/* CAPS */
 .cg{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem}
 .cc{padding:1.2rem;border-radius:12px;background:var(--card);border:1px solid var(--border);transition:all 0.2s}
 .cc:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
@@ -103,7 +92,6 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .cc h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.25rem}
 .cc p{font-size:0.9rem;color:var(--muted);line-height:1.45}
 
-/* TIMELINE */
 .tl{position:relative;padding-left:1.3rem}
 .tl::before{content:'';position:absolute;left:4px;top:6px;bottom:6px;width:1.5px;background:linear-gradient(to bottom,var(--blue),var(--border))}
 .ti{position:relative;margin-bottom:0.6rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:border-color 0.2s}
@@ -130,15 +118,16 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 
 /* PROJECTS */
 .pg{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem}
-.pc{padding:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all 0.2s}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all 0.2s;overflow:hidden}
 .pc:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.pc-img{width:100%;height:160px;object-fit:cover;display:block;border-bottom:1px solid var(--border)}
+.pc-body{padding:1.2rem}
 .pt{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--blue);margin-bottom:0.35rem}
 .pc h3{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:0.25rem}
 .pc p{font-size:0.85rem;color:var(--muted);line-height:1.45;margin-bottom:0.5rem}
 .chips{display:flex;flex-wrap:wrap;gap:0.25rem}
 .chip{font-family:var(--mono);font-size:0.72rem;padding:0.18rem 0.45rem;border-radius:3px;background:var(--blueS);color:var(--blueD);font-weight:500}
 
-/* EDUCATION */
 .er{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem}
 .ec{padding:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;gap:1rem;align-items:start}
 .ec img{width:52px;height:52px;border-radius:8px;object-fit:contain;flex-shrink:0;background:var(--bg);padding:4px}
@@ -146,7 +135,6 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .ec .sch{color:var(--blue);font-size:0.85rem;font-weight:500;margin-bottom:0.15rem}
 .ec .en{font-size:0.82rem;color:var(--muted);font-style:italic}
 
-/* PATENTS */
 .pr{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem}
 .pp{padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:border-color 0.2s}
 .pp:hover{border-color:var(--gold)}
@@ -154,7 +142,6 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .pp .pd{font-size:0.82rem;color:var(--muted)}
 .pp .ps{font-family:var(--mono);font-size:0.72rem;color:var(--gold);margin-top:0.35rem;font-weight:600}
 
-/* PUBS */
 .pubr{padding:0.7rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:0.35rem;display:grid;grid-template-columns:1fr auto;gap:0.6rem;align-items:center;transition:border-color 0.2s}
 .pubr:hover{border-color:var(--blue)}
 .pubr .ptt{font-size:0.88rem;color:var(--text)}.pubr .pv{font-size:0.75rem;color:var(--blue);font-family:var(--mono);margin-top:0.06rem}
@@ -163,21 +150,18 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .schc:hover{border-color:var(--blue)}
 .sn{font-family:var(--serif);font-size:1.15rem;color:var(--blue);font-weight:700}.sl{font-size:0.75rem;color:var(--muted)}
 
-/* SKILLS */
 .sg{display:grid;grid-template-columns:repeat(2,1fr);gap:0.7rem}
 .sk{padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:10px}
 .sk h4{font-family:var(--mono);font-size:0.72rem;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem}
 .stg{display:flex;flex-wrap:wrap;gap:0.25rem}
 .st{padding:0.22rem 0.5rem;border-radius:3px;font-size:0.78rem;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
 
-/* AWARDS */
 .awg{display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem}
 .aw{padding:0.6rem 0.8rem;background:var(--card);border:1px solid var(--border);border-radius:6px;transition:border-color 0.2s}
 .aw:hover{border-color:var(--blue)}
 .aw .awy{font-family:var(--mono);font-size:0.8rem;color:var(--blue);font-weight:600}
 .aw p{font-size:0.88rem;color:var(--muted);margin-top:0.06rem;line-height:1.3}
 
-/* PRESS */
 .prg{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem}
 .pl{padding:0.8rem 0.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;transition:all 0.2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.4rem}
 .pl:hover{border-color:var(--blue);transform:translateY(-1px)}
@@ -186,13 +170,11 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .pl .pln{font-size:0.88rem;font-weight:600;color:var(--text)}
 .pl .ply{font-family:var(--mono);font-size:0.75rem;color:var(--blue)}
 
-/* GOOGLE */
 .gcta{text-align:center;padding:1rem;background:var(--blueS);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .gcta a{font-family:var(--mono);font-size:1rem;color:var(--blue);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem}
 .gcta a:hover{text-decoration:underline}
 
-/* CONTACT */
-.cs{background:var(--dark);padding:2.5rem 2rem;text-align:center}
+.cs{background:var(--dark);padding:3.5rem 2rem;text-align:center}
 .csi{max-width:520px;margin:0 auto}
 .cs h2{font-family:var(--serif);font-size:2rem;color:#fff;margin-bottom:0.5rem}
 .cs p{color:rgba(255,255,255,0.55);font-size:1.05rem;margin-bottom:1.2rem;line-height:1.55}
@@ -201,14 +183,11 @@ section{padding:1.5rem 2rem;max-width:1040px;margin:0 auto}
 .cbb:hover{background:rgba(255,255,255,0.14);transform:translateY(-1px)}
 
 footer{text-align:center;padding:0.7rem;font-size:0.72rem;color:var(--muted)}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--blue)}
+footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--blue)}
 .btt{position:fixed;bottom:1.5rem;right:1.5rem;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;border:none;cursor:pointer;font-size:0.9rem;display:none;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,113,227,0.3);z-index:99}
 .btt.show{display:flex}
 .fi{opacity:0;transform:translateY(14px);transition:opacity 0.4s,transform 0.4s}.fi.v{opacity:1;transform:translateY(0)}
 
-@media(max-width:900px){.cg,.pg,.er,.sg{grid-template-columns:1fr}.pr{grid-template-columns:1fr}.awg{grid-template-columns:repeat(2,1fr)}.prg{grid-template-columns:repeat(2,1fr)}}
-/* IN PICTURES */
 .ips{overflow:hidden;padding:1.2rem 0}
 .ipt{display:flex;align-items:center;gap:0.6rem;animation:ips 55s linear infinite;width:max-content}
 .ipt:hover{animation-play-state:paused}
@@ -217,7 +196,9 @@ footer a:hover{color:var(--blue)}
 .ipi:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
 .ipi img{width:280px;height:190px;object-fit:cover;display:block;transition:transform 0.3s}
 .ipi:hover img{transform:scale(1.04)}
-@media(max-width:768px){nav ul{display:none}nav ul.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(245,245,247,0.97);backdrop-filter:blur(14px);padding:0.8rem 2rem;border-bottom:1px solid var(--border)}.ham{display:flex}.hg{grid-template-columns:1fr;gap:1.5rem}section{padding:1.2rem 1rem}.th{flex-direction:column}.awg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.ipi img{width:240px;height:160px}}
+
+@media(max-width:900px){.cg,.pg,.er,.sg{grid-template-columns:1fr}.pr{grid-template-columns:1fr}.awg{grid-template-columns:repeat(2,1fr)}.prg{grid-template-columns:repeat(2,1fr)}.ls-inner{gap:1.5rem}}
+@media(max-width:768px){nav ul{display:none}nav ul.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(245,245,247,0.97);backdrop-filter:blur(14px);padding:0.8rem 2rem;border-bottom:1px solid var(--border)}.ham{display:flex}.hg{grid-template-columns:1fr;gap:1.5rem}section{padding:2rem 1rem}.th{flex-direction:column}.awg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.ipi img{width:240px;height:160px}.ls-inner{gap:1.2rem}.ls img{height:32px}}
 </style>
 </head>
 <body>
@@ -255,49 +236,16 @@ footer a:hover{color:var(--blue)}
 </div>
 </section>
 
-<!-- LOGO STRIP with Logo.dev -->
-<div class="ls"><div class="lt">
-  <img src="https://img.logo.dev/orbitalsystems.de?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="GOS" title="GOS">
-  <img src="https://img.logo.dev/plasiv.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="PlaSiV" title="PlaSiV">
-  <img src="https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="NSF" title="National Science Foundation">
+<!-- STATIC LOGO STRIP -->
+<div class="ls"><div class="ls-inner">
   <img src="https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="US Dept of Defense" title="United States Department of Defense">
-  <img src="https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="ODU" title="Old Dominion University">
+  <img src="https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="NSF" title="National Science Foundation">
   <img src="https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="MIT" title="Massachusetts Institute of Technology">
-  <img src="https://img.logo.dev/skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Skoltech" title="Skolkovo Institute of Science and Technology">
-  <img src="https://img.logo.dev/un.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="UN" title="United Nations">
-  <img src="https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="INFORMS" title="INFORMS">
-  <img src="https://img.logo.dev/blackstone.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Blackstone" title="Blackstone LaunchPad">
-  <img src="https://img.logo.dev/micron.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Micron" title="Micron Technology">
   <img src="https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="SpaceX" title="SpaceX">
   <img src="https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="NASA" title="NASA">
-  <img src="https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IEEE" title="IEEE">
-  <img src="https://img.logo.dev/3ds.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Dassault" title="Dassault Systemes">
-  <img src="https://img.logo.dev/iitm.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IIT Madras" title="IIT Madras">
-  <img src="https://img.logo.dev/iitr.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IIT Roorkee" title="IIT Roorkee">
-  <img src="https://img.logo.dev/masschallenge.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="MassChallenge" title="MassChallenge">
-  <img src="https://img.logo.dev/caci.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="CACI" title="CACI">
-  <img src="https://img.logo.dev/iafastro.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IAF" title="International Astronautical Federation">
-  <!-- duplicate for seamless scroll -->
-  <img src="https://img.logo.dev/orbitalsystems.de?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="GOS" title="GOS">
-  <img src="https://img.logo.dev/plasiv.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="PlaSiV" title="PlaSiV">
-  <img src="https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="NSF" title="National Science Foundation">
-  <img src="https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="US Dept of Defense" title="United States Department of Defense">
   <img src="https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="ODU" title="Old Dominion University">
-  <img src="https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="MIT" title="Massachusetts Institute of Technology">
   <img src="https://img.logo.dev/skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Skoltech" title="Skolkovo Institute of Science and Technology">
-  <img src="https://img.logo.dev/un.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="UN" title="United Nations">
-  <img src="https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="INFORMS" title="INFORMS">
-  <img src="https://img.logo.dev/blackstone.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Blackstone" title="Blackstone LaunchPad">
-  <img src="https://img.logo.dev/micron.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Micron" title="Micron Technology">
-  <img src="https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="SpaceX" title="SpaceX">
-  <img src="https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="NASA" title="NASA">
-  <img src="https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IEEE" title="IEEE">
-  <img src="https://img.logo.dev/3ds.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="Dassault" title="Dassault Systemes">
-  <img src="https://img.logo.dev/iitm.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IIT Madras" title="IIT Madras">
-  <img src="https://img.logo.dev/iitr.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IIT Roorkee" title="IIT Roorkee">
-  <img src="https://img.logo.dev/masschallenge.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="MassChallenge" title="MassChallenge">
-  <img src="https://img.logo.dev/caci.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="CACI" title="CACI">
-  <img src="https://img.logo.dev/iafastro.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="IAF" title="International Astronautical Federation">
+  <img src="https://img.logo.dev/plasiv.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png" alt="PlaSiV" title="PlaSiV">
 </div></div>
 
 <section id="cap"><div class="lb fi">What I Do</div><h2 class="hd fi">Capabilities</h2>
@@ -311,9 +259,9 @@ footer a:hover{color:var(--blue)}
 <section id="exp"><div class="lb fi">Experience</div><h2 class="hd fi">Core Roles</h2>
 <div class="tl" style="margin-top:0.8rem">
   <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Senior Research Engineer, Digital Twins</h3><div class="co">PlaSiV</div></div><div class="meta">2026 - Present<br>San Jose, CA (Remote)</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li>Currently in <strong>stealth mode</strong>. Details available upon request.</li></ul></div></div>
-  <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Research Scientist, Modeling & Simulation</h3><div class="co">Old Dominion University</div></div><div class="meta">2026 - Present<br>Norfolk, VA</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li>Multi-method simulation (agent-based + discrete event), <strong>300M+ scenarios</strong> on AWS HPC. Two undocumented failure modes discovered.</li><li>US medical residency matching (<strong>42,000+ applicants</strong>). <strong>NSF EAGER Grant #2333570 ($198,534)</strong>.</li><li>As a GRA, performed <strong>7,000+ algorithm generations</strong> testing agent behavior evolution.</li></ul></div></div>
-  <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Technical Program Lead, Fleet Analytics</h3><div class="co">ODU Research Foundation, US Department of Defense</div></div><div class="meta">2023 - 2025<br>Norfolk, VA</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li><strong>$496K across 3 programs</strong>. As Co-PI and GRA, undertook research, development, production, and prime contractor coordination.</li><li>NLP pipeline: <strong>160,000+ records, 92% accuracy, 87% time reduction</strong>. In production.</li><li>Proposals securing <strong>$350K+</strong> in federal funding.</li></ul></div></div>
-  <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Strategy Lead</h3><div class="co">Earth In Motion</div></div><div class="meta">2023<br>Virginia Beach, VA</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li>Zero to <strong>$98K revenue in 8 weeks</strong>, 10+ clients.</li><li>Carbon tracking simulation. <strong>25% compliance lift</strong>.</li></ul></div></div>
+  <div class="ti open fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Research Scientist, Modeling & Simulation</h3><div class="co">Old Dominion University</div></div><div class="meta">2026 - Present<br>Norfolk, VA</div></div><div class="tb"><ul><li>Multi-method simulation (agent-based + discrete event), <strong>300M+ scenarios</strong> on AWS HPC. Two undocumented failure modes discovered.</li><li>US medical residency matching (<strong>42,000+ applicants</strong>). <strong>NSF EAGER Grant #2333570 ($198,534)</strong>.</li><li>As a GRA, performed <strong>7,000+ algorithm generations</strong> testing agent behavior evolution.</li></ul></div></div>
+  <div class="ti open fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Technical Program Lead, Fleet Analytics</h3><div class="co">ODU Research Foundation, US Department of Defense</div></div><div class="meta">2023 - 2025<br>Norfolk, VA</div></div><div class="tb"><ul><li><strong>$496K across 3 programs</strong>. As Co-PI and GRA, undertook research, development, production, and prime contractor coordination.</li><li>NLP pipeline: <strong>160,000+ records, 92% accuracy, 87% time reduction</strong>. In production.</li><li>Proposals securing <strong>$350K+</strong> in federal funding.</li></ul></div></div>
+  <div class="ti open fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Strategy Lead</h3><div class="co">Earth In Motion</div></div><div class="meta">2023<br>Virginia Beach, VA</div></div><div class="tb"><ul><li>Zero to <strong>$98K revenue in 8 weeks</strong>, 10+ clients.</li><li>Carbon tracking simulation. <strong>25% compliance lift</strong>.</li></ul></div></div>
   <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Program Director</h3><div class="co">AATWRI Group</div></div><div class="meta">2022 - 2023<br>Chennai</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li><strong>$100K product launch</strong>, 12-person team, <strong>18% ahead of schedule</strong>.</li></ul></div></div>
   <div class="ti fi" onclick="this.classList.toggle('open')"><div class="th"><div><h3>Systems Engineer</h3><div class="co">German Orbital Systems</div></div><div class="meta">2019<br>Berlin</div></div><span class="tt">Click to expand</span><div class="tb"><ul><li>Designed and prototyped CubeSat. Launched aboard <strong>SpaceX Falcon Heavy</strong> to low-Earth orbit. <strong>Still operational in space.</strong></li></ul></div></div>
 </div>
@@ -335,11 +283,15 @@ footer a:hover{color:var(--blue)}
 
 <section id="proj"><div class="lb fi">Featured Work</div><h2 class="hd fi">Projects That Shipped</h2>
 <div class="pg" style="margin-top:0.8rem">
-  <div class="pc fi"><div class="pt">NLP, In Production</div><h3>Fleet Maintenance NLP Pipeline</h3><p>End-to-end pipeline for US Navy work orders. 160,000+ records, 687 abbreviations, 1,550 misspellings. Delivered to Department of Defense. Running in production.</p><div class="chips"><span class="chip">92% accuracy</span><span class="chip">87% time saved</span><span class="chip">160K+ records</span><span class="chip">$146K funded</span></div></div>
-  <div class="pc fi"><div class="pt">Simulation, NSF Funded</div><h3>Medical Residency Matching Model</h3><p>Agent-based model, 42,000+ applicants. NSF EAGER Grant #2333570 ($198,534). Winter Simulation Conference 2026, the premier international forum for system simulation.</p><div class="chips"><span class="chip">42K+ agents</span><span class="chip">300M+ scenarios</span><span class="chip">NSF funded</span><span class="chip">WSC 2026</span></div></div>
-  <div class="pc fi"><div class="pt">Space Systems, In Orbit</div><h3>CubeSat on SpaceX Falcon Heavy</h3><p>Designed and prototyped CubeSat using shape memory alloy technology at German Orbital Systems, Berlin. Launched to low-Earth orbit. Still operational in space.</p><div class="chips"><span class="chip">SpaceX Falcon Heavy</span><span class="chip">Low-Earth orbit</span><span class="chip">Operational</span></div></div>
-  <div class="pc fi"><div class="pt">Digital Twin, Federal</div><h3>Process-Oriented Digital Thread</h3><p>Predictive maintenance architecture for US federal maritime operations. Department of Defense Digital Engineering Initiative.</p><div class="chips"><span class="chip">Federal maritime</span><span class="chip">System-of-systems</span></div></div>
-  <div class="pc fi"><div class="pt">Product, Revenue</div><h3>Carbon Accountability Platform</h3><p>Carbon tracking simulation (Verra VCS 4.7, UN Sustainable Development Goals). LLM-powered training module. Zero to $98K revenue in 8 weeks, 10+ clients, 25% compliance lift.</p><div class="chips"><span class="chip">$98K in 8 weeks</span><span class="chip">10+ clients</span><span class="chip">25% compliance</span><span class="chip">Verra VCS 4.7</span></div></div>
+  <div class="pc fi"><img src="thumb_fleet_nlp.jpg" alt="NLP pipeline architecture diagram" class="pc-img"><div class="pc-body"><div class="pt">NLP, In Production</div><h3>Fleet Maintenance NLP Pipeline</h3><p>End-to-end pipeline for US Navy work orders. 160,000+ records, 687 abbreviations, 1,550 misspellings. Delivered to Department of Defense. Running in production.</p><div class="chips"><span class="chip">92% accuracy</span><span class="chip">87% time saved</span><span class="chip">160K+ records</span><span class="chip">$146K funded</span></div></div></div>
+  <div class="pc fi"><img src="thumb_nrmp.jpg" alt="NetLogo agent-based simulation of medical residency matching" class="pc-img"><div class="pc-body"><div class="pt">Simulation, NSF Funded</div><h3>Medical Residency Matching Model</h3><p>Agent-based model, 42,000+ applicants. NSF EAGER Grant #2333570 ($198,534). Winter Simulation Conference 2026, the premier international forum for system simulation.</p><div class="chips"><span class="chip">42K+ agents</span><span class="chip">300M+ scenarios</span><span class="chip">NSF funded</span><span class="chip">WSC 2026</span></div></div></div>
+  <div class="pc fi"><img src="thumb_graphtreemed-1.jpg" alt="GraphTreeMed architecture diagram" class="pc-img"><div class="pc-body"><div class="pt">RAG Architecture, Healthcare</div><h3>GraphTreeMed: Hybrid Graph-Tree RAG</h3><p>Hybrid graph-tree retrieval-augmented generation for mission-critical medical applications. Severity-based routing with compliance verification. 35% critical-case recall improvement, 42% ICU error reduction.</p><div class="chips"><span class="chip">Agentic RAG</span><span class="chip">15K+ cases</span><span class="chip">Graph-Tree</span><span class="chip">ODU</span></div></div></div>
+  <div class="pc fi"><img src="thumb_tamos-1.jpg" alt="TAMOS multi-agent orchestrator system diagram" class="pc-img"><div class="pc-body"><div class="pt">Multi-Agent AI, Orchestration</div><h3>TAMOS: Task-Aware Multi-Agent Orchestrator</h3><p>Framework optimizing LLM-based agent orchestration via hierarchical task classification, dynamic agent roles, and multi-objective evaluation. Uses Llama 3.2-3B for meta-reasoning.</p><div class="chips"><span class="chip">LLM orchestration</span><span class="chip">Multi-objective</span><span class="chip">Llama 3.2</span><span class="chip">ODU</span></div></div></div>
+  <div class="pc fi"><img src="thumb_metaclustering-1.jpg" alt="Meta-Clustering framework for healthcare conversational AI" class="pc-img"><div class="pc-body"><div class="pt">NLP, Healthcare AI</div><h3>Meta-Clustering for Conversational AI</h3><p>Multi-state model clustering specialized language models (DLMs + SLMs) for region-specific healthcare. Dynamic orchestrator adapts to local dialects and epidemiological data. Published at IEEE SoSE 2025.</p><div class="chips"><span class="chip">Meta-learning</span><span class="chip">Healthcare NLP</span><span class="chip">IEEE SoSE</span><span class="chip">Multi-lingual</span></div></div></div>
+  <div class="pc fi"><img src="thumb_digital_thread-1.jpg" alt="Digital Thread framework poster" class="pc-img"><div class="pc-body"><div class="pt">Digital Twin, Federal</div><h3>Process-Oriented Digital Thread</h3><p>Transitional framework bridging outsourced microservices with intrinsic systems via shared protocols, adaptive feedback loops, and standardized models. Department of Defense Digital Engineering Initiative.</p><div class="chips"><span class="chip">Federal maritime</span><span class="chip">System-of-systems</span><span class="chip">Zero-trust</span></div></div></div>
+  <div class="pc fi"><img src="thumb_carbon-05.jpg" alt="Carbon Accountability Score formula" class="pc-img"><div class="pc-body"><div class="pt">Product, Revenue</div><h3>Carbon Accountability Platform</h3><p>Process-oriented carbon scoring (Verra VCS 4.7, UN SDGs). Ties emissions to operational processes instead of offset purchases. LLM-powered training module. Zero to $98K revenue in 8 weeks.</p><div class="chips"><span class="chip">$98K in 8 weeks</span><span class="chip">10+ clients</span><span class="chip">25% compliance</span><span class="chip">Verra VCS 4.7</span></div></div></div>
+  <div class="pc fi"><div class="pc-body"><div class="pt">Space Systems, In Orbit</div><h3>CubeSat on SpaceX Falcon Heavy</h3><p>Designed and prototyped CubeSat using shape memory alloy technology at German Orbital Systems, Berlin. Launched to low-Earth orbit. Still operational in space.</p><div class="chips"><span class="chip">SpaceX Falcon Heavy</span><span class="chip">Low-Earth orbit</span><span class="chip">Operational</span></div></div></div>
+  <div class="pc fi"><img src="thumb_ai_threshold-02.jpg" alt="A vs I in AI paper" class="pc-img"><div class="pc-body"><div class="pt">Theory, HICSS 2026</div><h3>Bandwidth-Limited Intelligence Threshold</h3><p>Proposes that engineered AI faces a bandwidth-limited intelligence ceiling arising from sensor/actuator capacity. Dual-channel model separating physical I/O from representational capacity. Published at HICSS 2026.</p><div class="chips"><span class="chip">Information theory</span><span class="chip">Observer-participant</span><span class="chip">HICSS 2026</span></div></div></div>
 </div></section>
 
 <section><div class="lb fi">Education</div><h2 class="hd fi">Academic Foundation</h2>
@@ -360,7 +312,7 @@ footer a:hover{color:var(--blue)}
 <div class="pubr fi"><div><div class="ptt"><a href="https://meetings.informs.org/wordpress/wsc2026/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">Agent-Based Model of Application Fever in the National Resident Matching Program</a></div><div class="pv">Winter Simulation Conference 2026, premier international forum for system simulation. Invited.</div></div><span class="py">2026</span></div>
 <div class="pubr fi"><div><div class="ptt"><a href="https://conference.netlogo.org/2026/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">Detecting the Silo Trap in Multi-Agent Systems: A NetLogo Framework</a></div><div class="pv">NetLogo Conference 2026 (inaugural). Accepted.</div></div><span class="py">2026</span></div>
 <div class="pubr fi"><div><div class="ptt"><a href="https://conference.netlogo.org/2026/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">Application Fever as Emergent Behavior in Medical Residency Matching</a></div><div class="pv">NetLogo Conference 2026. Accepted.</div></div><span class="py">2026</span></div>
-<div class="pubr fi"><div><div class="ptt"><a href="https://dblp.org/db/conf/hicss/hicss2026.html" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">A vs. I in AI: Is there a Threshold to "Engineered" Intelligence?</a></div><div class="pv">59th Hawaii International Conference on System Sciences</div></div><span class="py">2026</span></div>
+<div class="pubr fi"><div><div class="ptt"><a href="https://doi.org/10.24251/HICSS.2026.143" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">A vs. I in AI: Is there a Threshold to "Engineered" Intelligence?</a></div><div class="pv">59th Hawaii International Conference on System Sciences</div></div><span class="py">2026</span></div>
 <div class="pubr fi"><div><div class="ptt"><a href="https://www.semanticscholar.org/paper/4381d3bae80c035d0da6d2124934a2b1c8e9a705" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">Meta-clustering framework for conversational AI in healthcare</a></div><div class="pv">20th System of Systems Engineering Conference</div></div><span class="py">2025</span></div>
 <div class="pubr fi"><div><div class="ptt"><a href="https://ieeexplore.ieee.org/document/11083870" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">Mitigating Hallucinations in LLMs for Document Intelligence</a></div><div class="pv">IEEE Conference on Data-Driven Social Change</div></div><span class="py">2025</span></div>
 <div class="pubr fi"><div><div class="ptt"><a href="https://digitalcommons.odu.edu/gradresearch_achievementday/2025/engineering/1/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border)">GraphTreeMed: A Hybrid Graph-Tree RAG Architecture for Mission-Critical Medical Applications</a></div><div class="pv">GSGA Research Conference, Old Dominion University</div></div><span class="py">2025</span></div>
@@ -406,22 +358,10 @@ footer a:hover{color:var(--blue)}
 
 <section id="gallery"><div class="lb fi">In Pictures</div><h2 class="hd fi">Conferences, Research & Fieldwork</h2>
 <div class="ips" style="margin-top:0.8rem"><div class="ipt">
-  <div class="ipi"><img src="hicss-presenting.png" alt="Joshit Mohanty presenting A vs I in AI at HICSS 2026 Hawaii International Conference on System Sciences" loading="lazy"></div>
-  <div class="ipi"><img src="cubesat-lab.png" alt="Joshit Mohanty with CubeSat satellite hardware at German Orbital Systems Berlin" loading="lazy"></div>
-  <div class="ipi"><img src="iaa-rome.png" alt="Joshit Mohanty presenting Interplanetary Communication Architecture at 5th IAA Conference Rome" loading="lazy"></div>
-  <div class="ipi"><img src="fmms-navy.png" alt="Joshit Mohanty at ASNE Fleet Maintenance and Modernization Symposium" loading="lazy"></div>
-  <div class="ipi"><img src="poster-session.png" alt="Joshit Mohanty presenting GraphTreeMed and TAMOS research posters at conference" loading="lazy"></div>
-  <div class="ipi"><img src="asem-conference.png" alt="Joshit Mohanty with research team at ASEM International Annual Conference" loading="lazy"></div>
-  <div class="ipi"><img src="dod-presentation.png" alt="Joshit Mohanty with team after federal Department of Defense presentation" loading="lazy"></div>
-  <div class="ipi"><img src="tamos-poster.png" alt="TAMOS Task-Aware Multi-Agent Observer System research poster Old Dominion University" loading="lazy"></div>
-  <div class="ipi"><img src="conference-group.png" alt="Joshit Mohanty at research conference group photo" loading="lazy"></div>
-  <div class="ipi"><img src="cyber-security.png" alt="Joshit Mohanty at Cyber Security research presentation" loading="lazy"></div>
-  <div class="ipi"><img src="newspaper-feature.png" alt="Indian Express full page feature on student rocketry VSSUT Joshit Mohanty" loading="lazy"></div>
-  <!-- duplicate for seamless scroll -->
   <div class="ipi"><img src="hicss-presenting.png" alt="Joshit Mohanty presenting A vs I in AI at HICSS 2026" loading="lazy"></div>
-  <div class="ipi"><img src="cubesat-lab.png" alt="Joshit Mohanty with CubeSat hardware German Orbital Systems" loading="lazy"></div>
-  <div class="ipi"><img src="iaa-rome.png" alt="Joshit Mohanty presenting at IAA Conference Rome" loading="lazy"></div>
-  <div class="ipi"><img src="fmms-navy.png" alt="Joshit Mohanty at Fleet Maintenance Symposium" loading="lazy"></div>
+  <div class="ipi"><img src="cubesat-lab.png" alt="Joshit Mohanty with CubeSat at German Orbital Systems Berlin" loading="lazy"></div>
+  <div class="ipi"><img src="iaa-rome.png" alt="Joshit Mohanty presenting at 5th IAA Conference Rome" loading="lazy"></div>
+  <div class="ipi"><img src="fmms-navy.png" alt="Joshit Mohanty at ASNE Fleet Maintenance Symposium" loading="lazy"></div>
   <div class="ipi"><img src="poster-session.png" alt="Joshit Mohanty at research poster session" loading="lazy"></div>
   <div class="ipi"><img src="asem-conference.png" alt="Joshit Mohanty at ASEM Conference" loading="lazy"></div>
   <div class="ipi"><img src="dod-presentation.png" alt="Joshit Mohanty DoD presentation" loading="lazy"></div>
@@ -429,6 +369,17 @@ footer a:hover{color:var(--blue)}
   <div class="ipi"><img src="conference-group.png" alt="Research conference group photo" loading="lazy"></div>
   <div class="ipi"><img src="cyber-security.png" alt="Cyber Security presentation" loading="lazy"></div>
   <div class="ipi"><img src="newspaper-feature.png" alt="Indian Express rocketry feature" loading="lazy"></div>
+  <div class="ipi"><img src="hicss-presenting.png" alt="HICSS 2026" loading="lazy"></div>
+  <div class="ipi"><img src="cubesat-lab.png" alt="CubeSat hardware" loading="lazy"></div>
+  <div class="ipi"><img src="iaa-rome.png" alt="IAA Conference Rome" loading="lazy"></div>
+  <div class="ipi"><img src="fmms-navy.png" alt="Fleet Maintenance Symposium" loading="lazy"></div>
+  <div class="ipi"><img src="poster-session.png" alt="Research poster session" loading="lazy"></div>
+  <div class="ipi"><img src="asem-conference.png" alt="ASEM Conference" loading="lazy"></div>
+  <div class="ipi"><img src="dod-presentation.png" alt="DoD presentation" loading="lazy"></div>
+  <div class="ipi"><img src="tamos-poster.png" alt="TAMOS poster" loading="lazy"></div>
+  <div class="ipi"><img src="conference-group.png" alt="Conference group photo" loading="lazy"></div>
+  <div class="ipi"><img src="cyber-security.png" alt="Cyber Security" loading="lazy"></div>
+  <div class="ipi"><img src="newspaper-feature.png" alt="Indian Express feature" loading="lazy"></div>
 </div></div></section>
 
 <section><div class="lb fi">Press</div><h2 class="hd fi">Media Coverage</h2>
@@ -464,8 +415,6 @@ const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.
 document.querySelectorAll('.fi').forEach(el=>o.observe(el));
 document.querySelectorAll('#nv a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('nv').classList.remove('active'))});
 window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('pb').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';document.getElementById('btt').classList.toggle('show',window.scrollY>300)});
-
-// Counter animation with fallback
 window.addEventListener('load',function(){
   setTimeout(function(){
     document.querySelectorAll('.n[data-target]').forEach(function(el){
