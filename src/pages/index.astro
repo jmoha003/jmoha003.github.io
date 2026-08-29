@@ -438,25 +438,23 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section id="gallery">
   <div class="wrap">
     <p class="eyebrow rv">In the field</p>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:.7rem 0 1.8rem">
-      <h2 class="h2 rv" style="margin:0">Conferences, labs, launches.</h2>
-      <div style="display:flex;gap:.45rem">
-        <button class="icon-btn" id="gal-prev" aria-label="Previous photos">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>
-        </button>
-        <button class="icon-btn" id="gal-next" aria-label="More photos">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-    </div>
+    <h2 class="h2 rv" style="margin:.7rem 0 1.8rem">Conferences, labs, launches.</h2>
   </div>
-  <div class="rail" id="gal" role="region" aria-label="Photo gallery, scrollable">
-    {gallery.map((g, i) => (
-      <button class="shot" data-i={i} aria-label={`View: ${g.caption}`}>
-        {pic(g.img) && <Image src={pic(g.img)} alt={g.caption} widths={[420, 840]} sizes="(max-width:680px) 78vw, 340px" loading="lazy" />}
-        <span class="cap">{g.caption}</span>
-      </button>
-    ))}
+  <div class="rail" id="gal" role="region" aria-label="Photo gallery">
+    <div class="rail-track" id="gal-track">
+      {gallery.map((g, i) => (
+        <button class="shot" data-i={i} aria-label={`View: ${g.caption}`}>
+          {pic(g.img) && <Image src={pic(g.img)} alt={g.caption} widths={[420, 840]} sizes="(max-width:680px) 78vw, 340px" loading="lazy" />}
+          <span class="cap">{g.caption}</span>
+        </button>
+      ))}
+      {gallery.map((g, i) => (
+        <button class="shot" data-i={i} tabindex="-1" aria-hidden="true">
+          {pic(g.img) && <Image src={pic(g.img)} alt="" widths={[420, 840]} sizes="(max-width:680px) 78vw, 340px" loading="lazy" />}
+          <span class="cap">{g.caption}</span>
+        </button>
+      ))}
+    </div>
   </div>
 </section>
 

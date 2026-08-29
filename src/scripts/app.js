@@ -96,19 +96,20 @@ $$('[data-project]').forEach((btn) => btn.addEventListener('click', () =>
   openModal(btn.dataset.project, $('img', btn))));
 $$('[data-close]', modal).forEach((el) => el.addEventListener('click', closeModal));
 
-/* ───── gallery lightbox ───── */
+/* ───── gallery lightbox (marquee has duplicated slides; map by data-i) ───── */
 const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
 const shots = $$('#gal .shot');
+const originals = shots.filter((s, i, all) => all.findIndex((o) => o.dataset.i === s.dataset.i) === i);
 let gi = 0;
 const showShot = (i) => {
-  gi = (i + shots.length) % shots.length;
-  const img = $('img', shots[gi]);
+  gi = (i + originals.length) % originals.length;
+  const img = $('img', originals[gi]);
   lbImg.src = img.currentSrc || img.src;
-  lbImg.alt = img.alt;
-  lbCap.textContent = img.alt;
+  lbImg.alt = $('.cap', originals[gi])?.textContent || '';
+  lbCap.textContent = lbImg.alt;
 };
-shots.forEach((b, i) => b.addEventListener('click', () => {
-  lastFocus = b; showShot(i); lb.classList.add('open');
+shots.forEach((b) => b.addEventListener('click', () => {
+  lastFocus = b; showShot(+b.dataset.i); lb.classList.add('open');
   document.body.style.overflow = 'hidden'; $('#lb-next')?.focus();
 }));
 const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow = ''; lastFocus?.focus(); };
@@ -641,14 +642,7 @@ addEventListener('keydown', (e) => {
   applyFilter();
 })();
 
-/* ───── gallery carousel ───── */
-(() => {
-  const rail = document.getElementById('gal');
-  if (!rail) return;
-  const page = () => Math.max(240, rail.clientWidth * 0.8);
-  document.getElementById('gal-next')?.addEventListener('click', () => rail.scrollBy({ left: page(), behavior: 'smooth' }));
-  document.getElementById('gal-prev')?.addEventListener('click', () => rail.scrollBy({ left: -page(), behavior: 'smooth' }));
-})();
+
 
 /* ───── hide any logo the provider can't resolve, so no empty chips ───── */
 $$('img[data-logo]').forEach((img) => {
