@@ -610,15 +610,14 @@ $$('img[data-logo]').forEach((img) => {
 
 /* ═══════════════════════════════════════════════════════════
    AGENT CURSOR
-   Six agents track the pointer under the three classic flocking
-   rules — cohesion toward a target, separation from each other,
-   alignment of heading — with damping. A click applies a radial
-   impulse; the flock scatters and re-equilibrates, which is the
-   whole point: perturbation and return to a stable state.
+   The pointer is a turtle — the NetLogo agent silhouette — and a
+   small flock trails it under cohesion, separation and alignment.
+   Every agent points along its own heading. A click applies a
+   radial impulse: the flock scatters, then re-equilibrates.
    ═══════════════════════════════════════════════════════════ */
 (() => {
   if (reduced) return;
-  if (!matchMedia('(pointer: fine)').matches) return;   // trackpad/mouse only
+  if (!matchMedia('(pointer: fine)').matches) return;
 
   const cv = document.createElement('canvas');
   cv.id = 'agent-cursor';
@@ -627,9 +626,9 @@ $$('img[data-logo]').forEach((img) => {
   document.documentElement.classList.add('has-agent-cursor');
   const g = cv.getContext('2d');
 
-  let w, h, dpr;
+  let w, h;
   const size = () => {
-    dpr = Math.min(devicePixelRatio || 1, 2);
+    const dpr = Math.min(devicePixelRatio || 1, 2);
     w = innerWidth; h = innerHeight;
     cv.width = w * dpr; cv.height = h * dpr;
     cv.style.width = w + 'px'; cv.style.height = h + 'px';
@@ -637,24 +636,37 @@ $$('img[data-logo]').forEach((img) => {
   };
   addEventListener('resize', size); size();
 
-  const N = 6;
-  const agents = Array.from({ length: N }, (_, i) => ({
-    x: w / 2, y: h / 2, vx: 0, vy: 0,
-    r: 2.4 - i * 0.22,                       // leaders slightly larger
-    lag: 0.16 - i * 0.017,                   // staggered pursuit -> a trailing formation
+  // the NetLogo turtle: nose, two swept flanks, notched tail
+  const turtle = (x, y, ang, s) => {
+    g.save(); g.translate(x, y); g.rotate(ang);
+    g.beginPath();
+    g.moveTo(s, 0);
+    g.lineTo(-s * 0.72, s * 0.66);
+    g.lineTo(-s * 0.30, 0);
+    g.lineTo(-s * 0.72, -s * 0.66);
+    g.closePath(); g.fill();
+    g.restore();
+  };
+
+  const N = 4;
+  const flock = Array.from({ length: N }, (_, i) => ({
+    x: innerWidth / 2, y: innerHeight / 2, vx: 0, vy: 0, ang: -Math.PI / 2,
+    s: 5.4 - i * 0.5, lag: 0.115 - i * 0.018,
   }));
-  let px = w / 2, py = h / 2, hot = false, active = false;
+  const lead = { x: innerWidth / 2, y: innerHeight / 2, ang: -2.2 };
+  let px = innerWidth / 2, py = innerHeight / 2, hot = false, active = false;
 
   addEventListener('pointermove', (e) => {
+    const dx = e.clientX - px, dy = e.clientY - py;
     px = e.clientX; py = e.clientY; active = true;
-    hot = !!e.target.closest?.('a,button,input,summary,[role="tab"],.shot,.work,.logo-card');
+    if (Math.hypot(dx, dy) > 1.6) lead.ang = Math.atan2(dy, dx);   // lead faces travel
+    hot = !!e.target.closest?.('a,button,input,summary,[role="tab"],.shot,.work,.logo-card,.alma-card');
   }, { passive: true });
-  addEventListener('pointerdown', () => {                 // perturbation
-    agents.forEach((a) => {
-      const dx = a.x - px, dy = a.y - py;
-      const d = Math.hypot(dx, dy) || 1;
-      a.vx += (dx / d) * 9 + (Math.random() - 0.5) * 4;
-      a.vy += (dy / d) * 9 + (Math.random() - 0.5) * 4;
+  addEventListener('pointerdown', () => {
+    flock.forEach((a) => {
+      const dx = a.x - px, dy = a.y - py, d = Math.hypot(dx, dy) || 1;
+      a.vx += (dx / d) * 8.5 + (Math.random() - 0.5) * 3.5;
+      a.vy += (dy / d) * 8.5 + (Math.random() - 0.5) * 3.5;
     });
   }, { passive: true });
   addEventListener('pointerleave', () => { active = false; }, { passive: true });
@@ -664,51 +676,43 @@ $$('img[data-logo]').forEach((img) => {
     g.clearRect(0, 0, w, h);
     if (!active) return;
 
-    const ring = hot ? 16 : 9;                            // formation opens over targets
+    lead.x += (px - lead.x) * 0.5; lead.y += (py - lead.y) * 0.5;
+    const ring = hot ? 32 : 23;
+
     for (let i = 0; i < N; i++) {
-      const a = agents[i];
-      // cohesion: seek a point on a ring around the pointer, phase-offset per agent
-      const ang = (i / N) * Math.PI * 2 + performance.now() / (hot ? 620 : 1100);
-      const tx = px + Math.cos(ang) * ring, ty = py + Math.sin(ang) * ring;
-      a.vx += (tx - a.x) * a.lag;
-      a.vy += (ty - a.y) * a.lag;
-      // separation + alignment against the rest of the flock
-      let sx = 0, sy = 0, ax = 0, ay = 0, n = 0;
+      const a = flock[i];
+      const ang = (i / N) * Math.PI * 2 + performance.now() / (hot ? 700 : 1300);
+      a.vx += (px + Math.cos(ang) * ring - a.x) * a.lag;
+      a.vy += (py + Math.sin(ang) * ring - a.y) * a.lag;
+      let sx = 0, sy = 0, ax = 0, ay = 0;
       for (let j = 0; j < N; j++) {
         if (j === i) continue;
-        const b = agents[j], dx = a.x - b.x, dy = a.y - b.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 260 && d2 > 0.01) { sx += dx / d2; sy += dy / d2; }
-        ax += b.vx; ay += b.vy; n++;
+        const b = flock[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < 420 && d2 > 0.01) { sx += dx / d2; sy += dy / d2; }
+        ax += b.vx; ay += b.vy;
       }
-      a.vx += sx * 26 + (ax / n - a.vx) * 0.05;
-      a.vy += sy * 26 + (ay / n - a.vy) * 0.05;
-      a.vx *= 0.78; a.vy *= 0.78;                          // damping -> settles, never oscillates
+      a.vx += sx * 30 + (ax / (N - 1) - a.vx) * 0.06;
+      a.vy += sy * 30 + (ay / (N - 1) - a.vy) * 0.06;
+      a.vx *= 0.8; a.vy *= 0.8;
       a.x += a.vx; a.y += a.vy;
+      const sp = Math.hypot(a.vx, a.vy);
+      if (sp > 0.35) a.ang = Math.atan2(a.vy, a.vx);               // each faces its heading
     }
 
     const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4';
-    g.strokeStyle = accent; g.fillStyle = accent;
-    // local interaction links, the same neighbourhood rule the models use
-    g.lineWidth = 1;
-    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
-      const d = Math.hypot(agents[i].x - agents[j].x, agents[i].y - agents[j].y);
-      if (d < 34) {
-        g.globalAlpha = 0.16 * (1 - d / 34);
-        g.beginPath(); g.moveTo(agents[i].x, agents[i].y); g.lineTo(agents[j].x, agents[j].y); g.stroke();
-      }
+    g.fillStyle = accent; g.strokeStyle = accent;
+
+    if (hot) {                                                     // observation radius over targets
+      g.globalAlpha = 0.38; g.lineWidth = 1; g.setLineDash([3, 4]);
+      g.beginPath(); g.arc(px, py, ring + 6, 0, 6.2832); g.stroke();
+      g.setLineDash([]);
     }
-    agents.forEach((a, i) => {
-      g.globalAlpha = 0.75 - i * 0.07;
-      g.beginPath(); g.arc(a.x, a.y, a.r, 0, 6.2832); g.fill();
+    flock.forEach((a, i) => {                                      // the followers
+      g.globalAlpha = 0.55 - i * 0.09;
+      turtle(a.x, a.y, a.ang, a.s);
     });
-    // precise core at the true pointer position, so targeting never degrades
-    g.globalAlpha = 1;
-    g.beginPath(); g.arc(px, py, hot ? 2.6 : 1.7, 0, 6.2832); g.fill();
-    if (hot) {
-      g.globalAlpha = 0.5; g.lineWidth = 1;
-      g.beginPath(); g.arc(px, py, 15, 0, 6.2832); g.stroke();
-    }
+    g.globalAlpha = 1;                                             // the pointer itself
+    turtle(lead.x, lead.y, lead.ang, hot ? 8.4 : 7.2);
     g.globalAlpha = 1;
   };
   tick();
