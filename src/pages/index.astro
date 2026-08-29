@@ -90,35 +90,6 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   </div>
 </section>
 
-<!-- ═══ WORK ═══ -->
-<section id="work">
-  <div class="wrap">
-    <div class="pin-head">
-      <p class="eyebrow rv">Selected work</p>
-      <h2 class="h2 rv" style="margin-top:.7rem">Systems that shipped.<br /><span class="soft">And the models behind them.</span></h2>
-    </div>
-    <div class="work-grid stagger">
-      {projects.map((p) => (
-        <button class="work" data-project={p.id} aria-haspopup="dialog">
-          <div class="work-img">
-            {pic(p.img) && <Image src={pic(p.img)} alt={p.title} widths={[400, 720]} sizes="(max-width:680px) 92vw, 360px" loading="lazy" />}
-            <span class="work-tag">{p.tag}</span>
-          </div>
-          <div class="work-body">
-            <h3>{p.title}</h3>
-            <p>{p.blurb}</p>
-            <span class="work-more">
-              {p.interactive && <span class="live-chip">LIVE</span>}
-              {p.interactive ? 'Try the model' : 'Details'}
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-          </div>
-        </button>
-      ))}
-    </div>
-  </div>
-</section>
-
 <!-- ═══ PATH ═══ -->
 <section id="path">
   <div class="wrap">
@@ -198,6 +169,35 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
           <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5; amber and red are the fever zone. The pool has two inputs: a naive new cohort each year, and the carriers: unmatched applicants rejoining one level higher along the dashed edge, which thickens as fever builds. Flow proportions come from the live model: a faithful port of the NetLogo source, 52 interaction cycles a year and the two-stage match.</p>
         </aside>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section id="work">
+  <div class="wrap">
+    <div class="pin-head">
+      <p class="eyebrow rv">Selected work</p>
+      <h2 class="h2 rv" style="margin-top:.7rem">Systems that shipped.<br /><span class="soft">And the models behind them.</span></h2>
+    </div>
+    <div class="work-grid stagger">
+      {projects.map((p) => (
+        <button class="work" data-project={p.id} aria-haspopup="dialog">
+          <div class="work-img">
+            {pic(p.img) && <Image src={pic(p.img)} alt={p.title} widths={[400, 720]} sizes="(max-width:680px) 92vw, 360px" loading="lazy" />}
+            <span class="work-tag">{p.tag}</span>
+          </div>
+          <div class="work-body">
+            <h3>{p.title}</h3>
+            <p>{p.blurb}</p>
+            <span class="work-more">
+              {p.interactive && <span class="live-chip">LIVE</span>}
+              {p.interactive ? 'Try the model' : 'Details'}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </button>
+      ))}
     </div>
   </div>
 </section>
