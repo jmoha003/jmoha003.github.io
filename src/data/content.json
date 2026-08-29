@@ -31,25 +31,25 @@
   },
   "metrics": [
     {
-      "value": 700,
+      "value": 713,
       "prefix": "$",
-      "suffix": "K+",
-      "label": "Grant-funded research"
+      "suffix": "K",
+      "label": "Federal research funding contributed to"
     },
     {
       "value": 300,
       "suffix": "M+",
-      "label": "Simulation scenarios run"
+      "label": "Simulation scenarios run on AWS HPC"
     },
     {
       "value": 92,
       "suffix": "%",
-      "label": "NLP classification accuracy"
+      "label": "Work-order classification accuracy, in production"
     },
     {
       "value": 74,
       "suffix": "",
-      "label": "Google Scholar citations"
+      "label": "Google Scholar citations · h-index 5"
     }
   ],
   "capabilities": [
@@ -706,5 +706,6 @@
       "logo": "https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true",
       "note": "Ph.D. Candidate · EMSE"
     }
-  ]
+  ],
+  "metricsNote": "Co-Principal Investigator on $146,336 (Military Sealift Command). Graduate Research Assistant on NSF EAGER #2333570 and the Corrosion Management System award."
 }

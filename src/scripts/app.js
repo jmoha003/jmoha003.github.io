@@ -220,13 +220,34 @@ addEventListener('keydown', (e) => {
   const rndScore = () => { const u = Math.random(); return u < 0.25 ? 1 : u < 0.75 ? 2 : 3; };
   const newAgent = () => ({ score: rndScore(), apps: (Math.random() * 3 | 0) + 1 });
 
+  const shuffle = (a) => { for (let k = a.length - 1; k > 0; k--) { const r = Math.random() * (k + 1) | 0; [a[k], a[r]] = [a[r], a[k]]; } return a; };
+
+  // initial scatter
   const layout = (list) => {
     D = Math.max(4, Math.ceil(Math.sqrt(list.length)));
     cell = new Array(D * D).fill(null);
-    const idx = [...cell.keys()];
-    for (let k = idx.length - 1; k > 0; k--) { const r = Math.random() * (k + 1) | 0; [idx[k], idx[r]] = [idx[r], idx[k]]; }
-    list.forEach((a, n) => { if (n < idx.length) cell[idx[n]] = a; });
+    shuffle([...cell.keys()]).forEach((slot, n) => { if (n < list.length) cell[slot] = list[n]; });
     agents = list;
+  };
+
+  // survivors HOLD their patch; the new cohort sprouts onto empty ones, growing the
+  // grid if needed. This is what lets fever cluster spatially instead of resetting.
+  const reseat = (leavers, incoming) => {
+    const gone = new Set(leavers);
+    for (let i = 0; i < cell.length; i++) if (cell[i] && gone.has(cell[i])) cell[i] = null;
+    const staying = cell.filter(Boolean).length;
+    const need = staying + incoming.length;
+    if (need > cell.length) {                       // expand the world, keeping coordinates
+      const D2 = Math.ceil(Math.sqrt(need));
+      const next = new Array(D2 * D2).fill(null);
+      for (let i = 0; i < cell.length; i++) if (cell[i]) {
+        next[((i / D) | 0) * D2 + (i % D)] = cell[i];
+      }
+      cell = next; D = D2;
+    }
+    const empty = shuffle(cell.map((c, i) => (c ? -1 : i)).filter((i) => i >= 0));
+    incoming.forEach((a, n) => { if (n < empty.length) cell[empty[n]] = a; });
+    agents = cell.filter(Boolean);
   };
 
   const init = () => {
@@ -279,7 +300,9 @@ addEventListener('keydown', (e) => {
     keep.forEach((a) => { a.apps = Math.min(a.apps + 1, 5); a.re = true; });
     // ── a new cohort ARRIVES on top of the returning pool, naive at L1..L3 ──
     const cohort = Math.ceil(N0 * Math.pow(1 + GROWTH, year + 1));
-    layout(keep.concat(Array.from({ length: cohort }, newAgent)));
+    const kept = new Set(keep);
+    const leaving = agents.filter((a) => !kept.has(a));
+    reseat(leaving, Array.from({ length: cohort }, newAgent));
     year++; record();
     if (year >= YEARS) { done = true; running = false; const t = document.getElementById('sim-toggle'); if (t) t.textContent = 'Replay'; }
   };
@@ -339,7 +362,18 @@ addEventListener('keydown', (e) => {
         g.shadowBlur = 0;
       }
     }
-    g.globalAlpha = 1; chart();
+    g.globalAlpha = 1; chart(); mix();
+  };
+
+  // population mix across L1..L5 — the whole pool sliding up the levels
+  const mixEl = document.getElementById('mix');
+  const mix = () => {
+    if (!mixEl) return;
+    const c = [0, 0, 0, 0, 0];
+    agents.forEach((a) => c[a.apps - 1]++);
+    const n = agents.length || 1;
+    mixEl.innerHTML = c.map((v, i) =>
+      `<span style="flex:0 0 ${(v / n) * 100}%;background:${LVL[i]}" title="L${i + 1}: ${Math.round((v / n) * 100)}%"></span>`).join('');
   };
 
   const chart = () => {

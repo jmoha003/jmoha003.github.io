@@ -6,7 +6,7 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, alma, press, reviewer, grants, talks, contributions } = content;
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, alma, press, reviewer, grants, metricsNote, talks, contributions } = content;
 const imgs = import.meta.glob('../assets/images/**/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
@@ -56,6 +56,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         </div>
       ))}
     </div>
+    <p class="rv" style="margin-top:.9rem;font-size:.74rem;color:var(--ink-3);max-width:70ch">{metricsNote}</p>
   </div>
 </section>
 
@@ -72,9 +73,12 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       ))}
     </div>
     <p class="eyebrow rv" style="margin:2.6rem 0 1.2rem">Worked with &amp; funded by</p>
-    <div class="logos stagger">
+    <div class="logo-grid stagger">
       {affiliations.map((a) => (
-        <div class="logo-pill" title={a.name}><img src={a.logo} alt={a.name} loading="lazy" width="130" height="30" /></div>
+        <figure class="logo-card" title={a.name}>
+          <span class="logo-chip"><img src={a.logo} alt="" loading="lazy" width="130" height="34" /></span>
+          <figcaption>{a.name}</figcaption>
+        </figure>
       ))}
     </div>
   </div>
@@ -144,7 +148,20 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         </div>
       </div>
       <div class="lab-body">
-        <div class="lab-canvas"><canvas id="sim" width="480" height="480" role="img" aria-label="Agent grid: cool blue agents apply normally, coloured agents have entered the fever zone"></canvas></div>
+        <div class="lab-canvas">
+          <canvas id="sim" width="480" height="480" role="img" aria-label="Applicant grid: each figure is an applicant, coloured by application level"></canvas>
+          <div class="mix" aria-hidden="true">
+            <div class="mix-bar" id="mix"></div>
+            <div class="mix-key">
+              <span><i style="background:#334155"></i>L1</span>
+              <span><i style="background:#3b82f6"></i>L2</span>
+              <span><i style="background:#22d3ee"></i>L3</span>
+              <span><i style="background:#f59e0b"></i>L4</span>
+              <span><i style="background:#f43f5e"></i>L5</span>
+              <span style="margin-left:auto;color:var(--ink-3)">population mix</span>
+            </div>
+          </div>
+        </div>
         <div class="lab-chart">
           <canvas id="chart" width="340" height="260" role="img" aria-label="Share of applicants in the fever zone over simulated years, split by academic score band"></canvas>
           <div class="chart-key">

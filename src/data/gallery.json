@@ -1,28 +1,82 @@
 [
- {"img":"g/fmms-sandiego.png","caption":"Presenting MSC autonomous ship inspection · ASNE Fleet Maintenance Symposium, San Diego"},
- {"img":"g/best-poster-award.png","caption":"Best Poster Presentation Award · Batten College of Engineering and Technology, ODU"},
- {"img":"g/sose-delegation.png","caption":"System of Systems Engineering Conference delegation"},
- {"img":"hicss-presenting.png","caption":"Presenting at HICSS 2026"},
- {"img":"g/odias-ml.png","caption":"Invited speaker · Odias in Machine Learning Conference 2023"},
- {"img":"g/iaa-rome-talk.png","caption":"Interplanetary communication architecture · 5th IAA Conference, Rome"},
- {"img":"g/iaa-rome-2020.png","caption":"5th IAA Conference on University Satellite Missions · Palazzo Rospigliosi, Rome"},
- {"img":"g/gos-lab.png","caption":"CubeSat build · German Orbital Systems, Berlin"},
- {"img":"g/cyber-team.png","caption":"Cybersecurity research group · ODU"},
- {"img":"g/sose-talk.png","caption":"Conference presentation"},
- {"img":"g/poster-skoltech.png","caption":"Poster session · Skolkovo"},
- {"img":"g/skoltech-team.png","caption":"Research team · Skolkovo Institute of Science and Technology"},
- {"img":"g/mipt.png","caption":"Moscow Institute of Physics and Technology"},
- {"img":"g/moscow-cohort.png","caption":"Skoltech cohort · Red Square, Moscow"},
- {"img":"g/sounding-rocket-lab.png","caption":"Sounding rocket instrumentation · VSSUT"},
- {"img":"g/build-team.png","caption":"Build team at work"},
- {"img":"g/aakruti-2017.png","caption":"AAKRUTI 2017 national design contest finals · Dassault Systèmes"},
- {"img":"g/patent-uvrobot.png","caption":"Indian Patent 383226 · Autonomous ultraviolet mobile sanitising robot"},
- {"img":"g/patent-blindspot.png","caption":"Certificate of Inventorship · Indian Patent 570997, blind spot reduction"},
- {"img":"g/skoltech-certs.png","caption":"Skoltech President's Scholarship and M.S. in Space and Engineering Systems"},
- {"img":"g/msc-samm-cert.png","caption":"Military Sealift Command · SAMM training certificate"},
- {"img":"g/iac-2020-papers.png","caption":"IAC 2020 · Mars logistics architecture and Mars communication constellation"},
- {"img":"g/berlin.png","caption":"Berlin · German Orbital Systems placement"},
- {"img":"g/rome-colosseum.png","caption":"Rome · IAA Conference week"},
- {"img":"g/dc-capitol.png","caption":"Washington, DC"},
- {"img":"newspaper-feature.png","caption":"Newspaper feature"}
+  {
+    "img": "g/fmms-sandiego.png",
+    "caption": "Presenting MSC autonomous ship inspection · ASNE Fleet Maintenance Symposium, San Diego"
+  },
+  {
+    "img": "g/best-poster-award.png",
+    "caption": "Best Poster Presentation Award · Batten College of Engineering and Technology, ODU"
+  },
+  {
+    "img": "g/sose-delegation.png",
+    "caption": "System of Systems Engineering Conference delegation"
+  },
+  {
+    "img": "hicss-presenting.png",
+    "caption": "Presenting at HICSS 2026"
+  },
+  {
+    "img": "g/odias-ml.png",
+    "caption": "Invited speaker · Odias in Machine Learning Conference 2023"
+  },
+  {
+    "img": "g/iaa-rome-talk.png",
+    "caption": "Interplanetary communication architecture · 5th IAA Conference, Rome"
+  },
+  {
+    "img": "g/iaa-rome-2020.png",
+    "caption": "5th IAA Conference on University Satellite Missions · Palazzo Rospigliosi, Rome"
+  },
+  {
+    "img": "g/gos-lab.png",
+    "caption": "CubeSat build · German Orbital Systems, Berlin"
+  },
+  {
+    "img": "g/cyber-team.png",
+    "caption": "Cybersecurity research group · ODU"
+  },
+  {
+    "img": "g/sose-talk.png",
+    "caption": "Conference presentation"
+  },
+  {
+    "img": "g/poster-skoltech.png",
+    "caption": "Poster session · Skolkovo"
+  },
+  {
+    "img": "g/skoltech-team.png",
+    "caption": "Research team · Skolkovo Institute of Science and Technology"
+  },
+  {
+    "img": "g/mipt.png",
+    "caption": "Moscow Institute of Physics and Technology"
+  },
+  {
+    "img": "g/moscow-cohort.png",
+    "caption": "Skoltech cohort · Red Square, Moscow"
+  },
+  {
+    "img": "g/sounding-rocket-lab.png",
+    "caption": "Sounding rocket instrumentation · VSSUT"
+  },
+  {
+    "img": "g/build-team.png",
+    "caption": "Build team at work"
+  },
+  {
+    "img": "g/aakruti-2017.png",
+    "caption": "AAKRUTI 2017 national design contest finals · Dassault Systèmes"
+  },
+  {
+    "img": "g/berlin.png",
+    "caption": "Berlin · German Orbital Systems placement"
+  },
+  {
+    "img": "g/rome-colosseum.png",
+    "caption": "Rome · IAA Conference week"
+  },
+  {
+    "img": "g/dc-capitol.png",
+    "caption": "Washington, DC"
+  }
 ]
