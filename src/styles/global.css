@@ -407,7 +407,6 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 .tl-item .org a:hover{border-bottom-color:var(--accent)}
 
 /* ---- sim chart ---- */
-.lab-body{grid-template-columns:1.25fr 1fr 240px}
 .lab-chart{border-left:1px solid var(--line);background:var(--bg);padding:1rem;display:grid;place-items:center}
 #chart{width:100%;height:auto;max-width:340px}
 .chart-key{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem;font-family:var(--mono);font-size:.62rem}

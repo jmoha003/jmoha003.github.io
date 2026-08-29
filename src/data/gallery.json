@@ -1,5 +1,9 @@
 [
   {
+    "img": "g/netlogo-wilensky.jpg",
+    "caption": "With Uri Wilensky, creator of NetLogo, at the NetLogo Conference 2026, Chicago"
+  },
+  {
     "img": "g/fmms-sandiego.png",
     "caption": "Presenting MSC autonomous ship inspection · ASNE Fleet Maintenance Symposium, San Diego"
   },
@@ -9,7 +13,7 @@
   },
   {
     "img": "g/sose-delegation.png",
-    "caption": "System of Systems Engineering Conference delegation"
+    "caption": "IISE Annual Conference, Virginia Beach"
   },
   {
     "img": "hicss-presenting.png",
@@ -29,7 +33,7 @@
   },
   {
     "img": "g/gos-lab.png",
-    "caption": "CubeSat build · German Orbital Systems, Berlin"
+    "caption": "CubeSat build and stratospheric launch, Skolkovo Institute of Science and Technology"
   },
   {
     "img": "g/cyber-team.png",
@@ -57,11 +61,11 @@
   },
   {
     "img": "g/sounding-rocket-lab.png",
-    "caption": "Sounding rocket instrumentation · VSSUT"
+    "caption": "Developing inflatable antenna reflectors, IIT Roorkee"
   },
   {
     "img": "g/build-team.png",
-    "caption": "Build team at work"
+    "caption": "Developing inflatable antenna reflectors, IIT Roorkee"
   },
   {
     "img": "g/aakruti-2017.png",
