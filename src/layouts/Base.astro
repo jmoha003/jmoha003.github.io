@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import content from '../data/content.json';
+import publications from '../data/publications.json';
+const { profile } = content;
+const { title, description } = Astro.props;
+const url = Astro.site?.href ?? 'https://joshitmohanty.com';
+const nav = [
+  ['Work', '#work'], ['Lab', '#lab'], ['Research', '#research'],
+  ['Papers', '#papers'], ['Path', '#path'], ['Gallery', '#gallery'],
+];
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: 'Ph.D. Candidate, Engineering Management & Systems Engineering',
+  url,
+  email: `mailto:${profile.email}`,
+  knowsAbout: ['Agent-Based Modeling','Modeling and Simulation','Digital Twin','Natural Language Processing','Systems Engineering','Operations Research'],
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'Old Dominion University' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Old Dominion University' },
+    { '@type': 'CollegeOrUniversity', name: 'Skolkovo Institute of Science and Technology' },
+  ],
+  sameAs: [profile.linkedin, profile.scholar],
+};
+const works = publications.slice(0, 8).map((p) => ({
+  '@context': 'https://schema.org', '@type': 'ScholarlyArticle',
+  headline: p.title, datePublished: String(p.year),
+  author: { '@type': 'Person', name: profile.name },
+  isPartOf: { '@type': 'PublicationEvent', name: p.venue },
+}));
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={profile.name} />
+<link rel="canonical" href={url} />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:site_name" content={profile.name} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script is:inline set:html={`(()=>{try{const t=localStorage.getItem('theme');const d=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t||d)}catch(e){}})()`} />
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+{works.map((w) => <script type="application/ld+json" set:html={JSON.stringify(w)} />)}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="prog" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>{profile.name}</a>
+    <nav class="nav-links" id="links" aria-label="Sections">
+      {nav.map(([label, href]) => <a href={href}>{label}</a>)}
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" id="cmd" aria-label="Search (Command K)" title="Search — ⌘K">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="theme" aria-label="Toggle colour theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main"><slot /></main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© {new Date().getFullYear()} {profile.name}</span>
+    <span class="mono">{profile.location} · Updated {profile.updated}</span>
+  </div>
+</footer>
+
+<button class="to-top" id="top-btn" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="pal" id="pal" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="pal-bd" data-close></div>
+  <div class="pal-box">
+    <input id="pal-q" type="text" placeholder="Jump to a section, project or paper…" autocomplete="off" aria-label="Search" />
+    <ul id="pal-list"></ul>
+  </div>
+</div>
+<slot name="end" />
+</body>
+</html>

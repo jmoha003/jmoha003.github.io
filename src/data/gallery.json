@@ -1,0 +1,13 @@
+[
+  { "img": "hicss-presenting.png", "caption": "Presenting at HICSS 2026" },
+  { "img": "dod-presentation.png", "caption": "Department of Defense program briefing" },
+  { "img": "fmms-navy.png", "caption": "ASNE Fleet Maintenance & Modernization Symposium" },
+  { "img": "cubesat-lab.png", "caption": "CubeSat prototyping, German Orbital Systems, Berlin" },
+  { "img": "iaa-rome.png", "caption": "5th IAA Conference, Rome" },
+  { "img": "asem-conference.png", "caption": "ASEM International Annual Conference" },
+  { "img": "poster-session.png", "caption": "Research poster session" },
+  { "img": "tamos-poster.png", "caption": "TAMOS poster, GSGA Research Conference" },
+  { "img": "conference-group.png", "caption": "Conference delegation" },
+  { "img": "cyber-security.png", "caption": "Cybersecurity research work" },
+  { "img": "newspaper-feature.png", "caption": "Newspaper feature" }
+]

@@ -1,0 +1,366 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import content from '../data/content.json';
+import projects from '../data/projects.json';
+import publications from '../data/publications.json';
+import gallery from '../data/gallery.json';
+
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, certifications, leadership, research } = content;
+const imgs = import.meta.glob('../assets/images/*.{jpg,jpeg,png}', { eager: true });
+const pic = (name) => imgs[`../assets/images/${name}`]?.default;
+const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
+const topics = [...new Set(publications.flatMap((p) => p.topics))].sort();
+const title = 'Joshit Mohanty — Agent-Based Modeling & Simulation';
+const description = 'Ph.D. candidate in Engineering Management & Systems Engineering at Old Dominion University. Agent-based models, digital twins, and applied AI for fleet operations, matching markets, healthcare and space systems.';
+---
+<Base title={title} description={description}>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="status"><span class="dot"></span>{profile.affiliation.split(',')[1]?.trim() ?? 'Old Dominion University'}</span>
+      <h1>Joshit<br /><em>Mohanty</em></h1>
+      <p class="role">{profile.role}</p>
+      <p class="tag">{profile.tagline} <b>Agent-based models, digital twins, and applied AI</b> for fleet operations, matching markets, healthcare and space systems.</p>
+      <div class="cta-row">
+        <a class="btn btn-p" href="#lab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m5 3 14 9-14 9V3Z"/></svg>
+          Run a simulation
+        </a>
+        <a class="btn btn-g" href={profile.resume}>Résumé</a>
+        <a class="btn btn-g" href={profile.scholar} rel="noopener">Scholar</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      {pic('headshot.jpeg') && <Image src={pic('headshot.jpeg')} alt={`Portrait of ${profile.name}`} widths={[380, 620, 900]} sizes="(max-width:980px) 330px, 40vw" loading="eager" fetchpriority="high" />}
+      <figcaption class="cap">{profile.location} · {profile.authorization}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="after-hero">
+
+<!-- ═══ METRICS ═══ -->
+<section class="tight">
+  <div class="wrap">
+    <div class="metrics stagger">
+      {metrics.map((m) => (
+        <div class="metric">
+          <div class="n" data-count={m.value} data-prefix={m.prefix ?? ''} data-suffix={m.suffix ?? ''}>{m.prefix ?? ''}0{m.suffix ?? ''}</div>
+          <div class="l">{m.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section id="work">
+  <div class="wrap">
+    <div class="pin-head">
+      <p class="eyebrow rv">Selected work</p>
+      <h2 class="h2 rv" style="margin-top:.7rem">Systems that shipped.<br /><span class="soft">And the models behind them.</span></h2>
+    </div>
+    <div class="work-grid stagger">
+      {projects.map((p) => (
+        <button class="work" data-project={p.id} aria-haspopup="dialog">
+          <div class="work-img">
+            {pic(p.img) && <Image src={pic(p.img)} alt={p.title} widths={[400, 720]} sizes="(max-width:680px) 92vw, 360px" loading="lazy" />}
+            <span class="work-tag">{p.tag}</span>
+          </div>
+          <div class="work-body">
+            <h3>{p.title}</h3>
+            <p>{p.blurb}</p>
+            <span class="work-more">
+              {p.interactive && <span class="live-chip">LIVE</span>}
+              {p.interactive ? 'Try the model' : 'Details'}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LAB ═══ -->
+<section id="lab">
+  <div class="wrap">
+    <p class="eyebrow rv">Interactive</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 .8rem">Application fever,<br /><span class="soft">running in your browser.</span></h2>
+    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. Watch the escalation spread — then break it with the sliders.</p>
+    <div class="lab rv">
+      <div class="lab-top">
+        <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · Axelrod-style prestige transmission</span>
+        <div style="display:flex;gap:.4rem">
+          <button class="chip" id="sim-toggle" aria-pressed="true">Pause</button>
+          <button class="chip" id="sim-reset">Reset</button>
+        </div>
+      </div>
+      <div class="lab-body">
+        <div class="lab-canvas"><canvas id="sim" width="300" height="300" role="img" aria-label="Agent grid showing application fever spreading through a population"></canvas></div>
+        <aside class="lab-side">
+          <div class="ctrl">
+            <label for="s-scale">Scale <b id="v-scale">40</b></label>
+            <input type="range" id="s-scale" min="14" max="70" value="40" />
+          </div>
+          <div class="ctrl">
+            <label for="s-ratio">Applicants per position <b id="v-ratio">1.6</b></label>
+            <input type="range" id="s-ratio" min="10" max="30" value="16" />
+          </div>
+          <div class="ctrl">
+            <label for="s-influence">Prestige influence <b id="v-influence">0.55</b></label>
+            <input type="range" id="s-influence" min="0" max="100" value="55" />
+          </div>
+          <div class="readout">
+            <div><b id="r-year">0</b><span>YEAR</span></div>
+            <div><b id="r-apps">10.0</b><span>MEAN APPS</span></div>
+            <div><b id="r-fever">0%</b><span>FEVER RATE</span></div>
+            <div><b id="r-drift">+0%</b><span>ESCALATION</span></div>
+          </div>
+          <p class="lab-note">Brighter agents send more applications. Unmatched applicants return with escalated behaviour, carrying fever into the next cohort.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MOMENT ═══ -->
+<section class="tight">
+  <div class="wrap">
+    <figure class="moment rv">
+      {pic('hicss-presenting.png') && <Image src={pic('hicss-presenting.png')} alt="Joshit Mohanty presenting at HICSS 2026" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
+      <figcaption class="overlay">
+        <h3>Taking the work to the room.</h3>
+        <p>HICSS, Winter Simulation Conference, NetLogo Conference, IEEE SoSE, ASNE Fleet Maintenance Symposium, International Astronautical Congress.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH ═══ -->
+<section id="research">
+  <div class="wrap">
+    <p class="eyebrow rv">Dissertation</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 .5rem">{research.title}</h2>
+    <p class="lede rv" style="max-width:52ch">{research.subtitle}</p>
+    <p class="mono rv" style="color:var(--ink-3);font-size:.75rem;margin:1.2rem 0 2.4rem">{research.status}</p>
+    <div class="grid g-2 stagger" style="gap:2rem">
+      <div>
+        <div class="card" style="margin-bottom:1.1rem"><p style="color:var(--ink-2)">{research.premise}</p></div>
+        {research.questions.map((q, i) => (
+          <div class="rq"><div class="q">RESEARCH QUESTION {i + 1}</div><p>{q}</p></div>
+        ))}
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:1.1rem">
+          <p class="eyebrow" style="margin-bottom:.8rem">Method</p>
+          <p style="color:var(--ink-2);font-size:.92rem">{research.method}</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow" style="margin-bottom:.8rem">Committee</p>
+          {research.committee.map(([n, r]) => (
+            <div style="display:flex;justify-content:space-between;padding:.42rem 0;border-bottom:1px solid var(--line);font-size:.88rem">
+              <span>{n}</span><span class="mono" style="color:var(--ink-3);font-size:.72rem">{r}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAPABILITIES ═══ -->
+<section class="tight">
+  <div class="wrap">
+    <p class="eyebrow rv">Capabilities</p>
+    <div class="grid g-4 stagger" style="margin-top:1.6rem">
+      {capabilities.map((c) => (
+        <div class="card">
+          <h3 style="font-size:.98rem;margin-bottom:.75rem">{c.title}</h3>
+          {c.items.map((i) => <div style="font-size:.82rem;color:var(--ink-3);padding:.17rem 0">{i}</div>)}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAPERS ═══ -->
+<section id="papers">
+  <div class="wrap">
+    <p class="eyebrow rv">Publications</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 1.6rem">{publications.length} papers.<br /><span class="soft">{profile.field}.</span></h2>
+    <div class="filters rv">
+      <button class="chip" data-f="all" aria-pressed="true">All</button>
+      {years.map((y) => <button class="chip" data-f={`y${y}`} aria-pressed="false">{y}</button>)}
+      {topics.map((t) => <button class="chip" data-f={`t${t}`} aria-pressed="false">{t}</button>)}
+      <input class="search" id="pub-q" type="search" placeholder="Search titles and venues…" aria-label="Search publications" />
+    </div>
+    <div id="pub-list">
+      {publications.map((p) => (
+        <article class="pub" data-year={p.year} data-topics={p.topics.join('|')} data-text={`${p.title} ${p.venue}`.toLowerCase()}>
+          <div class="yr">{p.year}</div>
+          <div>
+            <h4>{p.title}</h4>
+            <div class="meta">{p.authors} · {p.venue}</div>
+          </div>
+          <div style="display:flex;gap:.35rem;flex-wrap:wrap">
+            {p.citations && <span class="badge cit">{p.citations} cited</span>}
+            <span class={`badge ${p.status === 'Accepted' || p.status === 'Presented' ? 'acc' : ''}`}>{p.status}</span>
+          </div>
+        </article>
+      ))}
+      <p class="empty" id="pub-empty" hidden>No papers match that filter.</p>
+    </div>
+    <div style="margin-top:1.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
+      <a class="btn btn-g" href={profile.scholar} rel="noopener">Google Scholar ↗</a>
+      <span class="btn btn-g" style="cursor:default">74 citations · h-index 5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PATH ═══ -->
+<section id="path">
+  <div class="wrap">
+    <p class="eyebrow rv">Trajectory</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 2.4rem">Where the work happened.</h2>
+    <div class="grid g-2" style="gap:2.6rem;align-items:start">
+      <div class="tl">
+        {experience.map((e) => (
+          <div class={`tl-item rv ${e.current ? 'now' : ''}`}>
+            <h3>{e.role}</h3>
+            <div class="org">{e.org}</div>
+            <div class="when">{e.period} · {e.loc}</div>
+            {e.stealth
+              ? <span class="stealth">Stealth mode — company confidential</span>
+              : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
+          </div>
+        ))}
+      </div>
+      <div class="stagger">
+        <div class="card" style="margin-bottom:1rem">
+          <p class="eyebrow" style="margin-bottom:.9rem">Education</p>
+          {education.map((ed) => (
+            <div style="padding:.55rem 0;border-bottom:1px solid var(--line)">
+              <div style="font-weight:600;font-size:.9rem">{ed.degree}</div>
+              <div style="color:var(--accent);font-size:.82rem">{ed.org}</div>
+              <div style="color:var(--ink-3);font-size:.78rem;margin-top:.2rem">{ed.detail}</div>
+            </div>
+          ))}
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <p class="eyebrow" style="margin-bottom:.9rem">Patents · granted</p>
+          {patents.map((pt) => (
+            <div style="padding:.45rem 0;border-bottom:1px solid var(--line)">
+              <div style="font-size:.88rem;font-weight:550">{pt.title}</div>
+              <div style="color:var(--ink-3);font-size:.76rem">{pt.detail}</div>
+            </div>
+          ))}
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <p class="eyebrow" style="margin-bottom:.9rem">Leadership</p>
+          {leadership.map((l) => <div style="font-size:.83rem;color:var(--ink-2);padding:.22rem 0">{l}</div>)}
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <p class="eyebrow" style="margin-bottom:.9rem">Teaching</p>
+          {teaching.map((t) => (
+            <div style="padding:.4rem 0;border-bottom:1px solid var(--line)">
+              <div style="font-size:.86rem">{t.role} · <span style="color:var(--accent)">{t.org}</span></div>
+              <div style="color:var(--ink-3);font-size:.76rem">{t.detail}</div>
+            </div>
+          ))}
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <p class="eyebrow" style="margin-bottom:.9rem">Also</p>
+          {additional.map((a) => (
+            <div style="display:flex;justify-content:space-between;gap:.7rem;padding:.3rem 0;font-size:.82rem">
+              <span>{a.role} · <span style="color:var(--ink-3)">{a.org}</span></span>
+              <span class="mono" style="color:var(--ink-3);font-size:.7rem">{a.period}</span>
+            </div>
+          ))}
+        </div>
+        <div class="card">
+          <p class="eyebrow" style="margin-bottom:.9rem">Certifications</p>
+          {certifications.map((c) => <div style="font-size:.83rem;color:var(--ink-2);padding:.2rem 0">{c}</div>)}
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:3rem">
+      <p class="eyebrow rv" style="margin-bottom:1.2rem">Recognition</p>
+      <div class="grid g-4 stagger">
+        {awards.map((a) => (
+          <div class="card" style="padding:1rem">
+            <div class="mono" style="color:var(--accent);font-size:.7rem">{a.year}</div>
+            <div style="font-size:.88rem;font-weight:550;margin-top:.25rem">{a.title}</div>
+            <div style="color:var(--ink-3);font-size:.76rem">{a.org}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow rv">In the field</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 2rem">Conferences, labs, launches.</h2>
+    <div class="gal" id="gal">
+      {gallery.map((g, i) => (
+        <button data-i={i} aria-label={`View: ${g.caption}`}>
+          {pic(g.img) && <Image src={pic(g.img)} alt={g.caption} widths={[380, 760]} sizes="(max-width:680px) 92vw, 33vw" loading="lazy" />}
+          <span class="cap">{g.caption}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow rv" style="justify-content:center">Contact</p>
+    <h2 class="rv" style="margin-top:.8rem">Let's build a model<br />of the thing you can't measure.</h2>
+    <p class="lede rv" style="margin:0 auto 2rem;text-align:center">Modeling &amp; simulation · operations research · applied AI · digital twin architecture.</p>
+    <div class="cta-row rv" style="justify-content:center">
+      <a class="btn btn-p" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <a class="btn btn-g" href={profile.linkedin} rel="noopener">LinkedIn</a>
+      <a class="btn btn-g" href={profile.resume}>Résumé</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /after-hero -->
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-bd" data-close></div>
+  <div class="modal-box">
+    <button class="x-btn" data-close aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-hero" id="modal-img"></div>
+    <div class="modal-in">
+      <div class="m-tag" id="modal-tag"></div>
+      <h3 id="modal-title"></h3>
+      <p id="modal-detail"></p>
+      <div class="modal-stats" id="modal-stats"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-nav prev" id="lb-prev" aria-label="Previous">‹</button>
+  <img id="lb-img" src="" alt="" />
+  <span class="cap" id="lb-cap"></span>
+  <button class="lb-nav next" id="lb-next" aria-label="Next">›</button>
+</div>
+
+<script define:vars={{ projectData: projects, galleryData: gallery.map((g, i) => ({ ...g, i })) }}>
+  window.__PROJECTS__ = projectData;
+  window.__GALLERY__ = galleryData;
+</script>
+<script>import '../scripts/app.js';</script>
+</Base>

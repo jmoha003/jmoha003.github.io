@@ -1,0 +1,360 @@
+{
+  "profile": {
+    "name": "Joshit Mohanty",
+    "role": "Ph.D. Candidate · Modeling & Simulation",
+    "tagline": "I build simulations of systems that misbehave.",
+    "blurb": "Agent-based models, digital twins, and applied AI for fleet operations, matching markets, healthcare, and space systems.",
+    "affiliation": "Engineering Management & Systems Engineering, Old Dominion University",
+    "advisor": "Dr. Andrew J. Collins",
+    "location": "Norfolk, VA",
+    "email": "mohanty.joshit@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/joshitmohanty/",
+    "scholar": "https://scholar.google.com/citations?user=MB2HbuAAAAAJ&hl=en",
+    "resume": "/JoshitMohanty_Resume.pdf",
+    "authorization": "US work authorization · F1 OPT/STEM",
+    "updated": "August 2026",
+    "field": "Complex Systems Engineering",
+    "reviewer": "Peer reviewer, IEEE"
+  },
+  "metrics": [
+    {
+      "value": 500,
+      "prefix": "$",
+      "suffix": "K+",
+      "label": "Funded systems delivered"
+    },
+    {
+      "value": 300,
+      "suffix": "M+",
+      "label": "Simulation scenarios run"
+    },
+    {
+      "value": 92,
+      "suffix": "%",
+      "label": "NLP classification accuracy"
+    },
+    {
+      "value": 74,
+      "suffix": "",
+      "label": "Google Scholar citations"
+    }
+  ],
+  "capabilities": [
+    {
+      "icon": "sim",
+      "title": "Modeling & Simulation",
+      "items": [
+        "Agent-based modeling",
+        "Discrete event",
+        "System dynamics",
+        "Monte Carlo"
+      ]
+    },
+    {
+      "icon": "ai",
+      "title": "NLP & Applied AI",
+      "items": [
+        "Text classification",
+        "RAG architectures",
+        "LLM integration",
+        "Hallucination mitigation"
+      ]
+    },
+    {
+      "icon": "twin",
+      "title": "Digital Twin",
+      "items": [
+        "Process-oriented digital thread",
+        "Macro-micro bridging",
+        "Predictive maintenance"
+      ]
+    },
+    {
+      "icon": "lead",
+      "title": "Program Leadership",
+      "items": [
+        "Federal grant acquisition",
+        "Multi-stakeholder delivery",
+        "Proposal to production"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Ph.D. Candidate, Engineering Management & Systems Engineering",
+      "org": "Old Dominion University",
+      "loc": "Norfolk, VA",
+      "period": "2026 — Present",
+      "current": true,
+      "points": [
+        "Complex systems, simulation, and organizational modeling.",
+        "Advisor: Dr. Andrew J. Collins."
+      ]
+    },
+    {
+      "role": "Senior Research Engineer, Digital Twins",
+      "org": "PlaSiV",
+      "loc": "San Jose, CA",
+      "period": "2026",
+      "stealth": true,
+      "points": []
+    },
+    {
+      "role": "Research Scientist, Modeling & Simulation",
+      "org": "Old Dominion University",
+      "loc": "Norfolk, VA",
+      "period": "Jan 2026 — May 2026",
+      "points": [
+        "Multi-method simulation (agent-based + discrete event), 300M+ scenarios on AWS HPC.",
+        "US medical residency matching market, 42,000+ applicants. NSF EAGER Grant #2333570 ($198,534).",
+        "7,000+ algorithm generations testing agent behavior evolution."
+      ]
+    },
+    {
+      "role": "Technical Program Lead, Fleet Analytics",
+      "org": "ODU Research Foundation · US Department of Defense",
+      "loc": "Norfolk, VA",
+      "period": "Sep 2023 — Dec 2025",
+      "points": [
+        "$496K across 3 concurrent programs as Co-PI.",
+        "NLP pipeline: 160,000+ records, 92% accuracy, 87% time reduction. In production.",
+        "Proposals securing $350K+ in federal funding."
+      ]
+    },
+    {
+      "role": "Strategy Lead",
+      "org": "Earth In Motion",
+      "loc": "Virginia Beach, VA",
+      "period": "Apr 2023 — Aug 2023",
+      "points": [
+        "Zero to $98K revenue in 8 weeks, 100+ clients.",
+        "Carbon tracking simulation under Verra VCS 4.7 and UN SDG standards.",
+        "Improved workforce compliance 25%, ESG reporting efficiency 19%."
+      ]
+    },
+    {
+      "role": "Program Director",
+      "org": "AATWRI Group",
+      "loc": "Chennai, India",
+      "period": "Feb 2022 — Mar 2023",
+      "points": [
+        "$100K product launch, 12-person team, 18% ahead of schedule."
+      ]
+    },
+    {
+      "role": "Systems Engineer",
+      "org": "German Orbital Systems",
+      "loc": "Berlin, Germany",
+      "period": "Jun 2019 — Aug 2019",
+      "points": [
+        "Designed and prototyped CubeSat using shape memory alloy technology.",
+        "Launched aboard SpaceX Falcon Heavy to low-Earth orbit. Still operational."
+      ]
+    }
+  ],
+  "additional": [
+    {
+      "role": "Sustainability Analyst",
+      "org": "Office of Virginia State Senator",
+      "period": "2023"
+    },
+    {
+      "role": "Space Systems Engineer",
+      "org": "United Nations SGAC, Vienna",
+      "period": "2019 — 2023"
+    },
+    {
+      "role": "Systems Analyst",
+      "org": "Urban Research Council, New York",
+      "period": "2022 — 2023"
+    },
+    {
+      "role": "Project Associate",
+      "org": "IIT Madras",
+      "period": "2018"
+    },
+    {
+      "role": "Mechanical Systems Engineer",
+      "org": "IIT Roorkee",
+      "period": "2017"
+    },
+    {
+      "role": "Industrial Engineer Trainee",
+      "org": "Steel Authority of India",
+      "period": "2016"
+    }
+  ],
+  "teaching": [
+    {
+      "role": "Graduate Teaching Assistant",
+      "org": "Old Dominion University",
+      "detail": "Systems Engineering · 40+ students per course"
+    },
+    {
+      "role": "Graduate Teaching Assistant",
+      "org": "UT Arlington",
+      "detail": "Manufacturing, Safety, Data Science · 70+ students"
+    },
+    {
+      "role": "Graduate Assistant",
+      "org": "Skolkovo Institute",
+      "detail": "Rocket building mentorship"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Ph.D., Engineering Management & Systems Engineering",
+      "org": "Old Dominion University",
+      "detail": "In progress. Complex systems, simulation, organizational modeling.",
+      "note": "Advisor: Dr. Andrew J. Collins"
+    },
+    {
+      "degree": "M.S., Engineering (Space) Systems",
+      "org": "Skolkovo Institute of Science and Technology",
+      "detail": "President's Award, Top 3%. Partnership with MIT.",
+      "note": "Research at MIT Aeronautics & Astronautics"
+    }
+  ],
+  "patents": [
+    {
+      "title": "Autonomous UV Sanitizing Robot",
+      "detail": "96.7% disinfection efficiency. Recognized by Micron Technology."
+    },
+    {
+      "title": "Vehicle Blind Spot Reduction System",
+      "detail": "Sensor-integrated automated alerting during turning."
+    },
+    {
+      "title": "Autonomous Fluid Dispensing Machine",
+      "detail": "Agricultural and fire-fighting applications."
+    }
+  ],
+  "certifications": [
+    "Anthropic Agent Skills, Claude Code (2026)",
+    "Google Business Intelligence (2025)",
+    "Google Project Management (2022)",
+    "ICS Cybersecurity"
+  ],
+  "leadership": [
+    "President, ASEM Student Chapter, ODU",
+    "Dean's Advisory Council, ODU",
+    "Team Lead, UN Space Advisory Council (12 members, 7 countries)",
+    "Judge & Mentor, MassChallenge & Verizon Incubator",
+    "Mentored 100+ graduate students across 6 systems engineering courses"
+  ],
+  "awards": [
+    {
+      "year": "2025",
+      "title": "Best Presenter, GSGA",
+      "org": "Old Dominion University"
+    },
+    {
+      "year": "2021",
+      "title": "National Entrepreneur",
+      "org": "Blackstone LaunchPad"
+    },
+    {
+      "year": "2021",
+      "title": "NASA Rover Challenge",
+      "org": "Mentored, Runners Up"
+    },
+    {
+      "year": "2020",
+      "title": "Global Innovation Award",
+      "org": "Micron Technology"
+    },
+    {
+      "year": "2020",
+      "title": "Grand Award",
+      "org": "DRDO, Indian Air Force"
+    },
+    {
+      "year": "2019",
+      "title": "President's Fellowship",
+      "org": "Skolkovo Foundation"
+    },
+    {
+      "year": "2019",
+      "title": "Limca Book of Records",
+      "org": "Sounding rockets"
+    },
+    {
+      "year": "2017",
+      "title": "Top 100 Innovators of India",
+      "org": "CII"
+    },
+    {
+      "year": "2017",
+      "title": "Product Design Award",
+      "org": "Dassault Systèmes"
+    },
+    {
+      "year": "2016",
+      "title": "Best Innovation",
+      "org": "DST, Government of India"
+    }
+  ],
+  "press": [
+    {
+      "outlet": "US Business News",
+      "year": "2024"
+    },
+    {
+      "outlet": "UT Arlington",
+      "year": "2022"
+    },
+    {
+      "outlet": "Arlington Chamber",
+      "year": "2022"
+    },
+    {
+      "outlet": "Dallas Innovates",
+      "year": "2021"
+    },
+    {
+      "outlet": "Automated Warehouse",
+      "year": "2020"
+    },
+    {
+      "outlet": "Indian Express",
+      "year": "2018"
+    },
+    {
+      "outlet": "Orissa Post",
+      "year": "2018"
+    },
+    {
+      "outlet": "The Pioneer",
+      "year": "2018"
+    },
+    {
+      "outlet": "Bhubaneswar Buzz",
+      "year": "2017"
+    }
+  ],
+  "research": {
+    "title": "Dual-Perspective Measurement for Agent-Based Models",
+    "subtitle": "Testing the Adequacy of the Single-Perspective Measurement Convention",
+    "status": "Dissertation proposal · August 2026",
+    "committee": [
+      [
+        "Dr. A. J. Collins",
+        "Director"
+      ],
+      [
+        "Dr. A. V. Romero",
+        "Member"
+      ],
+      [
+        "Dr. J. F. Leathrum",
+        "Member"
+      ]
+    ],
+    "premise": "Agent-based models are almost always measured from the population perspective alone. That convention assumes one perspective is enough to describe a final state. The assumption is untested.",
+    "questions": [
+      "Can disagreement between the independently measured agent perspective and population perspective be detected at the final state of a simulation?",
+      "Which parameters most strongly influence the probability that the two perspectives disagree?"
+    ],
+    "method": "Axelrod (1997) cultural dissemination model as testbed. Full factorial design across a toroidal lattice and a scale-free network. No new model, no changed rules — any disagreement belongs to the measurements, not the model."
+  }
+}
