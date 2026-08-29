@@ -36,7 +36,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       </div>
     </div>
     <figure class="portrait">
-      {pic('headshot.jpeg') && <Image src={pic('headshot.jpeg')} alt={`Portrait of ${profile.name}`} widths={[380, 620, 816]} sizes="(max-width:980px) 330px, 40vw" loading="eager" fetchpriority="high" />}
+      {pic('headshot.jpg') && <Image src={pic('headshot.jpg')} alt={`Portrait of ${profile.name}`} widths={[420, 700, 1000, 1400]} quality={86} sizes="(max-width:980px) 330px, 40vw" loading="eager" fetchpriority="high" />}
       <figcaption class="cap">{profile.location} · {profile.authorization}</figcaption>
     </figure>
   </div>
@@ -221,7 +221,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section id="research">
   <div class="wrap">
     <p class="eyebrow rv">Dissertation</p>
-    <h2 class="h2 rv" style="margin:.7rem 0 .5rem">{research.title}</h2>
+    <h2 class="h2 h2-sm rv" style="margin:.7rem 0 .5rem">{research.title}</h2>
     <p class="lede rv" style="max-width:52ch">{research.subtitle}</p>
     <p class="mono rv" style="color:var(--ink-3);font-size:.75rem;margin:1.2rem 0 2.4rem">{research.status}</p>
     <div class="grid g-2 stagger" style="gap:2rem">
