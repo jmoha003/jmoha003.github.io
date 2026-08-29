@@ -317,16 +317,17 @@ footer{border-top:1px solid var(--line);padding-block:2rem;color:var(--ink-3);fo
 .pin-head{padding-bottom:1.4rem}
 
 /* Full-bleed image moment with parallax scrub */
-.moment{position:relative;height:min(62svh,540px);overflow:hidden;border-radius:var(--r-lg);isolation:isolate;background:var(--surface)}
-.moment img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.moment{position:relative;border-radius:var(--r-lg);overflow:hidden;isolation:isolate;background:var(--surface)}
+.moment-img{position:relative;height:min(60svh,520px);overflow:hidden}
+.moment-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
 @supports (animation-timeline:view()){
-  .moment img{animation:parallax linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
-  @keyframes parallax{from{transform:translateY(-7%) scale(1.1)}to{transform:translateY(7%) scale(1.1)}}
+  .moment-img img{height:118%;inset:-9% 0;animation:parallax linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  @keyframes parallax{from{transform:translateY(-5%)}to{transform:translateY(5%)}}
 }
-.moment .overlay{position:absolute;inset:0;z-index:1;display:grid;align-items:end;padding:clamp(1.5rem,4vw,3.5rem);
-  background:linear-gradient(transparent 32%,rgba(0,0,0,.72))}
-.moment .overlay h3{color:#fff;font-size:var(--t-h3);font-weight:700;letter-spacing:var(--track-tight);max-width:20ch}
-.moment .overlay p{color:rgba(255,255,255,.76);font-size:.95rem;margin-top:.5rem;max-width:46ch}
+.moment figcaption{padding:clamp(1.1rem,2.6vw,1.8rem) clamp(1.2rem,3vw,2rem) clamp(1.3rem,3vw,2rem)}
+.moment figcaption h3{font-size:var(--t-h3);font-weight:700;letter-spacing:var(--track-tight)}
+.moment figcaption p{color:var(--ink-2);font-size:.95rem;margin-top:.45rem;max-width:60ch}
+
 
 /* Spring interactions */
 .btn,.work,.card,.icon-btn,.chip{transition:transform .55s var(--spring),box-shadow .4s var(--ease-out),
@@ -524,4 +525,68 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
   .readout{grid-template-columns:1fr 1fr}
   .filters{gap:.35rem}
   .chip{font-size:.66rem;padding:.32rem .6rem}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MATERIALS — translucent surfaces over an ambient ground.
+   Glass only reads if there is something behind it to refract
+   and a specular edge catching light, so both are provided.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --glass:rgba(255,255,255,.055);
+  --glass-2:rgba(255,255,255,.085);
+  --glass-brd:rgba(255,255,255,.10);
+  --glass-hi:rgba(255,255,255,.16);
+  --blur:saturate(180%) blur(22px);
+}
+:root[data-theme="light"]{
+  --glass:rgba(255,255,255,.62);
+  --glass-2:rgba(255,255,255,.78);
+  --glass-brd:rgba(16,24,40,.09);
+  --glass-hi:rgba(255,255,255,.85);
+}
+
+/* ambient ground: soft colour fields the glass has something to pick up */
+body::before{
+  content:'';position:fixed;inset:-20vh -10vw;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 46vw at 12% 8%, color-mix(in srgb,var(--accent) 15%,transparent), transparent 62%),
+    radial-gradient(40vw 40vw at 88% 32%, color-mix(in srgb,#6366f1 13%,transparent), transparent 60%),
+    radial-gradient(52vw 52vw at 50% 100%, color-mix(in srgb,#f59e0b 8%,transparent), transparent 62%);
+  filter:blur(30px);opacity:.5;
+}
+:root[data-theme="light"] body::before{opacity:.42}
+
+/* the material itself */
+.card,.work,.lab,.metrics,.alma-card,.logo-chip,.press-item,.modal-box,.pal-box,.shot,.metric{
+  background:var(--glass);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-brd);
+  box-shadow:inset 0 1px 0 var(--glass-hi), 0 12px 34px -18px rgba(0,0,0,.55);
+}
+:root[data-theme="light"] .card,:root[data-theme="light"] .work,:root[data-theme="light"] .lab,
+:root[data-theme="light"] .metrics,:root[data-theme="light"] .alma-card,:root[data-theme="light"] .logo-chip,
+:root[data-theme="light"] .press-item,:root[data-theme="light"] .modal-box,:root[data-theme="light"] .pal-box,
+:root[data-theme="light"] .shot,:root[data-theme="light"] .metric{
+  box-shadow:inset 0 1px 0 var(--glass-hi), 0 12px 30px -20px rgba(16,24,40,.28);
+}
+.metric{background:transparent;border:none;box-shadow:none}
+.metrics{background:var(--glass)}
+/* logos need a solid plate to stay legible */
+.logo-chip,.press-item .chip-logo,.alma-card{background:var(--glass-2)}
+.logo-chip,.press-item .chip-logo{background:#fff}
+
+/* raise the nav to the same material */
+.nav{background:color-mix(in srgb,var(--bg) 62%,transparent);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.nav.stuck{box-shadow:inset 0 -1px 0 var(--glass-brd)}
+
+/* panels inside the lab sit one layer deeper */
+.lab-canvas,.lab-chart{background:color-mix(in srgb,var(--bg) 52%,transparent)}
+.lab-top,.lab-side{background:var(--glass)}
+.readout div,.mi,.modal-stats div{background:var(--glass);border:1px solid var(--glass-brd)}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .card,.work,.lab,.metrics,.alma-card,.press-item,.modal-box,.pal-box,.shot{background:var(--surface)}
+  .nav{background:var(--bg)}
 }
