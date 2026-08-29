@@ -77,7 +77,6 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
 
 /* ---- hero ---- */
 .hero{min-height:100svh;display:grid;align-items:center;padding-top:62px;position:relative;overflow:hidden}
-#field{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;position:relative;z-index:1}
 .status{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;color:var(--accent);
   border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);background:color-mix(in srgb,var(--accent) 9%,transparent);
@@ -482,3 +481,19 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
   .rail::-webkit-scrollbar{display:none}
   .rail-track{animation:none}
 }
+
+/* ---- agent cursor ---- */
+#agent-cursor{position:fixed;inset:0;z-index:9999;pointer-events:none}
+@media (pointer:fine){
+  .has-agent-cursor,
+  .has-agent-cursor a,
+  .has-agent-cursor button,
+  .has-agent-cursor .shot,
+  .has-agent-cursor .work{cursor:none}
+  /* text entry keeps a real caret */
+  .has-agent-cursor input,
+  .has-agent-cursor textarea,
+  .has-agent-cursor select{cursor:auto}
+}
+@media (prefers-reduced-motion:reduce){#agent-cursor{display:none}
+  .has-agent-cursor,.has-agent-cursor a,.has-agent-cursor button{cursor:auto}}

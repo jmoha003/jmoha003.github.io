@@ -545,49 +545,6 @@ addEventListener('keydown', (e) => {
   requestAnimationFrame(loop);
 })();
 
-/* ───── hero particle field ───── */
-(() => {
-  const cv = document.getElementById('field');
-  if (!cv || reduced) return;
-  const ctx = cv.getContext('2d');
-  let w, h, pts = [];
-  const resize = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    w = cv.width = innerWidth * dpr; h = cv.height = cv.offsetHeight * dpr;
-    ctx.scale(1, 1);
-    pts = Array.from({ length: Math.min(70, Math.floor(innerWidth / 22)) }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.22 * dpr, vy: (Math.random() - 0.5) * 0.22 * dpr,
-    }));
-  };
-  addEventListener('resize', resize); resize();
-  const tick = () => {
-    requestAnimationFrame(tick);
-    ctx.clearRect(0, 0, w, h);
-    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4';
-    for (const p of pts) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
-    }
-    ctx.strokeStyle = accent; ctx.fillStyle = accent;
-    for (let i = 0; i < pts.length; i++) {
-      ctx.globalAlpha = 0.5; ctx.beginPath();
-      ctx.arc(pts[i].x, pts[i].y, 1.5, 0, 7); ctx.fill();
-      for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 20000) {
-          ctx.globalAlpha = 0.13 * (1 - d2 / 20000);
-          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
-        }
-      }
-    }
-    ctx.globalAlpha = 1;
-  };
-  tick();
-})();
-
 /* ───── tabs ───── */
 (() => {
   const tabs = $$('[role="tab"]');
@@ -650,3 +607,109 @@ $$('img[data-logo]').forEach((img) => {
   img.addEventListener('error', fail);
   if (img.complete && img.naturalWidth === 0) fail();
 });
+
+/* ═══════════════════════════════════════════════════════════
+   AGENT CURSOR
+   Six agents track the pointer under the three classic flocking
+   rules — cohesion toward a target, separation from each other,
+   alignment of heading — with damping. A click applies a radial
+   impulse; the flock scatters and re-equilibrates, which is the
+   whole point: perturbation and return to a stable state.
+   ═══════════════════════════════════════════════════════════ */
+(() => {
+  if (reduced) return;
+  if (!matchMedia('(pointer: fine)').matches) return;   // trackpad/mouse only
+
+  const cv = document.createElement('canvas');
+  cv.id = 'agent-cursor';
+  cv.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(cv);
+  document.documentElement.classList.add('has-agent-cursor');
+  const g = cv.getContext('2d');
+
+  let w, h, dpr;
+  const size = () => {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth; h = innerHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.width = w + 'px'; cv.style.height = h + 'px';
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  addEventListener('resize', size); size();
+
+  const N = 6;
+  const agents = Array.from({ length: N }, (_, i) => ({
+    x: w / 2, y: h / 2, vx: 0, vy: 0,
+    r: 2.4 - i * 0.22,                       // leaders slightly larger
+    lag: 0.16 - i * 0.017,                   // staggered pursuit -> a trailing formation
+  }));
+  let px = w / 2, py = h / 2, hot = false, active = false;
+
+  addEventListener('pointermove', (e) => {
+    px = e.clientX; py = e.clientY; active = true;
+    hot = !!e.target.closest?.('a,button,input,summary,[role="tab"],.shot,.work,.logo-card');
+  }, { passive: true });
+  addEventListener('pointerdown', () => {                 // perturbation
+    agents.forEach((a) => {
+      const dx = a.x - px, dy = a.y - py;
+      const d = Math.hypot(dx, dy) || 1;
+      a.vx += (dx / d) * 9 + (Math.random() - 0.5) * 4;
+      a.vy += (dy / d) * 9 + (Math.random() - 0.5) * 4;
+    });
+  }, { passive: true });
+  addEventListener('pointerleave', () => { active = false; }, { passive: true });
+
+  const tick = () => {
+    requestAnimationFrame(tick);
+    g.clearRect(0, 0, w, h);
+    if (!active) return;
+
+    const ring = hot ? 16 : 9;                            // formation opens over targets
+    for (let i = 0; i < N; i++) {
+      const a = agents[i];
+      // cohesion: seek a point on a ring around the pointer, phase-offset per agent
+      const ang = (i / N) * Math.PI * 2 + performance.now() / (hot ? 620 : 1100);
+      const tx = px + Math.cos(ang) * ring, ty = py + Math.sin(ang) * ring;
+      a.vx += (tx - a.x) * a.lag;
+      a.vy += (ty - a.y) * a.lag;
+      // separation + alignment against the rest of the flock
+      let sx = 0, sy = 0, ax = 0, ay = 0, n = 0;
+      for (let j = 0; j < N; j++) {
+        if (j === i) continue;
+        const b = agents[j], dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 260 && d2 > 0.01) { sx += dx / d2; sy += dy / d2; }
+        ax += b.vx; ay += b.vy; n++;
+      }
+      a.vx += sx * 26 + (ax / n - a.vx) * 0.05;
+      a.vy += sy * 26 + (ay / n - a.vy) * 0.05;
+      a.vx *= 0.78; a.vy *= 0.78;                          // damping -> settles, never oscillates
+      a.x += a.vx; a.y += a.vy;
+    }
+
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4';
+    g.strokeStyle = accent; g.fillStyle = accent;
+    // local interaction links, the same neighbourhood rule the models use
+    g.lineWidth = 1;
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      const d = Math.hypot(agents[i].x - agents[j].x, agents[i].y - agents[j].y);
+      if (d < 34) {
+        g.globalAlpha = 0.16 * (1 - d / 34);
+        g.beginPath(); g.moveTo(agents[i].x, agents[i].y); g.lineTo(agents[j].x, agents[j].y); g.stroke();
+      }
+    }
+    agents.forEach((a, i) => {
+      g.globalAlpha = 0.75 - i * 0.07;
+      g.beginPath(); g.arc(a.x, a.y, a.r, 0, 6.2832); g.fill();
+    });
+    // precise core at the true pointer position, so targeting never degrades
+    g.globalAlpha = 1;
+    g.beginPath(); g.arc(px, py, hot ? 2.6 : 1.7, 0, 6.2832); g.fill();
+    if (hot) {
+      g.globalAlpha = 0.5; g.lineWidth = 1;
+      g.beginPath(); g.arc(px, py, 15, 0, 6.2832); g.stroke();
+    }
+    g.globalAlpha = 1;
+  };
+  tick();
+})();
