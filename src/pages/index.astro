@@ -31,7 +31,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m5 3 14 9-14 9V3Z"/></svg>
           Run a simulation
         </a>
-        <a class="btn btn-g" href="/JoshitMohanty_CV.pdf">CV</a>
+        <a class="btn btn-g" href={profile.resume}>Résumé</a>
         <a class="btn btn-g" href={profile.scholar} rel="noopener">Scholar</a>
         <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID</a>
       </div>
@@ -240,6 +240,8 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     </div>
     <div style="margin-top:1.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
       <a class="btn btn-g" href={profile.scholar} rel="noopener">Google Scholar ↗</a>
+      <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID ↗</a>
+      <a class="btn btn-g" href={profile.digitalCommons} rel="noopener">ODU Digital Commons ↗</a>
       <span class="btn btn-g" style="cursor:default">74 citations · h-index 5</span>
     </div>
   </div>
@@ -402,7 +404,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <div class="cta-row rv" style="justify-content:center">
       <a class="btn btn-p" href={`mailto:${profile.email}`}>{profile.email}</a>
       <a class="btn btn-g" href={profile.linkedin} rel="noopener">LinkedIn</a>
-      <a class="btn btn-g" href="/JoshitMohanty_CV.pdf">CV</a>
+      <a class="btn btn-g" href={profile.resume}>Résumé</a>
       <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID</a>
     </div>
   </div>

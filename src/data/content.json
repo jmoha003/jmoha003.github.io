@@ -25,7 +25,9 @@
       "Supply chains",
       "Manufacturing",
       "Space systems"
-    ]
+    ],
+    "digitalCommons": "https://digitalcommons.odu.edu/do/search/?q=author%3A%22Joshit%20Mohanty%22",
+    "scopus": null
   },
   "metrics": [
     {
@@ -258,9 +260,15 @@
   "patents": [
     {
       "title": "Vehicle Blind Spot Reduction System",
-      "detail": "Reducing blind spots in vehicle windscreens during turning. IPO 570997 (India).",
+      "detail": "Sensor-integrated automated alerting during turning. IPO 570997 (India).",
       "status": "Granted",
       "year": "Dec 2024"
+    },
+    {
+      "title": "Autonomous Fluid Dispensing Machine",
+      "detail": "Agricultural and fire-fighting applications. IPO 202411096231 (India).",
+      "status": "Granted",
+      "year": "Oct 2024"
     },
     {
       "title": "Autonomous UV Mobile Sanitizing Robot",
@@ -269,10 +277,10 @@
       "year": "Oct 2021"
     },
     {
-      "title": "Autonomous Fluid Dispensing Machine",
-      "detail": "Agricultural and fire-fighting applications. IPO Application No. 202411096231.",
-      "status": "Filed",
-      "year": "Oct 2024"
+      "title": "Method for Delivery, Removal and Disposal of Construction Materials",
+      "detail": "US utility patent, Earth In Motion. Contributor. USPTO App. 18/819,129 — Notice of Allowance issued May 2026.",
+      "status": "Allowed",
+      "year": "May 2026"
     }
   ],
   "certifications": [
@@ -534,17 +542,17 @@
       {
         "name": "Dr. Andrew J. Collins",
         "role": "Director",
-        "url": "https://www.odu.edu/directory/andrew-collins"
+        "url": "https://www.odu.edu/directory/andy-collins"
       },
       {
-        "name": "Dr. Adrian V. Romero",
+        "name": "Dr. Ambrosio Valencia-Romero",
         "role": "Member",
-        "url": "https://www.odu.edu/directory/adrian-valencia-romero"
+        "url": "https://www.odu.edu/directory/ambrosio-valencia-romero"
       },
       {
         "name": "Dr. James F. Leathrum",
         "role": "Member",
-        "url": "https://www.odu.edu/directory/james-leathrum"
+        "url": "https://www.odu.edu/directory/jim-leathrum"
       }
     ],
     "premise": "Agent-based models are almost always measured from the population perspective alone. That convention assumes one perspective is enough to describe a final state. The assumption is untested.",
