@@ -191,150 +191,202 @@ addEventListener('keydown', (e) => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   NRMP APPLICATION-FEVER MODEL  (Mohanty & Collins, WSC 2026)
-   Agents copy application behaviour from higher-scoring
-   neighbours. Each year the match removes most applicants;
-   the unmatched return with escalated behaviour and carry the
-   fever into the next cohort. Published run: ~3% -> ~21% in
-   the fever zone over 10 years, worst among low scorers.
+   NRMP APPLICATION-FEVER MODEL
+   Faithful port of NRMP_ABM_v7 (Mohanty & Collins, WSC 2026).
+
+   Agents hold a score (1 Low / 2 Med / 3 High, 25/50/25) and a
+   discrete application level L1..L5. Each of 52 cycles a year an
+   agent may copy a Von Neumann neighbour that outranks it on BOTH
+   score and apps, with probability (score difference)/3.
+   Year end runs the two-stage match: Stage 1 visibility p = apps/5,
+   Stage 2 score-weighted sampling without replacement using the
+   Efraimidis-Spirakis key u^(1/score). Matched agents leave; a
+   fraction reapp-rate of the unmatched return one level higher and
+   carry the fever; new cohorts always arrive naive at L1..L3.
+   Fever = L4 or L5.
    ═══════════════════════════════════════════════════════════ */
 (() => {
   const cv = document.getElementById('sim');
   const ch = document.getElementById('chart');
   if (!cv || !ch) return;
   const g = cv.getContext('2d'), gc = ch.getContext('2d');
-  const BASE = 10, FEVER = 13, YEARS = 10;
-  const C = ['#f43f5e', '#f59e0b', '#22d3ee'];        // low / medium / high score
-  let N = 40, ratio = 1.6, influence = 0.55;
-  let score, apps, year, hist, running = true, done = false;
+  const C = 52, YEARS = 10, GROWTH = 0.03, R = 1;
+  const LVL = ['#334155', '#3b82f6', '#22d3ee', '#f59e0b', '#f43f5e']; // L1..L5
+  const BAND = ['#f43f5e', '#f59e0b', '#22d3ee'];                      // Low/Med/High
+  let N0 = 400, posRatio = 0.8, reapp = 0.6;
+  let D, cell, agents, year, hist, PFIX, running = true, done = false;
 
-  const band = (s) => (s < 0.34 ? 0 : s < 0.67 ? 1 : 2);
-  const at = (x, y) => ((y + N) % N) * N + ((x + N) % N);
+  const rndScore = () => { const u = Math.random(); return u < 0.25 ? 1 : u < 0.75 ? 2 : 3; };
+  const newAgent = () => ({ score: rndScore(), apps: (Math.random() * 3 | 0) + 1 });
+
+  const layout = (list) => {
+    D = Math.max(4, Math.ceil(Math.sqrt(list.length)));
+    cell = new Array(D * D).fill(null);
+    const idx = [...cell.keys()];
+    for (let k = idx.length - 1; k > 0; k--) { const r = Math.random() * (k + 1) | 0; [idx[k], idx[r]] = [idx[r], idx[k]]; }
+    list.forEach((a, n) => { if (n < idx.length) cell[idx[n]] = a; });
+    agents = list;
+  };
 
   const init = () => {
-    const n = N * N;
-    score = new Float32Array(n); apps = new Float32Array(n);
-    for (let i = 0; i < n; i++) { score[i] = Math.random(); apps[i] = BASE * (0.95 + Math.random() * 0.1); }
-    year = 0; hist = []; done = false;
-    const t = document.getElementById('sim-toggle');
-    if (t) { t.textContent = 'Pause'; }
-    running = true;
+    layout(Array.from({ length: N0 }, newAgent));
+    PFIX = Math.max(1, Math.round(N0 * posRatio));   // positions are FIXED while the pool grows
+    year = 0; hist = []; done = false; running = true;
+    const t = document.getElementById('sim-toggle'); if (t) t.textContent = 'Pause';
     record(); paint();
   };
 
-  const step = () => {
-    const n = N * N;
-    // 1 — prestige-biased transmission: copy upward from better-scoring neighbours
-    for (let k = 0; k < n * 2; k++) {
-      const i = (Math.random() * n) | 0, x = i % N, y = (i / N) | 0;
-      const d = [[1,0],[-1,0],[0,1],[0,-1]][(Math.random() * 4) | 0];
-      const j = at(x + d[0], y + d[1]);
-      const gap = score[j] - score[i];
-      if (gap > 0 && apps[j] > apps[i] && Math.random() < gap * influence)
-        apps[i] += (apps[j] - apps[i]) * 0.6;
+  const neighbours = (i) => {
+    const x = i % D, y = (i / D) | 0, out = [];
+    for (let d = 1; d <= R; d++) {
+      [[d,0],[-d,0],[0,d],[0,-d]].forEach(([dx, dy]) => {
+        const j = (((y + dy) % D + D) % D) * D + (((x + dx) % D + D) % D);
+        if (cell[j]) out.push(cell[j]);
+      });
     }
-    // 2 — the match. Probability of matching rises with score but is never certain,
-    //     so strong applicants can also fail and escalate.
-    const seats = Math.min(0.95, 1 / ratio);
-    for (let i = 0; i < n; i++) {
-      const pMatch = Math.min(0.97, seats * (0.45 + 0.85 * score[i]));
-      if (Math.random() < pMatch) {                    // matched -> replaced by a new applicant
-        score[i] = Math.random();
-        apps[i] = BASE * (0.95 + Math.random() * 0.1);
-      } else {                                         // unmatched -> reapplies, escalated
-        apps[i] = Math.min(apps[i] * 1.16 + 0.35, BASE * 3.2);
-      }
+    return out;
+  };
+
+  const cycle = () => {                                   // one weekly interaction cycle
+    for (let i = 0; i < cell.length; i++) {
+      const me = cell[i]; if (!me) continue;
+      const nb = neighbours(i); if (!nb.length) continue;
+      const other = nb[Math.random() * nb.length | 0];
+      if (other.score <= me.score) continue;               // must outrank on score
+      if (other.apps <= me.apps) continue;                 // and on applications
+      if (Math.random() < (other.score - me.score) / 3.0) me.apps = other.apps;
     }
+  };
+
+  const runYear = () => {
+    for (let c = 0; c < C; c++) cycle();
+    // ── two-stage match ──
+    const P = PFIX;
+    let survivors;
+    if (agents.length <= P) survivors = [];
+    else {
+      const visible = agents.filter((a) => Math.random() < a.apps / 5);
+      visible.forEach((a) => { a.key = Math.pow(Math.random(), 1 / a.score); });
+      visible.sort((a, b) => b.key - a.key);
+      const slots = Math.min(P, visible.length);
+      const matched = new Set(visible.slice(0, slots));
+      survivors = agents.filter((a) => !matched.has(a));
+    }
+    // ── reapplicants: a fraction return one level higher, the rest exit ──
+    for (let k = survivors.length - 1; k > 0; k--) { const r = Math.random() * (k + 1) | 0; [survivors[k], survivors[r]] = [survivors[r], survivors[k]]; }
+    const keep = survivors.slice(0, Math.ceil(reapp * survivors.length));
+    keep.forEach((a) => { a.apps = Math.min(a.apps + 1, 5); a.re = true; });
+    // ── a new cohort ARRIVES on top of the returning pool, naive at L1..L3 ──
+    const cohort = Math.ceil(N0 * Math.pow(1 + GROWTH, year + 1));
+    layout(keep.concat(Array.from({ length: cohort }, newAgent)));
     year++; record();
     if (year >= YEARS) { done = true; running = false; const t = document.getElementById('sim-toggle'); if (t) t.textContent = 'Replay'; }
   };
 
   const record = () => {
-    const n = N * N, cnt = [0,0,0], fev = [0,0,0];
+    const cnt = [0,0,0], fev = [0,0,0];
     let sum = 0, tot = 0;
-    for (let i = 0; i < n; i++) {
-      const b = band(score[i]); cnt[b]++; sum += apps[i];
-      if (apps[i] > FEVER) { fev[b]++; tot++; }
-    }
+    agents.forEach((a) => {
+      const b = a.score - 1; cnt[b]++; sum += a.apps;
+      if (a.apps >= 4) { fev[b]++; tot++; }
+    });
+    const n = agents.length || 1;
     hist.push({ all: tot / n, byBand: fev.map((f, i) => (cnt[i] ? f / cnt[i] : 0)) });
-    const h = hist[hist.length - 1], mean = sum / n;
+    const mean = sum / n;
     document.getElementById('r-year').textContent = year + ' / ' + YEARS;
-    document.getElementById('r-apps').textContent = mean.toFixed(1);
-    document.getElementById('r-fever').textContent = (h.all * 100).toFixed(1) + '%';
-    const dr = ((mean - BASE) / BASE) * 100;
-    document.getElementById('r-drift').textContent = (dr >= 0 ? '+' : '') + dr.toFixed(1) + '%';
+    document.getElementById('r-apps').textContent = 'L' + mean.toFixed(2);
+    document.getElementById('r-fever').textContent = ((tot / n) * 100).toFixed(1) + '%';
+    const base = hist[0] ? 2.0 : 2.0;
+    document.getElementById('r-drift').textContent = '+' + (((mean - base) / base) * 100).toFixed(1) + '%';
+  };
+
+  // one applicant, drawn as a small human figure
+  const figure = (cx, cy, s) => {
+    const head = s * 0.20, bodyTop = cy - s * 0.10, bodyBot = cy + s * 0.40;
+    g.beginPath();                                  // head
+    g.arc(cx, cy - s * 0.34, head, 0, 6.2832);
+    g.fill();
+    g.beginPath();                                  // shoulders + torso
+    g.moveTo(cx, bodyTop - head * 0.2);
+    g.lineTo(cx, bodyBot);
+    g.lineWidth = s * 0.26; g.lineCap = 'round';
+    g.stroke();
+    g.beginPath();                                  // arms
+    g.moveTo(cx - s * 0.30, cy + s * 0.06);
+    g.lineTo(cx + s * 0.30, cy + s * 0.06);
+    g.lineWidth = s * 0.14;
+    g.stroke();
   };
 
   const paint = () => {
-    const px = cv.width / N;
+    const px = cv.width / D;
     g.fillStyle = '#0a0c10'; g.fillRect(0, 0, cv.width, cv.height);
-    for (let i = 0; i < N * N; i++) {
-      const x = (i % N) * px, y = ((i / N) | 0) * px;
-      if (apps[i] > FEVER) {                            // in the fever zone: score-band colour
-        const heat = Math.min(1, (apps[i] - FEVER) / 10);
-        g.fillStyle = C[band(score[i])];
-        g.globalAlpha = 0.45 + heat * 0.55;
-      } else {                                          // calm: near-invisible slate
-        g.fillStyle = '#1e293b';
-        g.globalAlpha = 0.5 + ((apps[i] - BASE) / (FEVER - BASE)) * 0.4;
+    const tiny = px < 7;
+    for (let i = 0; i < cell.length; i++) {
+      const a = cell[i]; if (!a) continue;
+      const col = LVL[a.apps - 1];
+      g.fillStyle = col; g.strokeStyle = col;
+      g.globalAlpha = a.apps >= 4 ? 1 : 0.5 + a.apps * 0.09;
+      const cx = (i % D) * px + px / 2, cy = ((i / D) | 0) * px + px / 2;
+      if (tiny) {                                    // too small for a figure: dot
+        g.beginPath(); g.arc(cx, cy, Math.max(1, px * 0.3), 0, 6.2832); g.fill();
+      } else {
+        if (a.apps >= 4) {                           // fever glow
+          g.shadowColor = col; g.shadowBlur = px * 0.5;
+        }
+        figure(cx, cy, px * 0.82);
+        g.shadowBlur = 0;
       }
-      g.fillRect(x, y, px - 0.5, px - 0.5);
     }
-    g.globalAlpha = 1;
-    chart();
+    g.globalAlpha = 1; chart();
   };
 
   const chart = () => {
-    const W = ch.width, H = ch.height, L = 34, B = 26, maxY = 0.5;
+    const W = ch.width, H = ch.height, L = 36, B = 26, maxY = 0.6;
     gc.clearRect(0, 0, W, H);
     const cs = getComputedStyle(document.documentElement);
     const grid = cs.getPropertyValue('--line').trim() || '#232b35';
     const ink = cs.getPropertyValue('--ink-3').trim() || '#6f7d8d';
     gc.font = '10px ui-monospace, monospace'; gc.textBaseline = 'middle';
-    for (let k = 0; k <= 5; k++) {
-      const yy = 10 + (H - B - 10) * (k / 5);
-      gc.strokeStyle = grid; gc.globalAlpha = .6; gc.beginPath();
-      gc.moveTo(L, yy); gc.lineTo(W - 6, yy); gc.stroke(); gc.globalAlpha = 1;
-      gc.fillStyle = ink; gc.textAlign = 'right';
-      gc.fillText(Math.round(maxY * 100 * (1 - k / 5)) + '%', L - 5, yy);
+    for (let k = 0; k <= 3; k++) {
+      const yy = 12 + (H - B - 12) * (k / 3);
+      gc.strokeStyle = grid; gc.globalAlpha = .6; gc.beginPath(); gc.moveTo(L, yy); gc.lineTo(W - 8, yy); gc.stroke(); gc.globalAlpha = 1;
+      gc.fillStyle = ink; gc.textAlign = 'right'; gc.fillText(Math.round(maxY * 100 * (1 - k / 3)) + '%', L - 6, yy);
     }
     gc.textAlign = 'center';
-    for (let yr = 0; yr <= YEARS; yr += 2) {
-      const xx = L + (W - L - 8) * (yr / YEARS);
-      gc.fillStyle = ink; gc.fillText(yr, xx, H - B / 2);
-    }
-    gc.textAlign = 'left';
+    for (let yr = 0; yr <= YEARS; yr += 2) gc.fillText(yr, L + (W - L - 10) * (yr / YEARS), H - B / 2);
     if (hist.length < 2) return;
+    gc.textAlign = 'left';
     for (let b = 0; b < 3; b++) {
-      gc.strokeStyle = C[b]; gc.lineWidth = 2; gc.lineJoin = 'round'; gc.beginPath();
+      gc.strokeStyle = BAND[b]; gc.lineWidth = 2; gc.lineJoin = 'round'; gc.beginPath();
       hist.forEach((h, i) => {
-        const X = L + (W - L - 8) * (i / YEARS);
-        const Y = 10 + (H - B - 10) * (1 - Math.min(h.byBand[b], maxY) / maxY);
+        const X = L + (W - L - 10) * (i / YEARS);
+        const Y = 12 + (H - B - 12) * (1 - Math.min(h.byBand[b], maxY) / maxY);
         i ? gc.lineTo(X, Y) : gc.moveTo(X, Y);
       });
       gc.stroke();
       const h = hist[hist.length - 1];
-      const X = L + (W - L - 8) * ((hist.length - 1) / YEARS);
-      const Y = 10 + (H - B - 10) * (1 - Math.min(h.byBand[b], maxY) / maxY);
-      gc.fillStyle = C[b]; gc.beginPath(); gc.arc(X, Y, 3, 0, 7); gc.fill();
-      if (done) { gc.fillText((h.byBand[b] * 100).toFixed(1) + '%', X + 6, Y); }
+      const X = L + (W - L - 10) * ((hist.length - 1) / YEARS);
+      const Y = 12 + (H - B - 12) * (1 - Math.min(h.byBand[b], maxY) / maxY);
+      gc.fillStyle = BAND[b]; gc.beginPath(); gc.arc(X, Y, 3, 0, 7); gc.fill();
+      if (done) gc.fillText((h.byBand[b] * 100).toFixed(1) + '%', X + 7, Y);
     }
   };
 
   let last = 0;
   const loop = (t) => {
     requestAnimationFrame(loop);
-    if (!running || reduced || t - last < 700) return;
-    last = t; step(); paint();
+    if (!running || reduced || t - last < 850) return;
+    last = t; runYear(); paint();
   };
 
   const bind = (id, vid, fn, fmt) => {
     const el = document.getElementById(id);
-    el?.addEventListener('input', () => { fn(+el.value); document.getElementById(vid).textContent = fmt(+el.value); });
+    el?.addEventListener('input', () => { fn(+el.value); document.getElementById(vid).textContent = fmt(+el.value); init(); });
   };
-  bind('s-scale', 'v-scale', (v) => { N = v; init(); }, (v) => v + '²');
-  bind('s-ratio', 'v-ratio', (v) => { ratio = v / 10; init(); }, (v) => (v / 10).toFixed(1) + '×');
-  bind('s-influence', 'v-influence', (v) => { influence = v / 100; init(); }, (v) => (v / 100).toFixed(2));
+  bind('s-scale', 'v-scale', (v) => { N0 = v * v; }, (v) => (v * v) + ' agents');
+  bind('s-ratio', 'v-ratio', (v) => { posRatio = v / 100; }, (v) => (v / 100).toFixed(2) + ' P/N');
+  bind('s-influence', 'v-influence', (v) => { reapp = v / 100; }, (v) => (v / 100).toFixed(2));
 
   const tg = document.getElementById('sim-toggle');
   tg?.addEventListener('click', () => {

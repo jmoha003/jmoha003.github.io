@@ -285,12 +285,6 @@
       "detail": "96.7% disinfection efficiency in under 10 minutes. Recognized by Micron Technology (Top 2%). IPO 383226 (India).",
       "status": "Granted",
       "year": "Oct 2021"
-    },
-    {
-      "title": "Method for Delivery, Removal and Disposal of Construction Materials",
-      "detail": "US utility patent, Earth In Motion. Contributor. USPTO App. 18/819,129 — Notice of Allowance issued May 2026.",
-      "status": "Allowed",
-      "year": "May 2026"
     }
   ],
   "certifications": [
@@ -698,6 +692,15 @@
       "period": "Aug 2023 — Sep 2024",
       "contract": "—",
       "project": "ODU Research Foundation"
+    }
+  ],
+  "contributions": [
+    {
+      "title": "Method for Delivery, Removal and Disposal of Construction Materials",
+      "detail": "US utility patent, Earth In Motion. Contributed during the internship with the Office of Virginia State Senator Bill DeSteph. Not a named inventor.",
+      "status": "Notice of Allowance",
+      "year": "May 2026",
+      "ref": "USPTO App. 18/819,129"
     }
   ]
 }

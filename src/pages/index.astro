@@ -6,7 +6,7 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grants, talks } = content;
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grants, talks, contributions } = content;
 const imgs = import.meta.glob('../assets/images/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
@@ -108,34 +108,34 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. The lowest-scoring applicants catch it most — the published run reaches 21.3% in fever by year 10, from 3%.</p>
     <div class="lab rv">
       <div class="lab-top">
-        <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · Axelrod-style prestige transmission</span>
+        <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · prestige-biased transmission, two-stage match</span>
         <div style="display:flex;gap:.4rem">
           <button class="chip" id="sim-toggle" aria-pressed="true">Pause</button>
           <button class="chip" id="sim-reset">Reset</button>
         </div>
       </div>
       <div class="lab-body">
-        <div class="lab-canvas"><canvas id="sim" width="300" height="300" role="img" aria-label="Agent grid: cool blue agents apply normally, coloured agents have entered the fever zone"></canvas></div>
+        <div class="lab-canvas"><canvas id="sim" width="480" height="480" role="img" aria-label="Agent grid: cool blue agents apply normally, coloured agents have entered the fever zone"></canvas></div>
         <div class="lab-chart">
           <canvas id="chart" width="340" height="260" role="img" aria-label="Share of applicants in the fever zone over simulated years, split by academic score band"></canvas>
           <div class="chart-key">
-            <span><i style="background:#ef4444"></i>Low score</span>
+            <span><i style="background:#f43f5e"></i>Low score</span>
             <span><i style="background:#f59e0b"></i>Medium</span>
-            <span><i style="background:#10b981"></i>High score</span>
+            <span><i style="background:#22d3ee"></i>High score</span>
           </div>
         </div>
         <aside class="lab-side">
           <div class="ctrl">
-            <label for="s-scale">Scale <b id="v-scale">40</b></label>
-            <input type="range" id="s-scale" min="14" max="70" value="40" />
+            <label for="s-scale">Population <b id="v-scale">400 agents</b></label>
+            <input type="range" id="s-scale" min="10" max="30" value="20" />
           </div>
           <div class="ctrl">
-            <label for="s-ratio">Applicants per position <b id="v-ratio">1.6</b></label>
-            <input type="range" id="s-ratio" min="10" max="30" value="16" />
+            <label for="s-ratio">Positions per applicant <b id="v-ratio">0.80 P/N</b></label>
+            <input type="range" id="s-ratio" min="40" max="100" value="80" />
           </div>
           <div class="ctrl">
-            <label for="s-influence">Prestige influence <b id="v-influence">0.55</b></label>
-            <input type="range" id="s-influence" min="0" max="100" value="55" />
+            <label for="s-influence">Reapplication rate <b id="v-influence">0.60</b></label>
+            <input type="range" id="s-influence" min="0" max="100" value="60" />
           </div>
           <div class="readout">
             <div><b id="r-year">0</b><span>YEAR</span></div>
@@ -143,7 +143,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
             <div><b id="r-fever">0%</b><span>FEVER RATE</span></div>
             <div><b id="r-drift">+0%</b><span>ESCALATION</span></div>
           </div>
-          <p class="lab-note">Brighter agents send more applications. Unmatched applicants return with escalated behaviour, carrying fever into the next cohort.</p>
+          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5. Amber and red are the fever zone (L4+). Matched applicants leave; a share of the unmatched return one level higher and carry the fever into the next cohort. Ported from the NetLogo model — 52 interaction cycles a year, two-stage match.</p>
         </aside>
       </div>
     </div>
@@ -292,7 +292,16 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       {patents.map((pt) => (
         <div class="row">
           <div><div class="t">{pt.title}</div><div class="s">{pt.detail}</div></div>
-          <div class="w"><span class={pt.status === 'Granted' ? 'pill-ok' : 'pill-pend'}>{pt.status}</span> {pt.year}</div>
+          <div class="w"><span class="pill-ok">{pt.status}</span> {pt.year}</div>
+        </div>
+      ))}
+      <div class="row" style="border-bottom:none;padding-top:1.1rem">
+        <div class="t" style="color:var(--ink-3);font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Contributed to</div>
+      </div>
+      {contributions.map((c) => (
+        <div class="row">
+          <div><div class="t">{c.title}</div><div class="s">{c.detail} {c.ref}</div></div>
+          <div class="w"><span class="pill-pend">{c.status}</span> {c.year}</div>
         </div>
       ))}
     </div>
