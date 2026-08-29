@@ -62,7 +62,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
   background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
 .nav.stuck{border-bottom-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:62px}
-.brand{font-size:1.05rem;font-weight:600;letter-spacing:var(--track-snug);display:flex;align-items:center;gap:.55rem}
+.brand{font-size:1.05rem;font-weight:600;white-space:nowrap;letter-spacing:var(--track-snug);display:flex;align-items:center;gap:.55rem}
 .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .nav-links{display:flex;gap:.25rem;align-items:center}
@@ -129,7 +129,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
 .work-body h3{font-size:1.02rem;font-weight:600;letter-spacing:-.01em}
 .work-body p{font-size:.86rem;color:var(--ink-3);line-height:1.5}
 .work-more{margin-top:auto;padding-top:.7rem;font-family:var(--mono);font-size:.68rem;color:var(--accent);display:flex;align-items:center;gap:.35rem}
-.live-chip{background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:.6rem;padding:.16rem .44rem;border-radius:4px;font-weight:700;letter-spacing:.06em}
+.live-chip{background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:.6rem;padding:.16rem .44rem;border-radius:4px;font-weight:700;letter-spacing:.06em;white-space:nowrap;flex:0 0 auto}
 
 /* ---- modal ---- */
 .modal{position:fixed;inset:0;z-index:150;display:none;place-items:center;padding:1.2rem}
@@ -272,8 +272,8 @@ footer{border-top:1px solid var(--line);padding-block:2rem;color:var(--ink-3);fo
   .g-3{grid-template-columns:repeat(2,1fr)}
   .gal{columns:2}
 }
-@media (max-width:680px){
-  .nav-links{position:fixed;inset:62px 0 auto;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);
+@media (max-width:900px){
+  .nav-links{position:fixed;inset:52px 0 auto;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);
     padding:1rem;gap:.2rem;transform:translateY(-120%);transition:transform .34s var(--ease);z-index:99}
   .nav-links.open{transform:none}
   .nav-links a{padding:.75rem;font-size:.95rem}
@@ -497,3 +497,32 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 }
 @media (prefers-reduced-motion:reduce){#agent-cursor{display:none}
   .has-agent-cursor,.has-agent-cursor a,.has-agent-cursor button{cursor:auto}}
+
+/* ---- narrow-viewport containment ----
+   grid/flex children default to min-width:auto, so a nowrap string can
+   push a track wider than its container. Cap them and let values wrap. */
+.row{grid-template-columns:minmax(0,1fr) auto}
+.row>*{min-width:0}
+.row .w{white-space:normal;overflow-wrap:anywhere}
+.card,.rows,.grid>*,.lab-side>*,.metric,.work,.pub>*{min-width:0}
+.lab-title{white-space:normal;overflow-wrap:anywhere}
+.pub h4,.pub .meta{overflow-wrap:anywhere}
+
+@media (max-width:760px){
+  .row{grid-template-columns:1fr;gap:.2rem}
+  .row .w{text-align:left;color:var(--ink-3)}
+  .metrics{grid-template-columns:1fr 1fr}
+  .moment{height:52svh}
+  .moment .overlay h3{font-size:1.35rem}
+  .alma-card img{max-height:52px}
+  .contact .cta-row{flex-direction:column;align-items:stretch}
+  .contact .cta-row .btn{justify-content:center}
+  .hero .cta-row{gap:.5rem}
+  .hero .cta-row .btn{flex:1 1 auto;justify-content:center}
+}
+@media (max-width:420px){
+  .shot{width:82vw}
+  .readout{grid-template-columns:1fr 1fr}
+  .filters{gap:.35rem}
+  .chip{font-size:.66rem;padding:.32rem .6rem}
+}
