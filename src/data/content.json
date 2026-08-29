@@ -251,8 +251,8 @@
     },
     {
       "degree": "M.S., Space and Engineering Systems",
-      "org": "Skolkovo Institute of Science and Technology · MIT (Dept. of AeroAstro)",
-      "detail": "President's Award, Top 3%. Thesis: logistics architecture for the first crewed mission to Mars.",
+      "org": "Skolkovo Institute of Science and Technology",
+      "detail": "President's Award, Top 3%. Research collaboration with MIT, Dept. of Aeronautics and Astronautics. Thesis: logistics architecture for the first crewed mission to Mars.",
       "note": "Advisor: Dr. Anton Ivanov · 2020"
     },
     {
@@ -651,7 +651,7 @@
     {
       "name": "Massachusetts Institute of Technology",
       "logo": "https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true",
-      "note": "Research · Dept. of AeroAstro"
+      "note": "Research collaboration, Dept. of AeroAstro"
     },
     {
       "name": "Skolkovo Institute of Science and Technology",
@@ -749,5 +749,6 @@
         }
       ]
     }
-  ]
+  ],
+  "almaLabel": "Education and research"
 }
