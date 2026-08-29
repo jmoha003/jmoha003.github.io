@@ -155,20 +155,30 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
 .lab{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
 .lab-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--line);background:var(--surface-2);flex-wrap:wrap}
 .lab-title{font-family:var(--mono);font-size:.74rem;color:var(--ink-2);display:flex;align-items:center;gap:.5rem}
-.lab-body{display:grid;grid-template-columns:1fr 290px}
-.lab-canvas{position:relative;background:var(--bg);min-height:400px;display:grid;place-items:center;padding:1rem}
+.lab-body{display:grid;grid-template-columns:1.15fr 1fr}
+.lab-canvas{position:relative;background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.9rem;padding:1.4rem}
 #sim{width:100%;height:auto;max-width:560px;border-radius:10px}
-.lab-side{border-left:1px solid var(--line);padding:1.1rem;display:flex;flex-direction:column;gap:1.05rem;background:var(--surface)}
-.ctrl label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-bottom:.45rem}
-.ctrl label b{color:var(--accent)}
-input[type=range]{width:100%;height:3px;background:var(--line-2);border-radius:3px;appearance:none;cursor:pointer}
-input[type=range]::-webkit-slider-thumb{appearance:none;width:15px;height:15px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--surface)}
-input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);cursor:pointer}
-.readout{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:auto}
-.readout div{background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:.6rem .65rem}
-.readout b{display:block;font-size:1.4rem;font-weight:700;color:var(--accent);line-height:1}
-.readout span{font-size:.63rem;color:var(--ink-3);font-family:var(--mono)}
-.lab-note{font-size:.74rem;color:var(--ink-3);line-height:1.5;border-top:1px solid var(--line);padding-top:.8rem}
+.lab-chart{border-left:1px solid var(--line);background:var(--bg);padding:1.4rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem}
+#chart{width:100%;height:auto;max-width:380px}
+.chart-key{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center;font-family:var(--mono);font-size:.64rem}
+.chart-key i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:.32rem;vertical-align:baseline}
+
+/* controls run full width beneath both panels */
+.lab-side{grid-column:1 / -1;border-top:1px solid var(--line);background:var(--surface);
+  padding:1.3rem clamp(1rem,3vw,1.6rem);display:grid;gap:1.2rem 2rem;
+  grid-template-columns:repeat(3,minmax(0,1fr))}
+.ctrl label{display:flex;justify-content:space-between;gap:.6rem;font-family:var(--mono);
+  font-size:.72rem;color:var(--ink-3);margin-bottom:.5rem;align-items:baseline}
+.ctrl label b{color:var(--accent);white-space:nowrap}
+.readout{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin:0}
+.readout div{background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:.75rem .85rem}
+.readout b{display:block;font-size:1.45rem;font-weight:700;color:var(--accent);line-height:1.1;
+  letter-spacing:var(--track-tight);white-space:nowrap}
+.readout span{font-size:.62rem;color:var(--ink-3);font-family:var(--mono)}
+.lab-note{grid-column:1 / -1;font-size:.76rem;color:var(--ink-3);line-height:1.55;
+  border-top:1px solid var(--line);padding-top:.9rem;max-width:92ch;margin:0}
 
 /* ---- research ---- */
 .rq{border-left:2px solid var(--accent);padding-left:1.1rem;margin-bottom:1.1rem}
@@ -403,8 +413,10 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 #chart{width:100%;height:auto;max-width:340px}
 .chart-key{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem;font-family:var(--mono);font-size:.62rem}
 .chart-key i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:.3rem;vertical-align:baseline}
-@media (max-width:1080px){.lab-body{grid-template-columns:1fr}
-  .lab-chart{border-left:none;border-top:1px solid var(--line)}}
+@media (max-width:900px){.lab-body{grid-template-columns:1fr}
+  .lab-chart{border-left:none;border-top:1px solid var(--line)}
+  .lab-side{grid-template-columns:1fr}
+  .readout{grid-template-columns:repeat(2,1fr)}}
 
 /* ---- alma mater: the headline institutions ---- */
 .alma{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
@@ -440,6 +452,7 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 /* ---- population composition strip ---- */
 .lab-canvas{flex-direction:column;gap:.9rem;align-content:center}
 .mix{width:100%;max-width:560px}
+.lab-canvas .mix{margin-top:.2rem}
 .mix-bar{display:flex;height:16px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
 .mix-bar span{transition:flex-basis .6s var(--ease-out)}
 .mix-key{display:flex;gap:.7rem;margin-top:.45rem;font-family:var(--mono);font-size:.6rem;color:var(--ink-2);flex-wrap:wrap}
@@ -450,7 +463,7 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 .logo-card{display:flex;flex-direction:column;gap:.6rem;align-items:center;text-align:center;flex:0 0 148px;max-width:148px}
 .logo-chip{background:#fff;border:1px solid var(--line);border-radius:16px;height:84px;width:100%;
   display:flex;align-items:center;justify-content:center;padding:1rem 1.3rem;transition:all .4s var(--ease-out)}
-.logo-chip img{max-height:40px;max-width:112px;object-fit:contain}
+.logo-chip img{max-height:40px;max-width:118px;width:auto;object-fit:contain}
 .logo-card figcaption{font-size:.74rem;color:var(--ink-3);line-height:1.3}
 .logo-card:hover .logo-chip{border-color:var(--accent);transform:translateY(-3px)}
 .logo-card:hover figcaption{color:var(--ink-2)}

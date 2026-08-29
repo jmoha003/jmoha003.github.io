@@ -362,13 +362,13 @@ addEventListener('keydown', (e) => {
      -> two-stage match -> matched exit, unmatched escalate one level
      and return as carriers. The return edge thickens as fever builds.
      ─────────────────────────────────────────────────────────── */
-  const W = 560, H = 360;
+  const W = 560, H = 330;
   const NODES = {
-    cohort:   { x:  62, y: 168, w: 74, h: 70, t: 'COHORT',    s: 'naive L1–L3' },
-    influence:{ x: 186, y: 156, w: 118, h: 94, t: 'INFLUENCE', s: 'copy upward' },
-    match:    { x: 352, y: 156, w: 96, h: 94, t: 'MATCH',     s: 'visibility ×\nscore weight' },
-    exit:     { x: 490, y: 84,  w: 62, h: 54, t: 'MATCHED',   s: 'leaves' },
-    escal:    { x: 490, y: 246, w: 62, h: 60, t: 'UNMATCHED', s: '+1 level' },
+    cohort:   { x:  40, y: 126, w: 82, h: 76, t: 'COHORT',    s: 'naive L1–L3' },
+    influence:{ x: 172, y: 112, w: 126, h: 104, t: 'INFLUENCE', s: 'copy upward' },
+    match:    { x: 348, y: 112, w: 104, h: 104, t: 'MATCH',    s: 'visibility ×\nscore weight' },
+    exit:     { x: 486, y: 34,  w: 70, h: 58, t: 'MATCHED',   s: 'leaves' },
+    escal:    { x: 486, y: 226, w: 70, h: 62, t: 'UNMATCHED', s: '+1 level' },
   };
   const cx = (n) => n.x + n.w / 2, cy = (n) => n.y + n.h / 2;
   const N = NODES;
@@ -377,7 +377,7 @@ addEventListener('keydown', (e) => {
     [[N.influence.x + N.influence.w, cy(N.influence)], [N.match.x, cy(N.match)]],
     [[N.match.x + N.match.w, cy(N.match)], [N.exit.x, cy(N.exit)]],          // matched
     [[N.match.x + N.match.w, cy(N.match)], [N.escal.x, cy(N.escal)]],        // unmatched
-    [[cx(N.escal), N.escal.y + N.escal.h], [cx(N.escal), 334], [70, 334], [70, N.cohort.y + N.cohort.h]], // carriers
+    [[cx(N.escal), N.escal.y + N.escal.h], [cx(N.escal), 308], [52, 308], [52, N.cohort.y + N.cohort.h]], // carriers
   ];
   let tokens = [], carrierShare = 0, matchShare = 0;
 
@@ -448,7 +448,7 @@ addEventListener('keydown', (e) => {
 
     // carrier edge label
     g.font = '9px ui-monospace, monospace'; g.fillStyle = '#f43f5e'; g.textAlign = 'center';
-    g.fillText(`carriers  ${(carrierShare * 100).toFixed(0)}%`, 300, 330);
+    g.fillText(`carriers  ${(carrierShare * 100).toFixed(0)}%`, 290, 304);
 
     // nodes
     Object.values(NODES).forEach((n) => {
@@ -469,7 +469,7 @@ addEventListener('keydown', (e) => {
       const col = LVL[k.lvl - 1];
       g.fillStyle = col; g.strokeStyle = col;
       if (k.lvl >= 4) { g.shadowColor = col; g.shadowBlur = 7; }
-      figure(x, y, 13);
+      figure(x, y, 14);
       g.shadowBlur = 0;
     });
 

@@ -78,7 +78,11 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         <div class="logo-grid stagger">
           {tier.items.map((a) => (
             <figure class="logo-card" title={a.name}>
-              <span class="logo-chip"><img src={a.logo} alt="" loading="lazy" width="130" height="34" data-logo /></span>
+              <span class="logo-chip">
+                {a.local
+                  ? <Image src={pic(a.local)} alt={a.name} widths={[130, 260]} sizes="112px" loading="lazy" />
+                  : <img src={a.logo} alt="" loading="lazy" width="130" height="34" data-logo />}
+              </span>
               <figcaption>{a.name}</figcaption>
             </figure>
           ))}
@@ -153,7 +157,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       </div>
       <div class="lab-body">
         <div class="lab-canvas">
-          <canvas id="sim" width="560" height="360" role="img" aria-label="Animated diagram of the application-fever mechanism: a naive cohort enters, copies application behaviour upward from higher-scoring peers, reaches the two-stage match, and unmatched applicants escalate one level and return as carriers"></canvas>
+          <canvas id="sim" width="560" height="330" role="img" aria-label="Animated diagram of the application-fever mechanism: a naive cohort enters, copies application behaviour upward from higher-scoring peers, reaches the two-stage match, and unmatched applicants escalate one level and return as carriers"></canvas>
           <div class="mix" aria-hidden="true">
             <div class="mix-bar" id="mix"></div>
             <div class="mix-key">
@@ -204,10 +208,10 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section class="tight">
   <div class="wrap">
     <figure class="moment rv">
-      {pic('g/fmms-sandiego.png') && <Image src={pic('g/fmms-sandiego.png')} alt="Presenting autonomous ship inspection work at the ASNE Fleet Maintenance and Modernization Symposium, San Diego" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
+      {pic('hicss-presenting.png') && <Image src={pic('hicss-presenting.png')} alt="Presenting at the Hawaii International Conference on System Sciences 2026" widths={[1024, 1536, 2048]} sizes="(max-width:1180px) 100vw, 1180px" quality={88} loading="lazy" />}
       <figcaption class="overlay">
-        <h3>From model to the fleet.</h3>
-        <p>Autonomous ship inspection and work-order management — ASNE Fleet Maintenance &amp; Modernization Symposium, San Diego.</p>
+        <h3>Taking the work to the room.</h3>
+        <p>HICSS · Winter Simulation Conference · NetLogo Conference · IEEE SoSE · ASNE Fleet Maintenance Symposium · International Astronautical Congress.</p>
       </figcaption>
     </figure>
   </div>
