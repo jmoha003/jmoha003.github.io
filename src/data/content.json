@@ -166,7 +166,7 @@
     },
     {
       "role": "Strategy Lead",
-      "org": "Earth In Motion",
+      "org": "Earth In Motion · Senate of Virginia, Senator Bill DeSteph",
       "loc": "Virginia Beach, VA",
       "period": "Apr 2023 — Aug 2023",
       "points": [
@@ -196,11 +196,6 @@
     }
   ],
   "additional": [
-    {
-      "role": "Sustainable & ESG Analyst Intern",
-      "org": "Office of the State Senator of Virginia",
-      "period": "2023"
-    },
     {
       "role": "Space Systems Engineer",
       "org": "Space Generation Advisory Council, United Nations, Vienna",
@@ -610,44 +605,6 @@
     }
   ],
   "logoToken": "pk_EiCQ8G9jTi61mdG9lUWoKQ",
-  "affiliations": [
-    {
-      "name": "US Department of Defense",
-      "logo": "https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "US Navy",
-      "logo": "https://img.logo.dev/navy.mil?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "National Science Foundation",
-      "logo": "https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "NASA",
-      "logo": "https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "SpaceX",
-      "logo": "https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "CACI",
-      "logo": "https://img.logo.dev/caci.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "University of Texas at Arlington",
-      "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "IEEE",
-      "logo": "https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    },
-    {
-      "name": "INFORMS",
-      "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
-    }
-  ],
   "grants": [
     {
       "title": "EAGER: Demonstration of Scaling Impact on Coalition Formation in Agent-based Simulation",
@@ -707,5 +664,82 @@
       "note": "Ph.D. Candidate · EMSE"
     }
   ],
-  "metricsNote": "Co-Principal Investigator on $146,336 (Military Sealift Command). Graduate Research Assistant on NSF EAGER #2333570 and the Corrosion Management System award."
+  "metricsNote": "Co-Principal Investigator on $146,336 (Military Sealift Command). Graduate Research Assistant on NSF EAGER #2333570 and the Corrosion Management System award.",
+  "logoTiers": [
+    {
+      "label": "Built for & funded by",
+      "items": [
+        {
+          "name": "US Department of Defense",
+          "logo": "https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "US Navy",
+          "logo": "https://img.logo.dev/navy.mil?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "National Science Foundation",
+          "logo": "https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "CACI",
+          "logo": "https://img.logo.dev/caci.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        }
+      ]
+    },
+    {
+      "label": "Worked at & launched with",
+      "items": [
+        {
+          "name": "SpaceX",
+          "logo": "https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "UN Space Generation Advisory Council",
+          "logo": "https://img.logo.dev/spacegeneration.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "IIT Madras",
+          "logo": "https://img.logo.dev/iitm.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "IIT Roorkee",
+          "logo": "https://img.logo.dev/iitr.ac.in?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "University of Texas at Arlington",
+          "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        }
+      ]
+    },
+    {
+      "label": "Recognised by",
+      "items": [
+        {
+          "name": "NASA",
+          "logo": "https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "Micron Technology",
+          "logo": "https://img.logo.dev/micron.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "Dassault Systèmes",
+          "logo": "https://img.logo.dev/3ds.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "MassChallenge",
+          "logo": "https://img.logo.dev/masschallenge.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "IEEE",
+          "logo": "https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        },
+        {
+          "name": "INFORMS",
+          "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
+        }
+      ]
+    }
+  ]
 }

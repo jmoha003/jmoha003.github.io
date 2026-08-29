@@ -644,3 +644,10 @@ addEventListener('keydown', (e) => {
   document.getElementById('gal-next')?.addEventListener('click', () => rail.scrollBy({ left: page(), behavior: 'smooth' }));
   document.getElementById('gal-prev')?.addEventListener('click', () => rail.scrollBy({ left: -page(), behavior: 'smooth' }));
 })();
+
+/* ───── hide any logo the provider can't resolve, so no empty chips ───── */
+$$('img[data-logo]').forEach((img) => {
+  const fail = () => img.closest('.logo-card')?.remove();
+  img.addEventListener('error', fail);
+  if (img.complete && img.naturalWidth === 0) fail();
+});
