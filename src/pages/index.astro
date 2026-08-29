@@ -6,7 +6,7 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, certifications, leadership, research } = content;
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grant, talks } = content;
 const imgs = import.meta.glob('../assets/images/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
@@ -24,14 +24,16 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       <span class="status"><span class="dot"></span>{profile.affiliation.split(',')[1]?.trim() ?? 'Old Dominion University'}</span>
       <h1>Joshit<br /><em>Mohanty</em></h1>
       <p class="role">{profile.role}</p>
-      <p class="tag">{profile.tagline} <b>Agent-based models, digital twins, and applied AI</b> for fleet operations, matching markets, healthcare and space systems.</p>
+      <p class="tag"><b>{profile.tagline}</b> {profile.blurb}</p>
+      <div class="domains">{profile.domains.map((d) => <span>{d}</span>)}</div>
       <div class="cta-row">
         <a class="btn btn-p" href="#lab">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m5 3 14 9-14 9V3Z"/></svg>
           Run a simulation
         </a>
-        <a class="btn btn-g" href={profile.resume}>Résumé</a>
+        <a class="btn btn-g" href="/JoshitMohanty_CV.pdf">CV</a>
         <a class="btn btn-g" href={profile.scholar} rel="noopener">Scholar</a>
+        <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID</a>
       </div>
     </div>
     <figure class="portrait">
@@ -52,6 +54,18 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
           <div class="n" data-count={m.value} data-prefix={m.prefix ?? ''} data-suffix={m.suffix ?? ''}>{m.prefix ?? ''}0{m.suffix ?? ''}</div>
           <div class="l">{m.label}</div>
         </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AFFILIATIONS ═══ -->
+<section class="tight">
+  <div class="wrap">
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">Worked with &amp; funded by</p>
+    <div class="logos stagger">
+      {affiliations.map((a) => (
+        <div class="logo-pill" title={a.name}><img src={a.logo} alt={a.name} loading="lazy" width="120" height="26" /></div>
       ))}
     </div>
   </div>
@@ -91,7 +105,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   <div class="wrap">
     <p class="eyebrow rv">Interactive</p>
     <h2 class="h2 rv" style="margin:.7rem 0 .8rem">Application fever,<br /><span class="soft">running in your browser.</span></h2>
-    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. Watch the escalation spread — then break it with the sliders.</p>
+    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. The lowest-scoring applicants catch it most — the published run reaches 21.3% in fever by year 10, from 3%.</p>
     <div class="lab rv">
       <div class="lab-top">
         <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · Axelrod-style prestige transmission</span>
@@ -101,7 +115,15 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         </div>
       </div>
       <div class="lab-body">
-        <div class="lab-canvas"><canvas id="sim" width="300" height="300" role="img" aria-label="Agent grid showing application fever spreading through a population"></canvas></div>
+        <div class="lab-canvas"><canvas id="sim" width="300" height="300" role="img" aria-label="Agent grid: cool blue agents apply normally, coloured agents have entered the fever zone"></canvas></div>
+        <div class="lab-chart">
+          <canvas id="chart" width="340" height="260" role="img" aria-label="Share of applicants in the fever zone over simulated years, split by academic score band"></canvas>
+          <div class="chart-key">
+            <span><i style="background:#ef4444"></i>Low score</span>
+            <span><i style="background:#f59e0b"></i>Medium</span>
+            <span><i style="background:#10b981"></i>High score</span>
+          </div>
+        </div>
         <aside class="lab-side">
           <div class="ctrl">
             <label for="s-scale">Scale <b id="v-scale">40</b></label>
@@ -132,10 +154,10 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section class="tight">
   <div class="wrap">
     <figure class="moment rv">
-      {pic('hicss-presenting.png') && <Image src={pic('hicss-presenting.png')} alt="Joshit Mohanty presenting at HICSS 2026" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
+      {pic('nrmp-poster.png') && <Image src={pic('nrmp-poster.png')} alt="Conference poster: An Agent-Based Model of Application Fever Dynamics in the National Resident Matching Program" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
       <figcaption class="overlay">
-        <h3>Taking the work to the room.</h3>
-        <p>HICSS, Winter Simulation Conference, NetLogo Conference, IEEE SoSE, ASNE Fleet Maintenance Symposium, International Astronautical Congress.</p>
+        <h3>Application fever, end to end.</h3>
+        <p>The mechanism, the model, and the intervention points — NetLogo Conference 2026, Chicago.</p>
       </figcaption>
     </figure>
   </div>
@@ -162,9 +184,10 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         </div>
         <div class="card">
           <p class="eyebrow" style="margin-bottom:.8rem">Committee</p>
-          {research.committee.map(([n, r]) => (
-            <div style="display:flex;justify-content:space-between;padding:.42rem 0;border-bottom:1px solid var(--line);font-size:.88rem">
-              <span>{n}</span><span class="mono" style="color:var(--ink-3);font-size:.72rem">{r}</span>
+          {research.committee.map((c) => (
+            <div style="display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;border-bottom:1px solid var(--line);font-size:.88rem">
+              <a href={c.url} rel="noopener" target="_blank" style="color:var(--accent)">{c.name} ↗</a>
+              <span class="mono" style="color:var(--ink-3);font-size:.72rem">{c.role}</span>
             </div>
           ))}
         </div>
@@ -226,79 +249,130 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section id="path">
   <div class="wrap">
     <p class="eyebrow rv">Trajectory</p>
-    <h2 class="h2 rv" style="margin:.7rem 0 2.4rem">Where the work happened.</h2>
-    <div class="grid g-2" style="gap:2.6rem;align-items:start">
-      <div class="tl">
-        {experience.map((e) => (
-          <div class={`tl-item rv ${e.current ? 'now' : ''}`}>
-            <h3>{e.role}</h3>
-            <div class="org">{e.org}</div>
-            <div class="when">{e.period} · {e.loc}</div>
-            {e.stealth
-              ? <span class="stealth">Stealth mode — company confidential</span>
-              : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
-          </div>
-        ))}
-      </div>
-      <div class="stagger">
-        <div class="card" style="margin-bottom:1rem">
-          <p class="eyebrow" style="margin-bottom:.9rem">Education</p>
-          {education.map((ed) => (
-            <div style="padding:.55rem 0;border-bottom:1px solid var(--line)">
-              <div style="font-weight:600;font-size:.9rem">{ed.degree}</div>
-              <div style="color:var(--accent);font-size:.82rem">{ed.org}</div>
-              <div style="color:var(--ink-3);font-size:.78rem;margin-top:.2rem">{ed.detail}</div>
-            </div>
-          ))}
+    <h2 class="h2 rv" style="margin:.7rem 0 2rem">Where the work happened.</h2>
+    <div class="tl">
+      {experience.map((e) => (
+        <div class={`tl-item rv ${e.current ? 'now' : ''}`}>
+          <h3>{e.role}</h3>
+          <div class="org">{e.org}</div>
+          <div class="when">{e.period} · {e.loc}</div>
+          {e.stealth
+            ? <span class="stealth">Stealth mode — company confidential</span>
+            : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
         </div>
-        <div class="card" style="margin-bottom:1rem">
-          <p class="eyebrow" style="margin-bottom:.9rem">Patents · granted</p>
-          {patents.map((pt) => (
-            <div style="padding:.45rem 0;border-bottom:1px solid var(--line)">
-              <div style="font-size:.88rem;font-weight:550">{pt.title}</div>
-              <div style="color:var(--ink-3);font-size:.76rem">{pt.detail}</div>
-            </div>
-          ))}
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DETAIL TABS ═══ -->
+<section class="tight" id="detail">
+  <div class="wrap">
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">The record</p>
+    <div class="tabs rv" role="tablist" aria-label="Record sections">
+      {['Education','Patents','Recognition','Leadership','Teaching','Reviewing','Certifications','Also'].map((t, i) => (
+        <button class="tab" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}>{t}</button>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-0" role="tabpanel" aria-labelledby="tab-0">
+      {education.map((ed) => (
+        <div class="row">
+          <div><div class="t">{ed.degree}</div><div class="s">{ed.org} — {ed.detail}</div></div>
+          <div class="w">{ed.note}</div>
         </div>
-        <div class="card" style="margin-bottom:1rem">
-          <p class="eyebrow" style="margin-bottom:.9rem">Leadership</p>
-          {leadership.map((l) => <div style="font-size:.83rem;color:var(--ink-2);padding:.22rem 0">{l}</div>)}
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+      {patents.map((pt) => (
+        <div class="row">
+          <div><div class="t">{pt.title}</div><div class="s">{pt.detail}</div></div>
+          <div class="w"><span class={pt.status === 'Granted' ? 'pill-ok' : 'pill-pend'}>{pt.status}</span> {pt.year}</div>
         </div>
-        <div class="card" style="margin-bottom:1rem">
-          <p class="eyebrow" style="margin-bottom:.9rem">Teaching</p>
-          {teaching.map((t) => (
-            <div style="padding:.4rem 0;border-bottom:1px solid var(--line)">
-              <div style="font-size:.86rem">{t.role} · <span style="color:var(--accent)">{t.org}</span></div>
-              <div style="color:var(--ink-3);font-size:.76rem">{t.detail}</div>
-            </div>
-          ))}
-        </div>
-        <div class="card" style="margin-bottom:1rem">
-          <p class="eyebrow" style="margin-bottom:.9rem">Also</p>
-          {additional.map((a) => (
-            <div style="display:flex;justify-content:space-between;gap:.7rem;padding:.3rem 0;font-size:.82rem">
-              <span>{a.role} · <span style="color:var(--ink-3)">{a.org}</span></span>
-              <span class="mono" style="color:var(--ink-3);font-size:.7rem">{a.period}</span>
-            </div>
-          ))}
-        </div>
-        <div class="card">
-          <p class="eyebrow" style="margin-bottom:.9rem">Certifications</p>
-          {certifications.map((c) => <div style="font-size:.83rem;color:var(--ink-2);padding:.2rem 0">{c}</div>)}
-        </div>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+      {awards.map((a) => (
+        <div class="row"><div><div class="t">{a.title}</div><div class="s">{a.org}</div></div><div class="w">{a.year}</div></div>
+      ))}
+      {fellowships.map((f) => (
+        <div class="row"><div><div class="t">{f.title}</div><div class="s">{f.org}</div></div><div class="w">{f.year}</div></div>
+      ))}
+      <div class="row">
+        <div><div class="t">{record.title}</div><div class="s">{record.detail}</div></div>
+        <div class="w">{record.year}</div>
       </div>
     </div>
-    <div style="margin-top:3rem">
-      <p class="eyebrow rv" style="margin-bottom:1.2rem">Recognition</p>
-      <div class="grid g-4 stagger">
-        {awards.map((a) => (
-          <div class="card" style="padding:1rem">
-            <div class="mono" style="color:var(--accent);font-size:.7rem">{a.year}</div>
-            <div style="font-size:.88rem;font-weight:550;margin-top:.25rem">{a.title}</div>
-            <div style="color:var(--ink-3);font-size:.76rem">{a.org}</div>
-          </div>
-        ))}
+
+    <div class="panel rows" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+      {leadership.map((l) => (
+        <div class="row"><div><div class="t">{l.role}</div><div class="s">{l.org}</div></div><div class="w">{l.period}</div></div>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+      {teaching.map((t) => (
+        <div class="row"><div><div class="t">{t.role} — {t.org}</div><div class="s">{t.detail}</div></div><div class="w">{t.period}</div></div>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-5" role="tabpanel" aria-labelledby="tab-5" hidden>
+      {reviewer.conferences.map((c) => (
+        <div class="row"><div><div class="t">{c}</div></div><div class="w">Reviewer</div></div>
+      ))}
+      {reviewer.professional.map((c) => (
+        <div class="row"><div><div class="t">{c}</div></div><div class="w">Judge</div></div>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-6" role="tabpanel" aria-labelledby="tab-6" hidden>
+      {certifications.map((c) => (
+        <div class="row"><div><div class="t">{c.name}</div><div class="s">{c.org}</div></div><div class="w">{c.year}</div></div>
+      ))}
+    </div>
+
+    <div class="panel rows" id="panel-7" role="tabpanel" aria-labelledby="tab-7" hidden>
+      {additional.map((x) => (
+        <div class="row"><div><div class="t">{x.role}</div><div class="s">{x.org}</div></div><div class="w">{x.period}</div></div>
+      ))}
+      {talks.map((t) => (
+        <div class="row"><div><div class="t"><a href={t.url} rel="noopener">{t.title} ↗</a></div><div class="s">Invited talk</div></div><div class="w">{t.year}</div></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GRANT ═══ -->
+<section class="tight">
+  <div class="wrap">
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">Awarded research grant</p>
+    <div class="card rv">
+      <h3 style="font-size:1.05rem;margin-bottom:.5rem">{grant.title}</h3>
+      <div class="rows" style="margin-top:.6rem">
+        <div class="row"><div class="t">Principal Investigator</div><div class="w">{grant.pi}</div></div>
+        <div class="row"><div class="t">Co-Principal Investigators</div><div class="w">{grant.copi}</div></div>
+        <div class="row"><div class="t">Funding agency</div><div class="w">{grant.agency}</div></div>
+        <div class="row"><div class="t">Sponsored amount</div><div class="w" style="color:var(--accent)">{grant.amount}</div></div>
+        <div class="row"><div class="t">Period</div><div class="w">{grant.period}</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRESS ═══ -->
+<section class="tight" id="press">
+  <div class="wrap">
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">Media coverage</p>
+    <div class="press-grid stagger">
+      {press.map((m) => (
+        <a class="press-item" href={m.url} rel="noopener" target="_blank">
+          <img src={m.logo} alt={m.outlet} loading="lazy" width="110" height="22" />
+          <span class="n">{m.outlet}</span>
+          <span class="y">{m.year} ↗</span>
+        </a>
+      ))}
     </div>
   </div>
 </section>
@@ -324,11 +398,12 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   <div class="wrap">
     <p class="eyebrow rv" style="justify-content:center">Contact</p>
     <h2 class="rv" style="margin-top:.8rem">Let's build a model<br />of the thing you can't measure.</h2>
-    <p class="lede rv" style="margin:0 auto 2rem;text-align:center">Modeling &amp; simulation · operations research · applied AI · digital twin architecture.</p>
+    <p class="lede rv" style="margin:0 auto 2rem;text-align:center">{profile.disciplines}</p>
     <div class="cta-row rv" style="justify-content:center">
       <a class="btn btn-p" href={`mailto:${profile.email}`}>{profile.email}</a>
       <a class="btn btn-g" href={profile.linkedin} rel="noopener">LinkedIn</a>
-      <a class="btn btn-g" href={profile.resume}>Résumé</a>
+      <a class="btn btn-g" href="/JoshitMohanty_CV.pdf">CV</a>
+      <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID</a>
     </div>
   </div>
 </section>

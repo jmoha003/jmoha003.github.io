@@ -3,18 +3,29 @@
     "name": "Joshit Mohanty",
     "role": "Ph.D. Candidate · Modeling & Simulation",
     "tagline": "I build simulations of systems that misbehave.",
-    "blurb": "Agent-based models, digital twins, and applied AI for fleet operations, matching markets, healthcare, and space systems.",
+    "blurb": "Agent-based models, digital twins, and applied AI — for wherever individual decisions aggregate into system-wide dysfunction.",
     "affiliation": "Engineering Management & Systems Engineering, Old Dominion University",
     "advisor": "Dr. Andrew J. Collins",
     "location": "Norfolk, VA",
-    "email": "mohanty.joshit@gmail.com",
+    "email": "jmoha003@odu.edu",
     "linkedin": "https://www.linkedin.com/in/joshitmohanty/",
     "scholar": "https://scholar.google.com/citations?user=MB2HbuAAAAAJ&hl=en",
     "resume": "/JoshitMohanty_Resume.pdf",
     "authorization": "US work authorization · F1 OPT/STEM",
     "updated": "August 2026",
     "field": "Complex Systems Engineering",
-    "reviewer": "Peer reviewer, IEEE"
+    "reviewer": "Peer reviewer, IEEE",
+    "orcid": "https://orcid.org/0000-0003-1078-0314",
+    "disciplines": "Modeling & Simulation · Operations Research · Applied AI · Digital Twin Architecture",
+    "domains": [
+      "Fleet operations",
+      "Matching markets",
+      "Healthcare",
+      "Finance",
+      "Supply chains",
+      "Manufacturing",
+      "Space systems"
+    ]
   },
   "metrics": [
     {
@@ -41,41 +52,61 @@
   ],
   "capabilities": [
     {
-      "icon": "sim",
       "title": "Modeling & Simulation",
       "items": [
         "Agent-based modeling",
-        "Discrete event",
+        "Discrete event simulation",
         "System dynamics",
-        "Monte Carlo"
+        "Monte Carlo",
+        "Model V&V"
       ]
     },
     {
-      "icon": "ai",
+      "title": "Mechanical Modeling & Simulation",
+      "items": [
+        "CAD & SolidWorks (CSWA)",
+        "Finite element analysis",
+        "Mechatronics & control",
+        "Spacecraft thermal systems",
+        "Prototyping to production"
+      ]
+    },
+    {
       "title": "NLP & Applied AI",
       "items": [
         "Text classification",
         "RAG architectures",
         "LLM integration",
-        "Hallucination mitigation"
+        "Hallucination mitigation",
+        "Sentiment analysis"
       ]
     },
     {
-      "icon": "twin",
-      "title": "Digital Twin",
+      "title": "AI Governance & Compliance",
       "items": [
-        "Process-oriented digital thread",
-        "Macro-micro bridging",
-        "Predictive maintenance"
+        "Self-governing agent architectures",
+        "NIST AI RMF",
+        "Explainable & trustworthy AI",
+        "Responsible research conduct",
+        "Authoritative Source of Truth systems"
       ]
     },
     {
-      "icon": "lead",
+      "title": "Digital Twin & Architecture",
+      "items": [
+        "Process-Oriented Digital Thread",
+        "Macro-micro service bridging",
+        "Predictive maintenance",
+        "System-of-systems design"
+      ]
+    },
+    {
       "title": "Program Leadership",
       "items": [
         "Federal grant acquisition",
         "Multi-stakeholder delivery",
-        "Proposal to production"
+        "Proposal to production",
+        "P&L ownership"
       ]
     }
   ],
@@ -95,7 +126,7 @@
       "role": "Senior Research Engineer, Digital Twins",
       "org": "PlaSiV",
       "loc": "San Jose, CA",
-      "period": "2026",
+      "period": "May 2026 — Aug 2026",
       "stealth": true,
       "points": []
     },
@@ -114,7 +145,7 @@
       "role": "Technical Program Lead, Fleet Analytics",
       "org": "ODU Research Foundation · US Department of Defense",
       "loc": "Norfolk, VA",
-      "period": "Sep 2023 — Dec 2025",
+      "period": "Sep 2023 — Dec 2024",
       "points": [
         "$496K across 3 concurrent programs as Co-PI.",
         "NLP pipeline: 160,000+ records, 92% accuracy, 87% time reduction. In production.",
@@ -154,182 +185,345 @@
   ],
   "additional": [
     {
-      "role": "Sustainability Analyst",
-      "org": "Office of Virginia State Senator",
+      "role": "Sustainable & ESG Analyst Intern",
+      "org": "Office of the State Senator of Virginia",
       "period": "2023"
     },
     {
       "role": "Space Systems Engineer",
-      "org": "United Nations SGAC, Vienna",
-      "period": "2019 — 2023"
+      "org": "Space Generation Advisory Council, United Nations, Vienna",
+      "period": "Jun 2019 – Dec 2023"
     },
     {
-      "role": "Systems Analyst",
+      "role": "Systems Analyst [Volunteer]",
       "org": "Urban Research Council, New York",
-      "period": "2022 — 2023"
+      "period": "Jul 2022 – Mar 2023"
     },
     {
       "role": "Project Associate",
-      "org": "IIT Madras",
-      "period": "2018"
+      "org": "Indian Institute of Technology Madras",
+      "period": "Jun – Sep 2018"
     },
     {
       "role": "Mechanical Systems Engineer",
-      "org": "IIT Roorkee",
-      "period": "2017"
+      "org": "Indian Institute of Technology Roorkee",
+      "period": "May – Jul 2017"
     },
     {
       "role": "Industrial Engineer Trainee",
-      "org": "Steel Authority of India",
-      "period": "2016"
+      "org": "Steel Authority of India Limited",
+      "period": "May – Jun 2016"
     }
   ],
   "teaching": [
     {
       "role": "Graduate Teaching Assistant",
       "org": "Old Dominion University",
-      "detail": "Systems Engineering · 40+ students per course"
+      "detail": "ENMA 515 Introduction to Systems Engineering · ENMA 661 Systems Engineering Design · 40+ students per course",
+      "period": "2022 – 2023"
     },
     {
       "role": "Graduate Teaching Assistant",
-      "org": "UT Arlington",
-      "detail": "Manufacturing, Safety, Data Science · 70+ students"
+      "org": "University of Texas at Arlington",
+      "detail": "IE 4339 Production & Manufacturing · IE 5314 Industrial Safety · DASC 5303 Data Science · 70+ students",
+      "period": "2021 – 2022"
     },
     {
       "role": "Graduate Assistant",
-      "org": "Skolkovo Institute",
-      "detail": "Rocket building mentorship"
+      "org": "Skolkovo Institute of Science and Technology",
+      "detail": "Rocket building and flow analysis mentorship",
+      "period": "2019 – 2020"
     }
   ],
   "education": [
     {
-      "degree": "Ph.D., Engineering Management & Systems Engineering",
+      "degree": "Ph.D., Systems Engineering",
       "org": "Old Dominion University",
       "detail": "In progress. Complex systems, simulation, organizational modeling.",
       "note": "Advisor: Dr. Andrew J. Collins"
     },
     {
       "degree": "M.S., Engineering (Space) Systems",
-      "org": "Skolkovo Institute of Science and Technology",
-      "detail": "President's Award, Top 3%. Partnership with MIT.",
-      "note": "Research at MIT Aeronautics & Astronautics"
+      "org": "Skolkovo Institute of Science and Technology · MIT (Dept. of AeroAstro)",
+      "detail": "President's Award, Top 3%. Thesis: logistics architecture for the first crewed mission to Mars.",
+      "note": "Advisor: Dr. Anton Ivanov · 2020"
+    },
+    {
+      "degree": "B.Tech, Mechanical Engineering",
+      "org": "Veer Surendra Sai University of Technology",
+      "detail": "Thesis: Active Wireless Monitoring of Railway Tracks.",
+      "note": "Advisor: Mr. J. B. Lakra · 2018"
     }
   ],
   "patents": [
     {
-      "title": "Autonomous UV Sanitizing Robot",
-      "detail": "96.7% disinfection efficiency. Recognized by Micron Technology."
+      "title": "Vehicle Blind Spot Reduction System",
+      "detail": "Reducing blind spots in vehicle windscreens during turning. IPO 570997 (India).",
+      "status": "Granted",
+      "year": "Dec 2024"
     },
     {
-      "title": "Vehicle Blind Spot Reduction System",
-      "detail": "Sensor-integrated automated alerting during turning."
+      "title": "Autonomous UV Mobile Sanitizing Robot",
+      "detail": "96.7% disinfection efficiency in under 10 minutes. Recognized by Micron Technology (Top 2%). IPO 383226 (India).",
+      "status": "Granted",
+      "year": "Oct 2021"
     },
     {
       "title": "Autonomous Fluid Dispensing Machine",
-      "detail": "Agricultural and fire-fighting applications."
+      "detail": "Agricultural and fire-fighting applications. IPO Application No. 202411096231.",
+      "status": "Filed",
+      "year": "Oct 2024"
     }
   ],
   "certifications": [
-    "Anthropic Agent Skills, Claude Code (2026)",
-    "Google Business Intelligence (2025)",
-    "Google Project Management (2022)",
-    "ICS Cybersecurity"
+    {
+      "name": "Agent Skills and Claude Code",
+      "org": "Anthropic",
+      "year": "2026"
+    },
+    {
+      "name": "Business Intelligence",
+      "org": "Google",
+      "year": "2025"
+    },
+    {
+      "name": "Graduate Teaching Assistantship Institute",
+      "org": "Old Dominion University",
+      "year": "2024"
+    },
+    {
+      "name": "Industrial Control Systems Cyber Security",
+      "org": "IIoT World",
+      "year": "2023"
+    },
+    {
+      "name": "Responsible Conduct of Research for Engineers",
+      "org": "CITI Program",
+      "year": "2023"
+    },
+    {
+      "name": "Shipboard Automated Maintenance Management (SAMM)",
+      "org": "Military Sealift Command, US Defense",
+      "year": "2023"
+    },
+    {
+      "name": "Certified Project Management",
+      "org": "Google",
+      "year": "2022"
+    },
+    {
+      "name": "Quantum Computing Fundamentals",
+      "org": "IIT Roorkee",
+      "year": "2020"
+    },
+    {
+      "name": "Certified SolidWorks Associate (CSWA)",
+      "org": "Dassault Systèmes",
+      "year": "2017"
+    }
   ],
   "leadership": [
-    "President, ASEM Student Chapter, ODU",
-    "Dean's Advisory Council, ODU",
-    "Team Lead, UN Space Advisory Council (12 members, 7 countries)",
-    "Judge & Mentor, MassChallenge & Verizon Incubator",
-    "Mentored 100+ graduate students across 6 systems engineering courses"
+    {
+      "role": "Member, BCET Dean's Student Advisory Council",
+      "org": "Old Dominion University",
+      "period": "Feb 2025 – Feb 2026"
+    },
+    {
+      "role": "President, ASEM Student Chapter",
+      "org": "Old Dominion University",
+      "period": "Jan 2025 – Dec 2025"
+    },
+    {
+      "role": "Executive Advisor",
+      "org": "Enheroes Global Energy, Malaysia",
+      "period": "Nov 2023 – Dec 2025"
+    },
+    {
+      "role": "Chief of Technology",
+      "org": "Emerging Technologies, India",
+      "period": "Jun 2023 – Dec 2024"
+    },
+    {
+      "role": "Ally, International Student Advisory Board",
+      "org": "Old Dominion University",
+      "period": "Jan 2024 – Sep 2024"
+    },
+    {
+      "role": "Mentor, Global Monarch Club",
+      "org": "Old Dominion University",
+      "period": "Aug 2023 – Sep 2024"
+    },
+    {
+      "role": "Startup Mentor and Strategic Advisor",
+      "org": "MassChallenge Incubator",
+      "period": "Jun 2022 – May 2023"
+    },
+    {
+      "role": "Business Mentor",
+      "org": "Verizon Incubator",
+      "period": "Jun 2022 – Aug 2023"
+    },
+    {
+      "role": "Research Advisor",
+      "org": "TodAers: African Space Research Group, Nigeria",
+      "period": "Nov 2020 – May 2022"
+    },
+    {
+      "role": "System Specialist",
+      "org": "Open-Source Satellite, UK",
+      "period": "May 2021 – Dec 2021"
+    },
+    {
+      "role": "Co-Founder",
+      "org": "VSSUT Space Innovation Center, India",
+      "period": "Apr 2017 – Aug 2018"
+    }
   ],
   "awards": [
     {
       "year": "2025",
-      "title": "Best Presenter, GSGA",
-      "org": "Old Dominion University"
+      "title": "Best Oral and Poster Presenter Award",
+      "org": "GSGA Conference, ODU"
     },
     {
       "year": "2021",
-      "title": "National Entrepreneur",
+      "title": "US National Level Entrepreneur Awardee",
       "org": "Blackstone LaunchPad"
     },
     {
       "year": "2021",
-      "title": "NASA Rover Challenge",
-      "org": "Mentored, Runners Up"
+      "title": "Runners Up, Human Exploration Rover Challenge",
+      "org": "NASA [Mentored]"
     },
     {
       "year": "2020",
-      "title": "Global Innovation Award",
+      "title": "Global Innovation Awardee",
       "org": "Micron Technology"
     },
     {
       "year": "2020",
-      "title": "Grand Award",
+      "title": "Grand Awardee",
       "org": "DRDO, Indian Air Force"
     },
     {
-      "year": "2019",
-      "title": "President's Fellowship",
+      "year": "2020",
+      "title": "President Awardee, Exemplary Contribution to Russian Scientific Community",
       "org": "Skolkovo Foundation"
     },
     {
-      "year": "2019",
-      "title": "Limca Book of Records",
-      "org": "Sounding rockets"
+      "year": "2017",
+      "title": "Grand Awardee, Product Design Innovator",
+      "org": "Dassault Systèmes"
     },
     {
       "year": "2017",
       "title": "Top 100 Innovators of India",
-      "org": "CII"
-    },
-    {
-      "year": "2017",
-      "title": "Product Design Award",
-      "org": "Dassault Systèmes"
+      "org": "Confederation of Indian Industry"
     },
     {
       "year": "2016",
-      "title": "Best Innovation",
-      "org": "DST, Government of India"
+      "title": "Best Technical Innovation",
+      "org": "Dept. of Science and Technology, Govt. of India"
+    },
+    {
+      "year": "2016",
+      "title": "Runners Up, Best Presenter Award",
+      "org": "Dept. of Science and Technology, Govt. of India"
+    },
+    {
+      "year": "2010",
+      "title": "Young Astronomer Talent",
+      "org": "ISRO – TATA Steel"
+    },
+    {
+      "year": "2009",
+      "title": "Excellence in Education",
+      "org": "University of New South Wales"
+    },
+    {
+      "year": "2008",
+      "title": "Excellence in Environmental Protection Studies",
+      "org": "Ministry of Home Affairs, Govt. of India"
     }
   ],
   "press": [
     {
+      "outlet": "Dev, Japan",
+      "year": "2025",
+      "url": "https://dev.to/sandeepnayak/integrating-generative-ai-with-systems-thinking-for-enhanced-remote-team-efficiency-bbb",
+      "logo": "https://img.logo.dev/dev.to?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
       "outlet": "US Business News",
-      "year": "2024"
+      "year": "2024",
+      "url": "https://usbusinessnews.com/engineering-the-future-robotics-systems-with-ai/",
+      "logo": "https://img.logo.dev/usbusinessnews.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
-      "outlet": "UT Arlington",
-      "year": "2022"
+      "outlet": "University of Texas at Arlington",
+      "year": "2022",
+      "url": "https://www.uta.edu/news/news-releases/2022/06/08/uta-propels-students-to-entrepreneurial-success",
+      "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
-      "outlet": "Arlington Chamber",
-      "year": "2022"
+      "outlet": "Greater Arlington Chamber of Commerce",
+      "year": "2022",
+      "url": "https://www.arlingtontx.com/blog/uta-propels-students-to-entrepreneurial-success/",
+      "logo": "https://img.logo.dev/arlingtontx.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
       "outlet": "Dallas Innovates",
-      "year": "2021"
+      "year": "2022",
+      "url": "https://dallasinnovates.com/tag/joshit-mohanty/",
+      "logo": "https://img.logo.dev/dallasinnovates.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
       "outlet": "Automated Warehouse",
-      "year": "2020"
+      "year": "2020",
+      "url": "https://www.automatedwarehouseonline.com/winners-of-the-micron-uv-robot-challenge-hackathon-announced/",
+      "logo": "https://img.logo.dev/automatedwarehouseonline.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
-      "outlet": "Indian Express",
-      "year": "2018"
+      "outlet": "Hackster.io",
+      "year": "2020",
+      "url": "https://www.hackster.io/trishul/uvtar-the-savage-irradiator-by-team-trishul-325edb",
+      "logo": "https://img.logo.dev/hackster.io?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
-      "outlet": "Orissa Post",
-      "year": "2018"
+      "outlet": "SpaceUp, Russian Federation",
+      "year": "2019",
+      "url": "https://msc.skoltech.ru/spaceup2019",
+      "logo": "https://img.logo.dev/msc.skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "outlet": "The Orissa Post",
+      "year": "2018",
+      "url": "https://www.orissapost.com/vssut-students-develop-device-to-detect-fault-in-rail-tracks/",
+      "logo": "https://img.logo.dev/orissapost.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
       "outlet": "The Pioneer",
-      "year": "2018"
+      "year": "2018",
+      "url": "https://www.dailypioneer.com/2018/state-editions/vssut-students-make-device-to-detect-fault-in-rly-track.html",
+      "logo": "https://img.logo.dev/dailypioneer.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "outlet": "The New Indian Express",
+      "year": "2018",
+      "url": "https://www.newindianexpress.com/odisha/2018/Jan/05/vssut-test-fires-satellite-launch-vehicles-new-version-1745008.html",
+      "logo": "https://img.logo.dev/newindianexpress.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "outlet": "The Sambad",
+      "year": "2018",
+      "url": "https://sambadenglish.com/odisha-varsity-students-develop-device-that-can-detect-fault-in-railway-tracks/",
+      "logo": "https://img.logo.dev/sambadenglish.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     },
     {
       "outlet": "Bhubaneswar Buzz",
-      "year": "2017"
+      "year": "2017",
+      "url": "https://www.bhubaneswarbuzz.com/updates/education/vssut-team-bags-best-innovation-best-presenter-award-india-international-science-festival",
+      "logo": "https://img.logo.dev/bhubaneswarbuzz.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
     }
   ],
   "research": {
@@ -337,18 +531,21 @@
     "subtitle": "Testing the Adequacy of the Single-Perspective Measurement Convention",
     "status": "Dissertation proposal · August 2026",
     "committee": [
-      [
-        "Dr. A. J. Collins",
-        "Director"
-      ],
-      [
-        "Dr. A. V. Romero",
-        "Member"
-      ],
-      [
-        "Dr. J. F. Leathrum",
-        "Member"
-      ]
+      {
+        "name": "Dr. Andrew J. Collins",
+        "role": "Director",
+        "url": "https://www.odu.edu/directory/andrew-collins"
+      },
+      {
+        "name": "Dr. Adrian V. Romero",
+        "role": "Member",
+        "url": "https://www.odu.edu/directory/adrian-valencia-romero"
+      },
+      {
+        "name": "Dr. James F. Leathrum",
+        "role": "Member",
+        "url": "https://www.odu.edu/directory/james-leathrum"
+      }
     ],
     "premise": "Agent-based models are almost always measured from the population perspective alone. That convention assumes one perspective is enough to describe a final state. The assumption is untested.",
     "questions": [
@@ -356,5 +553,120 @@
       "Which parameters most strongly influence the probability that the two perspectives disagree?"
     ],
     "method": "Axelrod (1997) cultural dissemination model as testbed. Full factorial design across a toroidal lattice and a scale-free network. No new model, no changed rules — any disagreement belongs to the measurements, not the model."
-  }
+  },
+  "fellowships": [
+    {
+      "year": "2019",
+      "title": "Fellowship by the President of Skolkovo Foundation",
+      "org": "Russian Federation"
+    },
+    {
+      "year": "2014",
+      "title": "Fellowship, Dept. of Science and Technology",
+      "org": "Govt. of Odisha, India"
+    }
+  ],
+  "record": {
+    "year": "2019",
+    "title": "Limca Book of Records, Hachette India",
+    "detail": "First student body in India to develop and launch sounding rockets, reaching over 2.14 miles.",
+    "url": "https://www.bhubaneswarbuzz.com/updates/education/vssut-team-bags-best-innovation-best-presenter-award-india-international-science-festival"
+  },
+  "reviewer": {
+    "conferences": [
+      "Winter Simulation Conference 2026, INFORMS (2 papers)",
+      "21st Annual System of Systems Engineering Conference (4 papers)",
+      "19th Annual System of Systems Engineering Conference (2 papers)",
+      "59th Hawaii International Conference on System Sciences (1 paper)",
+      "75th Conference on Southern Association for College Student Affairs (5 proposals)"
+    ],
+    "professional": [
+      "Panel Judge, MassChallenge Incubator Boston — 50 US startups",
+      "Invited Mentor, MassChallenge Incubator Boston — 10 US startups"
+    ]
+  },
+  "grant": {
+    "title": "Sentimental Artificial Intelligence for Maintenance Work Order Prioritization",
+    "pi": "Dr. Samuel Kovacic",
+    "copi": "Joshit Mohanty, Cansu Yalim",
+    "agency": "US Department of Defense (Military Sealift Command)",
+    "facilitator": "CACI Inc., USA",
+    "amount": "$146,336",
+    "period": "Sep 2023 – Sep 2024"
+  },
+  "talks": [
+    {
+      "title": "Odias in AI and ML Conference",
+      "year": "2023",
+      "url": "https://www.youtube.com/watch?v=GPkWL-9akQc"
+    },
+    {
+      "title": "NinthSem Meet the Engineer",
+      "year": "2020",
+      "url": "https://www.facebook.com/ninthsem/photos/pb.100063638454817.-2207520000/195029852156327/?type=3"
+    }
+  ],
+  "logoToken": "pk_EiCQ8G9jTi61mdG9lUWoKQ",
+  "affiliations": [
+    {
+      "name": "Old Dominion University",
+      "domain": "odu.edu",
+      "logo": "https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "Skolkovo Institute of Science and Technology",
+      "domain": "skoltech.ru",
+      "logo": "https://img.logo.dev/skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "Massachusetts Institute of Technology",
+      "domain": "mit.edu",
+      "logo": "https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "US Department of Defense",
+      "domain": "defense.gov",
+      "logo": "https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "US Navy",
+      "domain": "navy.mil",
+      "logo": "https://img.logo.dev/navy.mil?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "National Science Foundation",
+      "domain": "nsf.gov",
+      "logo": "https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "NASA",
+      "domain": "nasa.gov",
+      "logo": "https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "SpaceX",
+      "domain": "spacex.com",
+      "logo": "https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "United Nations SGAC",
+      "domain": "spacegeneration.org",
+      "logo": "https://img.logo.dev/spacegeneration.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "University of Texas at Arlington",
+      "domain": "uta.edu",
+      "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "IEEE",
+      "domain": "ieee.org",
+      "logo": "https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    },
+    {
+      "name": "INFORMS",
+      "domain": "informs.org",
+      "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    }
+  ]
 }

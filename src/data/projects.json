@@ -1,12 +1,301 @@
 [
-  { "id": "fleet-nlp", "title": "Fleet Maintenance NLP Pipeline", "tag": "NLP · In Production", "img": "thumb_fleet_nlp.jpg", "blurb": "End-to-end pipeline for US Navy work orders.", "detail": "Classifies unstructured maintenance work orders by priority. Handles 687 abbreviations and 1,550 misspellings across 160,000+ records. Delivered to the Department of Defense and running in production.", "stats": [["92%", "accuracy"], ["87%", "time saved"], ["160K+", "records"], ["$146K", "funded"]], "topics": ["NLP", "Defense"] },
-  { "id": "nrmp", "title": "Medical Residency Matching Model", "tag": "Simulation · NSF Funded", "img": "thumb_nrmp.jpg", "blurb": "Agent-based model of application fever across 42,000+ applicants.", "detail": "One of the first agent-based models of application fever. Adapts Axelrod's cultural dissemination framework with prestige-biased transmission. Mean application level rises ~30% over 10 simulated years; scale explains ~99% of variance in fever outcomes.", "stats": [["42K+", "agents"], ["300M+", "scenarios"], ["NSF", "EAGER #2333570"], ["WSC", "2026"]], "topics": ["Simulation", "Matching Markets"], "interactive": true },
-  { "id": "silo-trap", "title": "The Silo Trap", "tag": "Simulation · NetLogo 2026", "img": "silo-trap.png", "blurb": "A hidden equilibrium where agents feel aligned while the system fragments.", "detail": "Dual-metric framework separating micro-level from macro-level measurement. Across 9,000 runs, hidden fragmentation accounts for 61.9% of all fragmented equilibria, rising from 27.8% at 49 agents to 84.2% at 625 agents.", "stats": [["9,000", "runs"], ["61.9%", "hidden"], ["84.2%", "at scale"], ["NetLogo", "2026"]], "topics": ["Simulation", "Multi-Agent Systems"] },
-  { "id": "graphtreemed", "title": "GraphTreeMed", "tag": "RAG · Healthcare", "img": "thumb_graphtreemed-1.jpg", "blurb": "Hybrid graph-tree retrieval for mission-critical medical applications.", "detail": "Severity-based routing with compliance verification for clinical decision support.", "stats": [["35%", "recall gain"], ["42%", "ICU error cut"], ["15K+", "cases"], ["ODU", ""]], "topics": ["RAG", "Healthcare"] },
-  { "id": "tamos", "title": "TAMOS", "tag": "Multi-Agent · Orchestration", "img": "thumb_tamos-1.jpg", "blurb": "Task-aware multi-agent orchestrator for LLM systems.", "detail": "Optimizes LLM agent orchestration via hierarchical task classification, dynamic agent roles, and multi-objective evaluation. Uses Llama 3.2-3B for meta-reasoning.", "stats": [["Hierarchical", "routing"], ["Multi-objective", ""], ["Llama 3.2", ""], ["ODU", ""]], "topics": ["Multi-Agent Systems", "LLM"] },
-  { "id": "metaclustering", "title": "Meta-Clustering for Conversational AI", "tag": "NLP · Healthcare", "img": "thumb_metaclustering-1.jpg", "blurb": "Region-specific healthcare language models.", "detail": "Multi-state model clustering specialized language models. A dynamic orchestrator adapts to local dialects and epidemiological data. Published at IEEE SoSE 2025.", "stats": [["Meta-learning", ""], ["Multi-lingual", ""], ["IEEE SoSE", "2025"], ["", ""]], "topics": ["NLP", "Healthcare"] },
-  { "id": "digital-thread", "title": "Process-Oriented Digital Thread", "tag": "Digital Twin · Federal", "img": "thumb_digital_thread-1.jpg", "blurb": "Bridging outsourced microservices with intrinsic systems.", "detail": "Transitional framework using shared protocols, adaptive feedback loops, and standardized models. Part of the DoD Digital Engineering Initiative.", "stats": [["Federal", "maritime"], ["System-of-systems", ""], ["Zero-trust", ""], ["", ""]], "topics": ["Digital Twin", "Defense"] },
-  { "id": "carbon", "title": "Carbon Accountability Platform", "tag": "Product · Revenue", "img": "thumb_carbon-05.jpg", "blurb": "Emissions tied to operational processes, not offset purchases.", "detail": "Process-oriented carbon scoring under Verra VCS 4.7 and UN SDGs, with an LLM-powered training module.", "stats": [["$98K", "in 8 weeks"], ["100+", "clients"], ["25%", "compliance"], ["Verra", "VCS 4.7"]], "topics": ["Sustainability", "Product"] },
-  { "id": "cubesat", "title": "CubeSat on SpaceX Falcon Heavy", "tag": "Space Systems · In Orbit", "img": "cubesat-lab.png", "blurb": "Shape memory alloy CubeSat, still operational in low-Earth orbit.", "detail": "Designed and prototyped at German Orbital Systems, Berlin. Launched aboard SpaceX Falcon Heavy.", "stats": [["Falcon Heavy", ""], ["Low-Earth", "orbit"], ["Operational", ""], ["2019", ""]], "topics": ["Space Systems"] },
-  { "id": "ai-threshold", "title": "Bandwidth-Limited Intelligence", "tag": "Theory · HICSS 2026", "img": "thumb_ai_threshold-02.jpg", "blurb": "Does engineered intelligence have a ceiling?", "detail": "Proposes that engineered AI faces a bandwidth-limited intelligence ceiling arising from sensor and actuator capacity. Dual-channel model separating physical I/O from representational capacity.", "stats": [["Information", "theory"], ["Observer-participant", ""], ["HICSS", "2026"], ["", ""]], "topics": ["AI Theory"] }
+  {
+    "id": "fleet-nlp",
+    "title": "Fleet Maintenance NLP Pipeline",
+    "tag": "NLP · In Production",
+    "img": "thumb_fleet_nlp.jpg",
+    "blurb": "End-to-end pipeline for US Navy work orders.",
+    "detail": "Classifies unstructured maintenance work orders by priority. Handles 687 abbreviations and 1,550 misspellings across 160,000+ records. Delivered to the Department of Defense and running in production.",
+    "stats": [
+      [
+        "92%",
+        "accuracy"
+      ],
+      [
+        "87%",
+        "time saved"
+      ],
+      [
+        "160K+",
+        "records"
+      ],
+      [
+        "$146K",
+        "funded"
+      ]
+    ],
+    "topics": [
+      "NLP",
+      "Defense"
+    ]
+  },
+  {
+    "id": "nrmp",
+    "title": "Medical Residency Matching Model",
+    "tag": "Simulation · NSF Funded",
+    "img": "nrmp-poster.png",
+    "blurb": "Agent-based model of application fever across 42,000+ applicants.",
+    "detail": "One of the first agent-based models of application fever. Adapts Axelrod's cultural dissemination framework with prestige-biased transmission. Mean application level rises ~30% over 10 simulated years; scale explains ~99% of variance in fever outcomes.",
+    "stats": [
+      [
+        "42K+",
+        "agents"
+      ],
+      [
+        "300M+",
+        "scenarios"
+      ],
+      [
+        "NSF",
+        "EAGER #2333570"
+      ],
+      [
+        "WSC",
+        "2026"
+      ]
+    ],
+    "topics": [
+      "Simulation",
+      "Matching Markets"
+    ],
+    "interactive": true
+  },
+  {
+    "id": "silo-trap",
+    "title": "The Silo Trap",
+    "tag": "Simulation · NetLogo 2026",
+    "img": "silo-trap-typology.jpg",
+    "blurb": "A hidden equilibrium where agents feel aligned while the system fragments.",
+    "detail": "Dual-metric framework separating micro-level from macro-level measurement. Across 9,000 runs, hidden fragmentation accounts for 61.9% of all fragmented equilibria, rising from 27.8% at 49 agents to 84.2% at 625 agents.",
+    "stats": [
+      [
+        "9,000",
+        "runs"
+      ],
+      [
+        "61.9%",
+        "hidden"
+      ],
+      [
+        "84.2%",
+        "at scale"
+      ],
+      [
+        "NetLogo",
+        "2026"
+      ]
+    ],
+    "topics": [
+      "Simulation",
+      "Multi-Agent Systems"
+    ]
+  },
+  {
+    "id": "graphtreemed",
+    "title": "GraphTreeMed",
+    "tag": "RAG · Healthcare",
+    "img": "thumb_graphtreemed-1.jpg",
+    "blurb": "Hybrid graph-tree retrieval for mission-critical medical applications.",
+    "detail": "Severity-based routing with compliance verification for clinical decision support.",
+    "stats": [
+      [
+        "35%",
+        "recall gain"
+      ],
+      [
+        "42%",
+        "ICU error cut"
+      ],
+      [
+        "15K+",
+        "cases"
+      ],
+      [
+        "ODU",
+        ""
+      ]
+    ],
+    "topics": [
+      "RAG",
+      "Healthcare"
+    ]
+  },
+  {
+    "id": "tamos",
+    "title": "TAMOS",
+    "tag": "Multi-Agent · Orchestration",
+    "img": "thumb_tamos-1.jpg",
+    "blurb": "Task-aware multi-agent orchestrator for LLM systems.",
+    "detail": "Optimizes LLM agent orchestration via hierarchical task classification, dynamic agent roles, and multi-objective evaluation. Uses Llama 3.2-3B for meta-reasoning.",
+    "stats": [
+      [
+        "Hierarchical",
+        "routing"
+      ],
+      [
+        "Multi-objective",
+        ""
+      ],
+      [
+        "Llama 3.2",
+        ""
+      ],
+      [
+        "ODU",
+        ""
+      ]
+    ],
+    "topics": [
+      "Multi-Agent Systems",
+      "LLM"
+    ]
+  },
+  {
+    "id": "metaclustering",
+    "title": "Meta-Clustering for Conversational AI",
+    "tag": "NLP · Healthcare",
+    "img": "thumb_metaclustering-1.jpg",
+    "blurb": "Region-specific healthcare language models.",
+    "detail": "Multi-state model clustering specialized language models. A dynamic orchestrator adapts to local dialects and epidemiological data. Published at IEEE SoSE 2025.",
+    "stats": [
+      [
+        "Meta-learning",
+        ""
+      ],
+      [
+        "Multi-lingual",
+        ""
+      ],
+      [
+        "IEEE SoSE",
+        "2025"
+      ],
+      [
+        "",
+        ""
+      ]
+    ],
+    "topics": [
+      "NLP",
+      "Healthcare"
+    ]
+  },
+  {
+    "id": "digital-thread",
+    "title": "Process-Oriented Digital Thread",
+    "tag": "Digital Twin · Federal",
+    "img": "thumb_digital_thread-1.jpg",
+    "blurb": "Bridging outsourced microservices with intrinsic systems.",
+    "detail": "Transitional framework using shared protocols, adaptive feedback loops, and standardized models. Part of the DoD Digital Engineering Initiative.",
+    "stats": [
+      [
+        "Federal",
+        "maritime"
+      ],
+      [
+        "System-of-systems",
+        ""
+      ],
+      [
+        "Zero-trust",
+        ""
+      ],
+      [
+        "",
+        ""
+      ]
+    ],
+    "topics": [
+      "Digital Twin",
+      "Defense"
+    ]
+  },
+  {
+    "id": "carbon",
+    "title": "Carbon Accountability Platform",
+    "tag": "Product · Revenue",
+    "img": "thumb_carbon-05.jpg",
+    "blurb": "Emissions tied to operational processes, not offset purchases.",
+    "detail": "Process-oriented carbon scoring under Verra VCS 4.7 and UN SDGs, with an LLM-powered training module.",
+    "stats": [
+      [
+        "$98K",
+        "in 8 weeks"
+      ],
+      [
+        "100+",
+        "clients"
+      ],
+      [
+        "25%",
+        "compliance"
+      ],
+      [
+        "Verra",
+        "VCS 4.7"
+      ]
+    ],
+    "topics": [
+      "Sustainability",
+      "Product"
+    ]
+  },
+  {
+    "id": "cubesat",
+    "title": "CubeSat on SpaceX Falcon Heavy",
+    "tag": "Space Systems · In Orbit",
+    "img": "cubesat-lab.png",
+    "blurb": "Shape memory alloy CubeSat, still operational in low-Earth orbit.",
+    "detail": "Designed and prototyped at German Orbital Systems, Berlin. Launched aboard SpaceX Falcon Heavy.",
+    "stats": [
+      [
+        "Falcon Heavy",
+        ""
+      ],
+      [
+        "Low-Earth",
+        "orbit"
+      ],
+      [
+        "Operational",
+        ""
+      ],
+      [
+        "2019",
+        ""
+      ]
+    ],
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "id": "ai-threshold",
+    "title": "Bandwidth-Limited Intelligence",
+    "tag": "Theory · HICSS 2026",
+    "img": "thumb_ai_threshold-02.jpg",
+    "blurb": "Does engineered intelligence have a ceiling?",
+    "detail": "Proposes that engineered AI faces a bandwidth-limited intelligence ceiling arising from sensor and actuator capacity. Dual-channel model separating physical I/O from representational capacity.",
+    "stats": [
+      [
+        "Information",
+        "theory"
+      ],
+      [
+        "Observer-participant",
+        ""
+      ],
+      [
+        "HICSS",
+        "2026"
+      ],
+      [
+        "",
+        ""
+      ]
+    ],
+    "topics": [
+      "AI Theory"
+    ]
+  }
 ]

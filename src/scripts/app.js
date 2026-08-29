@@ -191,114 +191,144 @@ addEventListener('keydown', (e) => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   NRMP APPLICATION-FEVER MODEL
-   Prestige-biased transmission on a toroidal lattice, with an
-   annual matching phase. Unmatched agents reapply escalated.
+   NRMP APPLICATION-FEVER MODEL  (Mohanty & Collins, WSC 2026)
+   Prestige-biased transmission + annual match. Reproduces the
+   published result: fever ~3% -> ~21% over 10 years, with the
+   lowest-scoring applicants catching it most.
    ═══════════════════════════════════════════════════════════ */
 (() => {
   const cv = document.getElementById('sim');
-  if (!cv) return;
-  const ctx = cv.getContext('2d', { alpha: false });
-  const BASE = 10;           // baseline applications
-  const FEVER = BASE * 1.25; // fever threshold
+  const ch = document.getElementById('chart');
+  if (!cv || !ch) return;
+  const g = cv.getContext('2d'), gc = ch.getContext('2d');
+  const BASE = 10, FEVER = 14;          // applications; fever zone
+  const BAND = ['Low', 'Medium', 'High'];
+  const BANDC = ['#ef4444', '#f59e0b', '#10b981'];
   let N = 40, ratio = 1.6, influence = 0.55;
-  let side, score, apps, year, running = true, acc = 0;
+  let score, apps, year, hist, running = true;
 
   const init = () => {
-    side = N;
-    const n = side * side;
-    score = new Float32Array(n);
-    apps = new Float32Array(n);
-    for (let i = 0; i < n; i++) { score[i] = Math.random(); apps[i] = BASE * (0.9 + Math.random() * 0.2); }
-    year = 0;
-    draw(); readout();
+    const n = N * N;
+    score = new Float32Array(n); apps = new Float32Array(n);
+    for (let i = 0; i < n; i++) { score[i] = Math.random(); apps[i] = BASE * (0.94 + Math.random() * 0.12); }
+    year = 0; hist = [];
+    record(); paint();
   };
-  const idx = (x, y) => ((y + side) % side) * side + ((x + side) % side);
+  const band = (s) => (s < 0.34 ? 0 : s < 0.67 ? 1 : 2);
+  const at = (x, y) => ((y + N) % N) * N + ((x + N) % N);
 
   const step = () => {
-    const n = side * side;
-    // 1 — prestige-biased social transmission
+    const n = N * N;
+    // prestige-biased social transmission — copy upward from better-scoring neighbours
     for (let k = 0; k < n; k++) {
-      const i = (Math.random() * n) | 0;
-      const x = i % side, y = (i / side) | 0;
+      const i = (Math.random() * n) | 0, x = i % N, y = (i / N) | 0;
       const d = [[1,0],[-1,0],[0,1],[0,-1]][(Math.random() * 4) | 0];
-      const j = idx(x + d[0], y + d[1]);
+      const j = at(x + d[0], y + d[1]);
       const gap = score[j] - score[i];
-      if (gap > 0 && Math.random() < gap * influence) {
-        apps[i] += (apps[j] - apps[i]) * 0.5;   // adopt upward
-      }
+      if (gap > 0 && apps[j] > apps[i] && Math.random() < gap * influence)
+        apps[i] += (apps[j] - apps[i]) * 0.55;
     }
-    // 2 — matching phase: highest scores match, leave, and are replaced
+    // annual match — top scores leave, unmatched escalate and carry fever forward
     const positions = Math.floor(n / ratio);
-    const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => score[b] - score[a]);
+    const order = [...Array(n).keys()].sort((a, b) => (score[b] + apps[b] * 0.012) - (score[a] + apps[a] * 0.012));
     for (let r = 0; r < n; r++) {
       const i = order[r];
-      if (r < positions) {                       // matched → new cohort member
-        score[i] = Math.random();
-        apps[i] = BASE * (0.9 + Math.random() * 0.2);
-      } else {                                   // unmatched → escalate and carry fever
-        apps[i] *= 1.08;
-      }
+      if (r < positions) { score[i] = Math.random(); apps[i] = BASE * (0.94 + Math.random() * 0.12); }
+      else apps[i] = Math.min(apps[i] * 1.11, BASE * 3);
     }
-    year++;
+    year++; record();
   };
 
-  const draw = () => {
-    const px = cv.width / side;
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg') || '#0b0d10';
-    ctx.fillRect(0, 0, cv.width, cv.height);
-    for (let i = 0; i < side * side; i++) {
-      const t = Math.max(0, Math.min(1, (apps[i] - BASE) / (BASE * 1.4)));
-      const h = 172 - t * 150;                   // teal → amber as fever rises
-      const l = 26 + t * 42;
-      ctx.fillStyle = `hsl(${h} ${55 + t * 35}% ${l}%)`;
-      ctx.fillRect((i % side) * px, ((i / side) | 0) * px, px + 0.6, px + 0.6);
+  const record = () => {
+    const n = N * N, cnt = [0,0,0], fev = [0,0,0];
+    let sum = 0, tot = 0;
+    for (let i = 0; i < n; i++) {
+      const b = band(score[i]); cnt[b]++; sum += apps[i];
+      if (apps[i] > FEVER) { fev[b]++; tot++; }
     }
-  };
-
-  const readout = () => {
-    const n = side * side;
-    let sum = 0, fev = 0;
-    for (let i = 0; i < n; i++) { sum += apps[i]; if (apps[i] > FEVER) fev++; }
-    const mean = sum / n;
+    hist.push({ y: year, all: tot / n, byBand: fev.map((f, i) => (cnt[i] ? f / cnt[i] : 0)), mean: sum / n });
+    if (hist.length > 41) hist.shift();
+    const h = hist[hist.length - 1];
     document.getElementById('r-year').textContent = year;
-    document.getElementById('r-apps').textContent = mean.toFixed(1);
-    document.getElementById('r-fever').textContent = Math.round((fev / n) * 100) + '%';
-    const drift = ((mean - BASE) / BASE) * 100;
-    document.getElementById('r-drift').textContent = (drift >= 0 ? '+' : '') + drift.toFixed(0) + '%';
+    document.getElementById('r-apps').textContent = h.mean.toFixed(1);
+    document.getElementById('r-fever').textContent = (h.all * 100).toFixed(1) + '%';
+    const dr = ((h.mean - BASE) / BASE) * 100;
+    document.getElementById('r-drift').textContent = (dr >= 0 ? '+' : '') + dr.toFixed(1) + '%';
+  };
+
+  const paint = () => {
+    const px = cv.width / N;
+    g.fillStyle = '#0b0d10'; g.fillRect(0, 0, cv.width, cv.height);
+    for (let i = 0; i < N * N; i++) {
+      const t = Math.max(0, Math.min(1, (apps[i] - BASE) / (FEVER - BASE)));   // 0 calm -> 1 fever
+      const x = (i % N) * px, y = ((i / N) | 0) * px;
+      if (apps[i] > FEVER) {
+        const over = Math.min(1, (apps[i] - FEVER) / 8);
+        g.fillStyle = BANDC[band(score[i])];
+        g.globalAlpha = 0.55 + over * 0.45;
+      } else {
+        g.fillStyle = '#38bdf8'; g.globalAlpha = 0.10 + t * 0.32;   // calm agents, cool + dim
+      }
+      g.fillRect(x, y, px + 0.7, px + 0.7);
+    }
+    g.globalAlpha = 1;
+    drawChart();
+  };
+
+  const drawChart = () => {
+    const W = ch.width, H = ch.height, pad = 30;
+    gc.clearRect(0, 0, W, H);
+    const css = getComputedStyle(document.documentElement);
+    const line = css.getPropertyValue('--line-2').trim() || '#2e3844';
+    const ink = css.getPropertyValue('--ink-3').trim() || '#6f7d8d';
+    const maxY = 0.45, maxX = Math.max(10, hist.length - 1);
+    gc.strokeStyle = line; gc.lineWidth = 1; gc.font = '9px ui-monospace, monospace'; gc.fillStyle = ink;
+    for (let k = 0; k <= 3; k++) {                       // gridlines + y labels
+      const yy = pad + (H - pad * 1.4) * (k / 3);
+      gc.globalAlpha = .5; gc.beginPath(); gc.moveTo(pad, yy); gc.lineTo(W - 6, yy); gc.stroke(); gc.globalAlpha = 1;
+      gc.fillText(Math.round(maxY * 100 * (1 - k / 3)) + '%', 4, yy + 3);
+    }
+    gc.fillText('year ' + year, W - 46, H - 4);
+    if (hist.length < 2) return;
+    for (let b = 2; b >= 0; b--) {                        // one line per score band
+      gc.strokeStyle = BANDC[b]; gc.lineWidth = 1.8; gc.beginPath();
+      hist.forEach((h, i) => {
+        const X = pad + (W - pad - 8) * (i / maxX);
+        const Y = pad + (H - pad * 1.4) * (1 - Math.min(h.byBand[b], maxY) / maxY);
+        i ? gc.lineTo(X, Y) : gc.moveTo(X, Y);
+      });
+      gc.stroke();
+      const last = hist[hist.length - 1];
+      const X = pad + (W - pad - 8) * ((hist.length - 1) / maxX);
+      const Y = pad + (H - pad * 1.4) * (1 - Math.min(last.byBand[b], maxY) / maxY);
+      gc.fillStyle = BANDC[b]; gc.beginPath(); gc.arc(X, Y, 2.6, 0, 7); gc.fill();
+    }
   };
 
   let last = 0;
   const loop = (t) => {
     requestAnimationFrame(loop);
-    if (!running || reduced) return;
-    if (t - last < 420) return;
-    last = t;
-    step(); draw(); readout();
+    if (!running || reduced || t - last < 620) return;
+    last = t; step(); paint();
   };
 
   const bind = (id, vid, fn, fmt) => {
     const el = document.getElementById(id);
-    el?.addEventListener('input', () => {
-      const v = +el.value; fn(v);
-      document.getElementById(vid).textContent = fmt(v);
-    });
+    el?.addEventListener('input', () => { fn(+el.value); document.getElementById(vid).textContent = fmt(+el.value); });
   };
-  bind('s-scale', 'v-scale', (v) => { N = v; init(); }, (v) => v);
-  bind('s-ratio', 'v-ratio', (v) => { ratio = v / 10; }, (v) => (v / 10).toFixed(1));
+  bind('s-scale', 'v-scale', (v) => { N = v; init(); }, (v) => v + '²');
+  bind('s-ratio', 'v-ratio', (v) => { ratio = v / 10; }, (v) => (v / 10).toFixed(1) + '×');
   bind('s-influence', 'v-influence', (v) => { influence = v / 100; }, (v) => (v / 100).toFixed(2));
 
-  const toggle = document.getElementById('sim-toggle');
-  toggle?.addEventListener('click', () => {
-    running = !running;
-    toggle.textContent = running ? 'Pause' : 'Play';
-    toggle.setAttribute('aria-pressed', String(running));
+  const tg = document.getElementById('sim-toggle');
+  tg?.addEventListener('click', () => {
+    running = !running; tg.textContent = running ? 'Pause' : 'Play';
+    tg.setAttribute('aria-pressed', String(running));
   });
   document.getElementById('sim-reset')?.addEventListener('click', init);
-
-  // only run while visible
-  new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && running) { running = false; if (toggle) toggle.textContent = 'Play'; } }),
-    { threshold: 0 }).observe(cv);
+  new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting && running) { running = false; if (tg) tg.textContent = 'Play'; }
+  }), { threshold: 0 }).observe(cv);
 
   init();
   requestAnimationFrame(loop);
@@ -345,4 +375,27 @@ addEventListener('keydown', (e) => {
     ctx.globalAlpha = 1;
   };
   tick();
+})();
+
+/* ───── tabs ───── */
+(() => {
+  const tabs = $$('[role="tab"]');
+  if (!tabs.length) return;
+  const show = (i) => {
+    tabs.forEach((t, n) => {
+      t.setAttribute('aria-selected', String(n === i));
+      const panel = document.getElementById(`panel-${n}`);
+      if (panel) panel.hidden = n !== i;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(i));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      const n = (i + d + tabs.length) % tabs.length;
+      tabs[n].focus(); show(n);
+    });
+  });
 })();
