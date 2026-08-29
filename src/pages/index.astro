@@ -149,7 +149,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       </div>
       <div class="lab-body">
         <div class="lab-canvas">
-          <canvas id="sim" width="480" height="480" role="img" aria-label="Applicant grid: each figure is an applicant, coloured by application level"></canvas>
+          <canvas id="sim" width="560" height="360" role="img" aria-label="Animated diagram of the application-fever mechanism: a naive cohort enters, copies application behaviour upward from higher-scoring peers, reaches the two-stage match, and unmatched applicants escalate one level and return as carriers"></canvas>
           <div class="mix" aria-hidden="true">
             <div class="mix-bar" id="mix"></div>
             <div class="mix-key">
@@ -189,7 +189,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
             <div><b id="r-fever">0%</b><span>FEVER RATE</span></div>
             <div><b id="r-drift">+0%</b><span>ESCALATION</span></div>
           </div>
-          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5. Amber and red are the fever zone (L4+). Matched applicants leave; a share of the unmatched return one level higher and carry the fever into the next cohort. Ported from the NetLogo model — 52 interaction cycles a year, two-stage match.</p>
+          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5; amber and red are the fever zone. The dashed return edge is the carrier loop — unmatched applicants re-entering one level higher — and it thickens as fever builds. Flow proportions come from the live model: a faithful port of the NetLogo source, 52 interaction cycles a year and the two-stage match.</p>
         </aside>
       </div>
     </div>

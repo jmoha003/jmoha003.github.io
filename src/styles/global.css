@@ -157,7 +157,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
 .lab-title{font-family:var(--mono);font-size:.74rem;color:var(--ink-2);display:flex;align-items:center;gap:.5rem}
 .lab-body{display:grid;grid-template-columns:1fr 290px}
 .lab-canvas{position:relative;background:var(--bg);min-height:400px;display:grid;place-items:center;padding:1rem}
-#sim{width:100%;height:auto;max-width:460px;image-rendering:pixelated;border-radius:10px}
+#sim{width:100%;height:auto;max-width:560px;border-radius:10px}
 .lab-side{border-left:1px solid var(--line);padding:1.1rem;display:flex;flex-direction:column;gap:1.05rem;background:var(--surface)}
 .ctrl label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-bottom:.45rem}
 .ctrl label b{color:var(--accent)}
@@ -398,7 +398,7 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 .tl-item .org a:hover{border-bottom-color:var(--accent)}
 
 /* ---- sim chart ---- */
-.lab-body{grid-template-columns:1fr 1fr 250px}
+.lab-body{grid-template-columns:1.25fr 1fr 240px}
 .lab-chart{border-left:1px solid var(--line);background:var(--bg);padding:1rem;display:grid;place-items:center}
 #chart{width:100%;height:auto;max-width:340px}
 .chart-key{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem;font-family:var(--mono);font-size:.62rem}
@@ -439,7 +439,7 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 
 /* ---- population composition strip ---- */
 .lab-canvas{flex-direction:column;gap:.9rem;align-content:center}
-.mix{width:100%;max-width:480px}
+.mix{width:100%;max-width:560px}
 .mix-bar{display:flex;height:16px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
 .mix-bar span{transition:flex-basis .6s var(--ease-out)}
 .mix-key{display:flex;gap:.7rem;margin-top:.45rem;font-family:var(--mono);font-size:.6rem;color:var(--ink-2);flex-wrap:wrap}

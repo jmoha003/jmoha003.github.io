@@ -254,6 +254,7 @@ addEventListener('keydown', (e) => {
     layout(Array.from({ length: N0 }, newAgent));
     PFIX = Math.max(1, Math.round(N0 * posRatio));   // positions are FIXED while the pool grows
     year = 0; hist = []; done = false; running = true;
+    tokens = []; matchShare = 0.8; carrierShare = 0; spawn();
     const t = document.getElementById('sim-toggle'); if (t) t.textContent = 'Pause';
     record(); paint();
   };
@@ -298,6 +299,8 @@ addEventListener('keydown', (e) => {
     for (let k = survivors.length - 1; k > 0; k--) { const r = Math.random() * (k + 1) | 0; [survivors[k], survivors[r]] = [survivors[r], survivors[k]]; }
     const keep = survivors.slice(0, Math.ceil(reapp * survivors.length));
     keep.forEach((a) => { a.apps = Math.min(a.apps + 1, 5); a.re = true; });
+    matchShare = agents.length ? 1 - survivors.length / agents.length : 0.8;
+    carrierShare = agents.length ? keep.length / agents.length : 0;
     // ── a new cohort ARRIVES on top of the returning pool, naive at L1..L3 ──
     const cohort = Math.ceil(N0 * Math.pow(1 + GROWTH, year + 1));
     const kept = new Set(keep);
@@ -342,29 +345,6 @@ addEventListener('keydown', (e) => {
     g.stroke();
   };
 
-  const paint = () => {
-    const px = cv.width / D;
-    g.fillStyle = '#0a0c10'; g.fillRect(0, 0, cv.width, cv.height);
-    const tiny = px < 7;
-    for (let i = 0; i < cell.length; i++) {
-      const a = cell[i]; if (!a) continue;
-      const col = LVL[a.apps - 1];
-      g.fillStyle = col; g.strokeStyle = col;
-      g.globalAlpha = a.apps >= 4 ? 1 : 0.5 + a.apps * 0.09;
-      const cx = (i % D) * px + px / 2, cy = ((i / D) | 0) * px + px / 2;
-      if (tiny) {                                    // too small for a figure: dot
-        g.beginPath(); g.arc(cx, cy, Math.max(1, px * 0.3), 0, 6.2832); g.fill();
-      } else {
-        if (a.apps >= 4) {                           // fever glow
-          g.shadowColor = col; g.shadowBlur = px * 0.5;
-        }
-        figure(cx, cy, px * 0.82);
-        g.shadowBlur = 0;
-      }
-    }
-    g.globalAlpha = 1; chart(); mix();
-  };
-
   // population mix across L1..L5 — the whole pool sliding up the levels
   const mixEl = document.getElementById('mix');
   const mix = () => {
@@ -376,6 +356,125 @@ addEventListener('keydown', (e) => {
       `<span style="flex:0 0 ${(v / n) * 100}%;background:${LVL[i]}" title="L${i + 1}: ${Math.round((v / n) * 100)}%"></span>`).join('');
   };
 
+  /* ── PIPELINE VIEW ───────────────────────────────────────────
+     A schematic of the mechanism, driven by the live model:
+     cohort arrives naive -> copies upward from higher-scoring peers
+     -> two-stage match -> matched exit, unmatched escalate one level
+     and return as carriers. The return edge thickens as fever builds.
+     ─────────────────────────────────────────────────────────── */
+  const W = 560, H = 360;
+  const NODES = {
+    cohort:   { x:  62, y: 168, w: 74, h: 70, t: 'COHORT',    s: 'naive L1–L3' },
+    influence:{ x: 186, y: 156, w: 118, h: 94, t: 'INFLUENCE', s: 'copy upward' },
+    match:    { x: 352, y: 156, w: 96, h: 94, t: 'MATCH',     s: 'visibility ×\nscore weight' },
+    exit:     { x: 490, y: 84,  w: 62, h: 54, t: 'MATCHED',   s: 'leaves' },
+    escal:    { x: 490, y: 246, w: 62, h: 60, t: 'UNMATCHED', s: '+1 level' },
+  };
+  const cx = (n) => n.x + n.w / 2, cy = (n) => n.y + n.h / 2;
+  const N = NODES;
+  const SEGS = [
+    [[N.cohort.x + N.cohort.w, cy(N.cohort)], [N.influence.x, cy(N.influence)]],
+    [[N.influence.x + N.influence.w, cy(N.influence)], [N.match.x, cy(N.match)]],
+    [[N.match.x + N.match.w, cy(N.match)], [N.exit.x, cy(N.exit)]],          // matched
+    [[N.match.x + N.match.w, cy(N.match)], [N.escal.x, cy(N.escal)]],        // unmatched
+    [[cx(N.escal), N.escal.y + N.escal.h], [cx(N.escal), 334], [70, 334], [70, N.cohort.y + N.cohort.h]], // carriers
+  ];
+  let tokens = [], carrierShare = 0, matchShare = 0;
+
+  const along = (seg, t) => {                        // walk a polyline
+    let total = 0; const L = [];
+    for (let i = 1; i < seg.length; i++) {
+      const d = Math.hypot(seg[i][0] - seg[i-1][0], seg[i][1] - seg[i-1][1]);
+      L.push(d); total += d;
+    }
+    let want = t * total;
+    for (let i = 0; i < L.length; i++) {
+      if (want <= L[i]) { const k = L[i] ? want / L[i] : 0;
+        return [seg[i][0] + (seg[i+1][0] - seg[i][0]) * k, seg[i][1] + (seg[i+1][1] - seg[i][1]) * k]; }
+      want -= L[i];
+    }
+    return seg[seg.length - 1];
+  };
+
+  const spawn = () => {                              // one wave, sampled from the pool
+    const sample = agents.length ? agents : [];
+    for (let i = 0; i < 30; i++) {
+      const a = sample[(Math.random() * sample.length) | 0] || newAgent();
+      tokens.push({ seg: 0, t: -Math.random() * 0.9, lvl: a.apps, score: a.score, carrier: false });
+    }
+  };
+
+  const advance = () => {
+    const speed = 0.0135;
+    tokens.forEach((k) => {
+      k.t += speed;
+      if (k.t < 1) return;
+      k.t = 0;
+      if (k.seg === 0) { k.seg = 1; if (Math.random() < 0.42) k.lvl = Math.min(5, k.lvl + 1); }  // influence
+      else if (k.seg === 1) { k.seg = Math.random() < matchShare ? 2 : 3; }                       // the match
+      else if (k.seg === 2) { k.dead = true; }                                                    // matched, gone
+      else if (k.seg === 3) { k.lvl = Math.min(5, k.lvl + 1); k.carrier = true; k.seg = 4; }      // escalate
+      else { k.dead = true; }                                                                     // returned
+    });
+    tokens = tokens.filter((k) => !k.dead);
+    if (tokens.length < 72) spawn();
+  };
+
+  const roundRect = (x, y, w, h, r) => {
+    g.beginPath();
+    g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+  };
+
+  const paint = () => {
+    const cs = getComputedStyle(document.documentElement);
+    const line = cs.getPropertyValue('--line-2').trim() || '#2e3844';
+    const ink2 = cs.getPropertyValue('--ink-2').trim() || '#a8b3c1';
+    const ink3 = cs.getPropertyValue('--ink-3').trim() || '#6f7d8d';
+    g.clearRect(0, 0, W, H);
+
+    // edges
+    SEGS.forEach((seg, i) => {
+      const carrier = i === 4;
+      g.strokeStyle = carrier ? '#f43f5e' : line;
+      g.globalAlpha = carrier ? 0.28 + carrierShare * 0.72 : 0.85;
+      g.lineWidth = carrier ? 1.4 + carrierShare * 5.5 : 1.4;
+      g.setLineDash(carrier ? [7, 5] : []);
+      g.beginPath(); g.moveTo(seg[0][0], seg[0][1]);
+      for (let n = 1; n < seg.length; n++) g.lineTo(seg[n][0], seg[n][1]);
+      g.stroke(); g.setLineDash([]);
+    });
+    g.globalAlpha = 1;
+
+    // carrier edge label
+    g.font = '9px ui-monospace, monospace'; g.fillStyle = '#f43f5e'; g.textAlign = 'center';
+    g.fillText(`carriers  ${(carrierShare * 100).toFixed(0)}%`, 300, 330);
+
+    // nodes
+    Object.values(NODES).forEach((n) => {
+      g.fillStyle = cs.getPropertyValue('--surface').trim() || '#151a21';
+      roundRect(n.x, n.y, n.w, n.h, 12); g.fill();
+      g.strokeStyle = line; g.lineWidth = 1; g.stroke();
+      g.textAlign = 'center';
+      g.font = '600 9.5px ui-monospace, monospace'; g.fillStyle = ink2;
+      g.fillText(n.t, cx(n), n.y + 19);
+      g.font = '8.5px ui-monospace, monospace'; g.fillStyle = ink3;
+      n.s.split('\n').forEach((ln, i) => g.fillText(ln, cx(n), n.y + 33 + i * 11));
+    });
+
+    // tokens
+    tokens.forEach((k) => {
+      if (k.t < 0) return;
+      const [x, y] = along(SEGS[k.seg], k.t);
+      const col = LVL[k.lvl - 1];
+      g.fillStyle = col; g.strokeStyle = col;
+      if (k.lvl >= 4) { g.shadowColor = col; g.shadowBlur = 7; }
+      figure(x, y, 13);
+      g.shadowBlur = 0;
+    });
+
+    chart(); mix();
+  };
   const chart = () => {
     const W = ch.width, H = ch.height, L = 36, B = 26, maxY = 0.6;
     gc.clearRect(0, 0, W, H);
@@ -411,8 +510,10 @@ addEventListener('keydown', (e) => {
   let last = 0;
   const loop = (t) => {
     requestAnimationFrame(loop);
-    if (!running || reduced || t - last < 850) return;
-    last = t; runYear(); paint();
+    if (reduced) return;
+    if (running) advance();
+    paint();
+    if (running && t - last > 2400) { last = t; runYear(); }
   };
 
   const bind = (id, vid, fn, fmt) => {
