@@ -7,10 +7,10 @@
     "affiliation": "Engineering Management & Systems Engineering, Old Dominion University",
     "advisor": "Dr. Andrew J. Collins",
     "location": "Norfolk, VA",
-    "email": "jmoha003@odu.edu",
+    "email": "mohanty.joshit@gmail.com",
     "linkedin": "https://www.linkedin.com/in/joshitmohanty/",
     "scholar": "https://scholar.google.com/citations?user=MB2HbuAAAAAJ&hl=en",
-    "resume": "/JoshitMohanty_Resume.pdf",
+    "resume": "/JMohanty_Resume.pdf",
     "authorization": "US work authorization · F1 OPT/STEM",
     "updated": "August 2026",
     "field": "Complex Systems Engineering",
@@ -31,10 +31,10 @@
   },
   "metrics": [
     {
-      "value": 500,
+      "value": 700,
       "prefix": "$",
       "suffix": "K+",
-      "label": "Funded systems delivered"
+      "label": "Grant-funded research"
     },
     {
       "value": 300,
@@ -255,7 +255,7 @@
       "note": "Advisor: Dr. Andrew J. Collins"
     },
     {
-      "degree": "M.S., Engineering (Space) Systems",
+      "degree": "M.S., Space and Engineering Systems",
       "org": "Skolkovo Institute of Science and Technology · MIT (Dept. of AeroAstro)",
       "detail": "President's Award, Top 3%. Thesis: logistics architecture for the first crewed mission to Mars.",
       "note": "Advisor: Dr. Anton Ivanov · 2020"
@@ -612,71 +612,57 @@
   "logoToken": "pk_EiCQ8G9jTi61mdG9lUWoKQ",
   "affiliations": [
     {
-      "name": "Old Dominion University",
-      "domain": "odu.edu",
-      "logo": "https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
-    },
-    {
-      "name": "Skolkovo Institute of Science and Technology",
-      "domain": "skoltech.ru",
-      "logo": "https://img.logo.dev/skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
-    },
-    {
-      "name": "Massachusetts Institute of Technology",
-      "domain": "mit.edu",
-      "logo": "https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
-    },
-    {
       "name": "US Department of Defense",
-      "domain": "defense.gov",
-      "logo": "https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/defense.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "US Navy",
-      "domain": "navy.mil",
-      "logo": "https://img.logo.dev/navy.mil?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/navy.mil?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "National Science Foundation",
-      "domain": "nsf.gov",
-      "logo": "https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/nsf.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "NASA",
-      "domain": "nasa.gov",
-      "logo": "https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/nasa.gov?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "SpaceX",
-      "domain": "spacex.com",
-      "logo": "https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/spacex.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
-      "name": "United Nations SGAC",
-      "domain": "spacegeneration.org",
-      "logo": "https://img.logo.dev/spacegeneration.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "name": "CACI",
+      "logo": "https://img.logo.dev/caci.com?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "University of Texas at Arlington",
-      "domain": "uta.edu",
-      "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/uta.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "IEEE",
-      "domain": "ieee.org",
-      "logo": "https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/ieee.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     },
     {
       "name": "INFORMS",
-      "domain": "informs.org",
-      "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+      "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true"
     }
   ],
   "grants": [
     {
+      "title": "NSF EAGER: US Medical Residency Matching",
+      "role": "Graduate Research Assistant",
+      "pi": "Dr. Andrew J. Collins",
+      "agency": "National Science Foundation",
+      "amount": "$198,534",
+      "period": "2023 — 2026",
+      "contract": "NSF EAGER #2333570",
+      "project": "Old Dominion University"
+    },
+    {
       "title": "Corrosion Management System (CMS)",
       "role": "Graduate Research Assistant",
-      "pi": "Dr. Sam Kovacic",
+      "pi": "Dr. Samuel Kovacic",
       "agency": "US Department of Defense",
       "amount": "$368,626",
       "period": "Jan 2025 — Dec 2025",
@@ -687,10 +673,10 @@
       "title": "Sentiment AI to Analyze and Prioritize Ship Work Orders",
       "role": "Co-Principal Investigator",
       "pi": "Dr. Samuel Kovacic",
-      "agency": "US Department of Defense (Military Sealift Command) · CACI funded",
+      "agency": "US Dept. of Defense (Military Sealift Command) · CACI funded",
       "amount": "$146,336",
       "period": "Aug 2023 — Sep 2024",
-      "contract": "—",
+      "contract": "CACI / ODU Research Foundation",
       "project": "ODU Research Foundation"
     }
   ],
@@ -701,6 +687,23 @@
       "status": "Notice of Allowance",
       "year": "May 2026",
       "ref": "USPTO App. 18/819,129"
+    }
+  ],
+  "alma": [
+    {
+      "name": "Massachusetts Institute of Technology",
+      "logo": "https://img.logo.dev/mit.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true",
+      "note": "Research · Dept. of AeroAstro"
+    },
+    {
+      "name": "Skolkovo Institute of Science and Technology",
+      "logo": "https://img.logo.dev/skoltech.ru?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true",
+      "note": "M.S. · President's Award"
+    },
+    {
+      "name": "Old Dominion University",
+      "logo": "https://img.logo.dev/odu.edu?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=240&retina=true",
+      "note": "Ph.D. Candidate · EMSE"
     }
   ]
 }

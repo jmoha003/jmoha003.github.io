@@ -98,7 +98,7 @@ $$('[data-close]', modal).forEach((el) => el.addEventListener('click', closeModa
 
 /* ───── gallery lightbox ───── */
 const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
-const shots = $$('#gal button');
+const shots = $$('#gal .shot');
 let gi = 0;
 const showShot = (i) => {
   gi = (i + shots.length) % shots.length;
@@ -127,6 +127,7 @@ const applyFilter = () => {
       || (filter[0] === 'y' && el.dataset.year === filter.slice(1))
       || (filter[0] === 't' && el.dataset.topics.split('|').includes(filter.slice(1)));
     if (ok && term) ok = el.dataset.text.includes(term);
+    if (ok && el.dataset.collapsed) ok = false;      // hidden behind "See all"
     el.style.display = ok ? '' : 'none';
     if (ok) n++;
   });
@@ -481,4 +482,30 @@ addEventListener('keydown', (e) => {
     btn.setAttribute('aria-expanded', String(!open));
     btn.textContent = open ? label : 'Fewer topics';
   });
+})();
+
+/* ───── publication list: reveal the rest ───── */
+(() => {
+  const btn = document.getElementById('pub-more');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    $$('.pub-extra').forEach((el) => { el.dataset.collapsed = open ? '1' : ''; });
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.childNodes[0].nodeValue = open ? `See all ${pubs.length} papers ` : 'Show fewer ';
+    btn.querySelector('svg')?.style.setProperty('transform', open ? 'none' : 'rotate(180deg)');
+    applyFilter();
+    if (open) document.getElementById('papers')?.scrollIntoView({ block: 'start' });
+  });
+  $$('.pub-extra').forEach((el) => { el.dataset.collapsed = '1'; el.hidden = false; });
+  applyFilter();
+})();
+
+/* ───── gallery carousel ───── */
+(() => {
+  const rail = document.getElementById('gal');
+  if (!rail) return;
+  const page = () => Math.max(240, rail.clientWidth * 0.8);
+  document.getElementById('gal-next')?.addEventListener('click', () => rail.scrollBy({ left: page(), behavior: 'smooth' }));
+  document.getElementById('gal-prev')?.addEventListener('click', () => rail.scrollBy({ left: -page(), behavior: 'smooth' }));
 })();

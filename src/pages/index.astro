@@ -6,8 +6,8 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grants, talks, contributions } = content;
-const imgs = import.meta.glob('../assets/images/*.{jpg,jpeg,png}', { eager: true });
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, alma, press, reviewer, grants, talks, contributions } = content;
+const imgs = import.meta.glob('../assets/images/**/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
 const topics = [...new Set(publications.flatMap((p) => p.topics))].sort();
@@ -62,10 +62,19 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <!-- ═══ AFFILIATIONS ═══ -->
 <section class="tight">
   <div class="wrap">
-    <p class="eyebrow rv" style="margin-bottom:1.2rem">Worked with &amp; funded by</p>
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">Trained at</p>
+    <div class="alma stagger">
+      {alma.map((a) => (
+        <div class="alma-card" title={a.name}>
+          <img src={a.logo} alt={a.name} loading="lazy" width="180" height="52" />
+          <span class="alma-note">{a.note}</span>
+        </div>
+      ))}
+    </div>
+    <p class="eyebrow rv" style="margin:2.6rem 0 1.2rem">Worked with &amp; funded by</p>
     <div class="logos stagger">
       {affiliations.map((a) => (
-        <div class="logo-pill" title={a.name}><img src={a.logo} alt={a.name} loading="lazy" width="120" height="26" /></div>
+        <div class="logo-pill" title={a.name}><img src={a.logo} alt={a.name} loading="lazy" width="130" height="30" /></div>
       ))}
     </div>
   </div>
@@ -95,6 +104,26 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
             </span>
           </div>
         </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PATH ═══ -->
+<section id="path">
+  <div class="wrap">
+    <p class="eyebrow rv">Trajectory</p>
+    <h2 class="h2 rv" style="margin:.7rem 0 2rem">Where the work happened.</h2>
+    <div class="tl">
+      {experience.map((e) => (
+        <div class={`tl-item rv ${e.current ? 'now' : ''}`}>
+          <h3>{e.role}</h3>
+          <div class="org">{e.org}</div>
+          <div class="when">{e.period} · {e.loc}</div>
+          {e.stealth
+            ? <span class="stealth">Stealth mode — company confidential</span>
+            : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
+        </div>
       ))}
     </div>
   </div>
@@ -225,8 +254,8 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       <input class="search" id="pub-q" type="search" placeholder="Search titles and venues…" aria-label="Search publications" />
     </div>
     <div id="pub-list">
-      {publications.map((p) => (
-        <article class="pub" data-year={p.year} data-topics={p.topics.join('|')} data-text={`${p.title} ${p.venue}`.toLowerCase()}>
+      {publications.map((p, i) => (
+        <article class={`pub ${i >= 8 ? 'pub-extra' : ''}`} hidden={i >= 8} data-year={p.year} data-topics={p.topics.join('|')} data-text={`${p.title} ${p.venue}`.toLowerCase()}>
           <div class="yr">{p.year}</div>
           <div>
             <h4>{p.title}</h4>
@@ -240,31 +269,15 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       ))}
       <p class="empty" id="pub-empty" hidden>No papers match that filter.</p>
     </div>
+    <button class="btn btn-g" id="pub-more" aria-expanded="false" style="margin-top:1.2rem">
+      See all {publications.length} papers
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
     <div style="margin-top:1.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
       <a class="btn btn-g" href={profile.scholar} rel="noopener">Google Scholar ↗</a>
       <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID ↗</a>
       <a class="btn btn-g" href={profile.digitalCommons} rel="noopener">ODU Digital Commons ↗</a>
       <span class="btn btn-g" style="cursor:default">74 citations · h-index 5</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PATH ═══ -->
-<section id="path">
-  <div class="wrap">
-    <p class="eyebrow rv">Trajectory</p>
-    <h2 class="h2 rv" style="margin:.7rem 0 2rem">Where the work happened.</h2>
-    <div class="tl">
-      {experience.map((e) => (
-        <div class={`tl-item rv ${e.current ? 'now' : ''}`}>
-          <h3>{e.role}</h3>
-          <div class="org">{e.org}</div>
-          <div class="when">{e.period} · {e.loc}</div>
-          {e.stealth
-            ? <span class="stealth">Stealth mode — company confidential</span>
-            : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
-        </div>
-      ))}
     </div>
   </div>
 </section>
@@ -400,15 +413,25 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section id="gallery">
   <div class="wrap">
     <p class="eyebrow rv">In the field</p>
-    <h2 class="h2 rv" style="margin:.7rem 0 2rem">Conferences, labs, launches.</h2>
-    <div class="gal" id="gal">
-      {gallery.map((g, i) => (
-        <button data-i={i} aria-label={`View: ${g.caption}`}>
-          {pic(g.img) && <Image src={pic(g.img)} alt={g.caption} widths={[380, 760]} sizes="(max-width:680px) 92vw, 33vw" loading="lazy" />}
-          <span class="cap">{g.caption}</span>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:.7rem 0 1.8rem">
+      <h2 class="h2 rv" style="margin:0">Conferences, labs, launches.</h2>
+      <div style="display:flex;gap:.45rem">
+        <button class="icon-btn" id="gal-prev" aria-label="Previous photos">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>
         </button>
-      ))}
+        <button class="icon-btn" id="gal-next" aria-label="More photos">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="rail" id="gal" role="region" aria-label="Photo gallery, scrollable">
+    {gallery.map((g, i) => (
+      <button class="shot" data-i={i} aria-label={`View: ${g.caption}`}>
+        {pic(g.img) && <Image src={pic(g.img)} alt={g.caption} widths={[420, 840]} sizes="(max-width:680px) 78vw, 340px" loading="lazy" />}
+        <span class="cap">{g.caption}</span>
+      </button>
+    ))}
   </div>
 </section>
 

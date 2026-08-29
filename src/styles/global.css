@@ -405,3 +405,34 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 .chart-key i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:.3rem;vertical-align:baseline}
 @media (max-width:1080px){.lab-body{grid-template-columns:1fr}
   .lab-chart{border-left:none;border-top:1px solid var(--line)}}
+
+/* ---- alma mater: the headline institutions ---- */
+.alma{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.alma-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.7rem 1.3rem 1.2rem;
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;transition:all .45s var(--ease-out)}
+.alma-card img{max-height:56px;max-width:190px;width:auto;object-fit:contain}
+.alma-card .alma-note{font-family:var(--mono);font-size:.68rem;color:#5b6674;text-align:center;letter-spacing:.02em}
+.alma-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 20px 46px -20px rgba(0,0,0,.5)}
+:root[data-theme="light"] .alma-card:hover{box-shadow:0 20px 46px -22px rgba(16,24,40,.22)}
+@media (max-width:760px){.alma{grid-template-columns:1fr}}
+
+/* bigger, breathier partner logos */
+.logos{gap:.75rem}
+.logo-pill{height:84px;min-width:150px;padding:1rem 1.35rem;border-radius:18px}
+.logo-pill img{max-height:42px;max-width:118px}
+@media (max-width:600px){.logo-pill{height:68px;min-width:calc(50% - .4rem);flex:1}}
+
+/* ---- gallery carousel ---- */
+.rail{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:.4rem clamp(1.1rem,4vw,2rem) 1.4rem;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.shot{flex:0 0 auto;width:min(340px,78vw);scroll-snap-align:center;position:relative;border-radius:var(--r-lg);
+  overflow:hidden;border:1px solid var(--line);background:var(--surface);transition:transform .5s var(--spring)}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.shot:hover{transform:translateY(-4px)}
+.shot .cap{position:absolute;inset:auto 0 0 0;padding:.85rem;font-size:.74rem;color:#fff;text-align:left;
+  background:linear-gradient(transparent,rgba(0,0,0,.85));opacity:0;transition:opacity .35s}
+.shot:hover .cap,.shot:focus-visible .cap{opacity:1}
+
+/* publication list reveal */
+.pub-extra[hidden]{display:none}
