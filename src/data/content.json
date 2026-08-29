@@ -64,13 +64,22 @@
       ]
     },
     {
-      "title": "Mechanical Modeling & Simulation",
+      "title": "AI Governance & Compliance",
       "items": [
-        "CAD & SolidWorks (CSWA)",
-        "Finite element analysis",
-        "Mechatronics & control",
-        "Spacecraft thermal systems",
-        "Prototyping to production"
+        "Self-governing agent architectures",
+        "NIST AI RMF",
+        "Explainable & trustworthy AI",
+        "Responsible conduct of research",
+        "Authoritative Source of Truth"
+      ]
+    },
+    {
+      "title": "Digital Twin & Architecture",
+      "items": [
+        "Process-Oriented Digital Thread",
+        "Macro-micro service bridging",
+        "Predictive maintenance",
+        "System-of-systems design"
       ]
     },
     {
@@ -84,22 +93,13 @@
       ]
     },
     {
-      "title": "AI Governance & Compliance",
+      "title": "Space Systems",
       "items": [
-        "Self-governing agent architectures",
-        "NIST AI RMF",
-        "Explainable & trustworthy AI",
-        "Responsible research conduct",
-        "Authoritative Source of Truth systems"
-      ]
-    },
-    {
-      "title": "Digital Twin & Architecture",
-      "items": [
-        "Process-Oriented Digital Thread",
-        "Macro-micro service bridging",
-        "Predictive maintenance",
-        "System-of-systems design"
+        "CubeSat & SmallSat design",
+        "Mission & constellation architecture",
+        "Interplanetary communication",
+        "Space logistics",
+        "Attitude control & thermal systems"
       ]
     },
     {
@@ -109,6 +109,16 @@
         "Multi-stakeholder delivery",
         "Proposal to production",
         "P&L ownership"
+      ]
+    },
+    {
+      "title": "Mechanical Modeling & Simulation",
+      "items": [
+        "CAD & SolidWorks (CSWA)",
+        "Finite element analysis",
+        "Mechatronics & control",
+        "Composites & smart materials",
+        "Prototype to production"
       ]
     }
   ],
@@ -593,15 +603,6 @@
       "Invited Mentor, MassChallenge Incubator Boston — 10 US startups"
     ]
   },
-  "grant": {
-    "title": "Sentimental Artificial Intelligence for Maintenance Work Order Prioritization",
-    "pi": "Dr. Samuel Kovacic",
-    "copi": "Joshit Mohanty, Cansu Yalim",
-    "agency": "US Department of Defense (Military Sealift Command)",
-    "facilitator": "CACI Inc., USA",
-    "amount": "$146,336",
-    "period": "Sep 2023 – Sep 2024"
-  },
   "talks": [
     {
       "title": "Odias in AI and ML Conference",
@@ -675,6 +676,28 @@
       "name": "INFORMS",
       "domain": "informs.org",
       "logo": "https://img.logo.dev/informs.org?token=pk_EiCQ8G9jTi61mdG9lUWoKQ&format=png&size=200&retina=true"
+    }
+  ],
+  "grants": [
+    {
+      "title": "Corrosion Management System (CMS)",
+      "role": "Graduate Research Assistant",
+      "pi": "Dr. Sam Kovacic",
+      "agency": "US Department of Defense",
+      "amount": "$368,626",
+      "period": "Jan 2025 — Dec 2025",
+      "contract": "P000143798 25-52",
+      "project": "ODU 500481-005"
+    },
+    {
+      "title": "Sentiment AI to Analyze and Prioritize Ship Work Orders",
+      "role": "Co-Principal Investigator",
+      "pi": "Dr. Samuel Kovacic",
+      "agency": "US Department of Defense (Military Sealift Command) · CACI funded",
+      "amount": "$146,336",
+      "period": "Aug 2023 — Sep 2024",
+      "contract": "—",
+      "project": "ODU Research Foundation"
     }
   ]
 }

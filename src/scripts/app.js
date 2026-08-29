@@ -192,51 +192,61 @@ addEventListener('keydown', (e) => {
 
 /* ═══════════════════════════════════════════════════════════
    NRMP APPLICATION-FEVER MODEL  (Mohanty & Collins, WSC 2026)
-   Prestige-biased transmission + annual match. Reproduces the
-   published result: fever ~3% -> ~21% over 10 years, with the
-   lowest-scoring applicants catching it most.
+   Agents copy application behaviour from higher-scoring
+   neighbours. Each year the match removes most applicants;
+   the unmatched return with escalated behaviour and carry the
+   fever into the next cohort. Published run: ~3% -> ~21% in
+   the fever zone over 10 years, worst among low scorers.
    ═══════════════════════════════════════════════════════════ */
 (() => {
   const cv = document.getElementById('sim');
   const ch = document.getElementById('chart');
   if (!cv || !ch) return;
   const g = cv.getContext('2d'), gc = ch.getContext('2d');
-  const BASE = 10, FEVER = 14;          // applications; fever zone
-  const BAND = ['Low', 'Medium', 'High'];
-  const BANDC = ['#ef4444', '#f59e0b', '#10b981'];
+  const BASE = 10, FEVER = 13, YEARS = 10;
+  const C = ['#f43f5e', '#f59e0b', '#22d3ee'];        // low / medium / high score
   let N = 40, ratio = 1.6, influence = 0.55;
-  let score, apps, year, hist, running = true;
+  let score, apps, year, hist, running = true, done = false;
+
+  const band = (s) => (s < 0.34 ? 0 : s < 0.67 ? 1 : 2);
+  const at = (x, y) => ((y + N) % N) * N + ((x + N) % N);
 
   const init = () => {
     const n = N * N;
     score = new Float32Array(n); apps = new Float32Array(n);
-    for (let i = 0; i < n; i++) { score[i] = Math.random(); apps[i] = BASE * (0.94 + Math.random() * 0.12); }
-    year = 0; hist = [];
+    for (let i = 0; i < n; i++) { score[i] = Math.random(); apps[i] = BASE * (0.95 + Math.random() * 0.1); }
+    year = 0; hist = []; done = false;
+    const t = document.getElementById('sim-toggle');
+    if (t) { t.textContent = 'Pause'; }
+    running = true;
     record(); paint();
   };
-  const band = (s) => (s < 0.34 ? 0 : s < 0.67 ? 1 : 2);
-  const at = (x, y) => ((y + N) % N) * N + ((x + N) % N);
 
   const step = () => {
     const n = N * N;
-    // prestige-biased social transmission — copy upward from better-scoring neighbours
-    for (let k = 0; k < n; k++) {
+    // 1 — prestige-biased transmission: copy upward from better-scoring neighbours
+    for (let k = 0; k < n * 2; k++) {
       const i = (Math.random() * n) | 0, x = i % N, y = (i / N) | 0;
       const d = [[1,0],[-1,0],[0,1],[0,-1]][(Math.random() * 4) | 0];
       const j = at(x + d[0], y + d[1]);
       const gap = score[j] - score[i];
       if (gap > 0 && apps[j] > apps[i] && Math.random() < gap * influence)
-        apps[i] += (apps[j] - apps[i]) * 0.55;
+        apps[i] += (apps[j] - apps[i]) * 0.6;
     }
-    // annual match — top scores leave, unmatched escalate and carry fever forward
-    const positions = Math.floor(n / ratio);
-    const order = [...Array(n).keys()].sort((a, b) => (score[b] + apps[b] * 0.012) - (score[a] + apps[a] * 0.012));
-    for (let r = 0; r < n; r++) {
-      const i = order[r];
-      if (r < positions) { score[i] = Math.random(); apps[i] = BASE * (0.94 + Math.random() * 0.12); }
-      else apps[i] = Math.min(apps[i] * 1.11, BASE * 3);
+    // 2 — the match. Probability of matching rises with score but is never certain,
+    //     so strong applicants can also fail and escalate.
+    const seats = Math.min(0.95, 1 / ratio);
+    for (let i = 0; i < n; i++) {
+      const pMatch = Math.min(0.97, seats * (0.45 + 0.85 * score[i]));
+      if (Math.random() < pMatch) {                    // matched -> replaced by a new applicant
+        score[i] = Math.random();
+        apps[i] = BASE * (0.95 + Math.random() * 0.1);
+      } else {                                         // unmatched -> reapplies, escalated
+        apps[i] = Math.min(apps[i] * 1.16 + 0.35, BASE * 3.2);
+      }
     }
     year++; record();
+    if (year >= YEARS) { done = true; running = false; const t = document.getElementById('sim-toggle'); if (t) t.textContent = 'Replay'; }
   };
 
   const record = () => {
@@ -246,69 +256,75 @@ addEventListener('keydown', (e) => {
       const b = band(score[i]); cnt[b]++; sum += apps[i];
       if (apps[i] > FEVER) { fev[b]++; tot++; }
     }
-    hist.push({ y: year, all: tot / n, byBand: fev.map((f, i) => (cnt[i] ? f / cnt[i] : 0)), mean: sum / n });
-    if (hist.length > 41) hist.shift();
-    const h = hist[hist.length - 1];
-    document.getElementById('r-year').textContent = year;
-    document.getElementById('r-apps').textContent = h.mean.toFixed(1);
+    hist.push({ all: tot / n, byBand: fev.map((f, i) => (cnt[i] ? f / cnt[i] : 0)) });
+    const h = hist[hist.length - 1], mean = sum / n;
+    document.getElementById('r-year').textContent = year + ' / ' + YEARS;
+    document.getElementById('r-apps').textContent = mean.toFixed(1);
     document.getElementById('r-fever').textContent = (h.all * 100).toFixed(1) + '%';
-    const dr = ((h.mean - BASE) / BASE) * 100;
+    const dr = ((mean - BASE) / BASE) * 100;
     document.getElementById('r-drift').textContent = (dr >= 0 ? '+' : '') + dr.toFixed(1) + '%';
   };
 
   const paint = () => {
     const px = cv.width / N;
-    g.fillStyle = '#0b0d10'; g.fillRect(0, 0, cv.width, cv.height);
+    g.fillStyle = '#0a0c10'; g.fillRect(0, 0, cv.width, cv.height);
     for (let i = 0; i < N * N; i++) {
-      const t = Math.max(0, Math.min(1, (apps[i] - BASE) / (FEVER - BASE)));   // 0 calm -> 1 fever
       const x = (i % N) * px, y = ((i / N) | 0) * px;
-      if (apps[i] > FEVER) {
-        const over = Math.min(1, (apps[i] - FEVER) / 8);
-        g.fillStyle = BANDC[band(score[i])];
-        g.globalAlpha = 0.55 + over * 0.45;
-      } else {
-        g.fillStyle = '#38bdf8'; g.globalAlpha = 0.10 + t * 0.32;   // calm agents, cool + dim
+      if (apps[i] > FEVER) {                            // in the fever zone: score-band colour
+        const heat = Math.min(1, (apps[i] - FEVER) / 10);
+        g.fillStyle = C[band(score[i])];
+        g.globalAlpha = 0.45 + heat * 0.55;
+      } else {                                          // calm: near-invisible slate
+        g.fillStyle = '#1e293b';
+        g.globalAlpha = 0.5 + ((apps[i] - BASE) / (FEVER - BASE)) * 0.4;
       }
-      g.fillRect(x, y, px + 0.7, px + 0.7);
+      g.fillRect(x, y, px - 0.5, px - 0.5);
     }
     g.globalAlpha = 1;
-    drawChart();
+    chart();
   };
 
-  const drawChart = () => {
-    const W = ch.width, H = ch.height, pad = 30;
+  const chart = () => {
+    const W = ch.width, H = ch.height, L = 34, B = 26, maxY = 0.5;
     gc.clearRect(0, 0, W, H);
-    const css = getComputedStyle(document.documentElement);
-    const line = css.getPropertyValue('--line-2').trim() || '#2e3844';
-    const ink = css.getPropertyValue('--ink-3').trim() || '#6f7d8d';
-    const maxY = 0.45, maxX = Math.max(10, hist.length - 1);
-    gc.strokeStyle = line; gc.lineWidth = 1; gc.font = '9px ui-monospace, monospace'; gc.fillStyle = ink;
-    for (let k = 0; k <= 3; k++) {                       // gridlines + y labels
-      const yy = pad + (H - pad * 1.4) * (k / 3);
-      gc.globalAlpha = .5; gc.beginPath(); gc.moveTo(pad, yy); gc.lineTo(W - 6, yy); gc.stroke(); gc.globalAlpha = 1;
-      gc.fillText(Math.round(maxY * 100 * (1 - k / 3)) + '%', 4, yy + 3);
+    const cs = getComputedStyle(document.documentElement);
+    const grid = cs.getPropertyValue('--line').trim() || '#232b35';
+    const ink = cs.getPropertyValue('--ink-3').trim() || '#6f7d8d';
+    gc.font = '10px ui-monospace, monospace'; gc.textBaseline = 'middle';
+    for (let k = 0; k <= 5; k++) {
+      const yy = 10 + (H - B - 10) * (k / 5);
+      gc.strokeStyle = grid; gc.globalAlpha = .6; gc.beginPath();
+      gc.moveTo(L, yy); gc.lineTo(W - 6, yy); gc.stroke(); gc.globalAlpha = 1;
+      gc.fillStyle = ink; gc.textAlign = 'right';
+      gc.fillText(Math.round(maxY * 100 * (1 - k / 5)) + '%', L - 5, yy);
     }
-    gc.fillText('year ' + year, W - 46, H - 4);
+    gc.textAlign = 'center';
+    for (let yr = 0; yr <= YEARS; yr += 2) {
+      const xx = L + (W - L - 8) * (yr / YEARS);
+      gc.fillStyle = ink; gc.fillText(yr, xx, H - B / 2);
+    }
+    gc.textAlign = 'left';
     if (hist.length < 2) return;
-    for (let b = 2; b >= 0; b--) {                        // one line per score band
-      gc.strokeStyle = BANDC[b]; gc.lineWidth = 1.8; gc.beginPath();
+    for (let b = 0; b < 3; b++) {
+      gc.strokeStyle = C[b]; gc.lineWidth = 2; gc.lineJoin = 'round'; gc.beginPath();
       hist.forEach((h, i) => {
-        const X = pad + (W - pad - 8) * (i / maxX);
-        const Y = pad + (H - pad * 1.4) * (1 - Math.min(h.byBand[b], maxY) / maxY);
+        const X = L + (W - L - 8) * (i / YEARS);
+        const Y = 10 + (H - B - 10) * (1 - Math.min(h.byBand[b], maxY) / maxY);
         i ? gc.lineTo(X, Y) : gc.moveTo(X, Y);
       });
       gc.stroke();
-      const last = hist[hist.length - 1];
-      const X = pad + (W - pad - 8) * ((hist.length - 1) / maxX);
-      const Y = pad + (H - pad * 1.4) * (1 - Math.min(last.byBand[b], maxY) / maxY);
-      gc.fillStyle = BANDC[b]; gc.beginPath(); gc.arc(X, Y, 2.6, 0, 7); gc.fill();
+      const h = hist[hist.length - 1];
+      const X = L + (W - L - 8) * ((hist.length - 1) / YEARS);
+      const Y = 10 + (H - B - 10) * (1 - Math.min(h.byBand[b], maxY) / maxY);
+      gc.fillStyle = C[b]; gc.beginPath(); gc.arc(X, Y, 3, 0, 7); gc.fill();
+      if (done) { gc.fillText((h.byBand[b] * 100).toFixed(1) + '%', X + 6, Y); }
     }
   };
 
   let last = 0;
   const loop = (t) => {
     requestAnimationFrame(loop);
-    if (!running || reduced || t - last < 620) return;
+    if (!running || reduced || t - last < 700) return;
     last = t; step(); paint();
   };
 
@@ -317,17 +333,18 @@ addEventListener('keydown', (e) => {
     el?.addEventListener('input', () => { fn(+el.value); document.getElementById(vid).textContent = fmt(+el.value); });
   };
   bind('s-scale', 'v-scale', (v) => { N = v; init(); }, (v) => v + '²');
-  bind('s-ratio', 'v-ratio', (v) => { ratio = v / 10; }, (v) => (v / 10).toFixed(1) + '×');
-  bind('s-influence', 'v-influence', (v) => { influence = v / 100; }, (v) => (v / 100).toFixed(2));
+  bind('s-ratio', 'v-ratio', (v) => { ratio = v / 10; init(); }, (v) => (v / 10).toFixed(1) + '×');
+  bind('s-influence', 'v-influence', (v) => { influence = v / 100; init(); }, (v) => (v / 100).toFixed(2));
 
   const tg = document.getElementById('sim-toggle');
   tg?.addEventListener('click', () => {
+    if (done) { init(); return; }
     running = !running; tg.textContent = running ? 'Pause' : 'Play';
     tg.setAttribute('aria-pressed', String(running));
   });
   document.getElementById('sim-reset')?.addEventListener('click', init);
   new IntersectionObserver((es) => es.forEach((e) => {
-    if (!e.isIntersecting && running) { running = false; if (tg) tg.textContent = 'Play'; }
+    if (!e.isIntersecting && running && !done) { running = false; if (tg) tg.textContent = 'Play'; }
   }), { threshold: 0 }).observe(cv);
 
   init();
@@ -397,5 +414,19 @@ addEventListener('keydown', (e) => {
       const n = (i + d + tabs.length) % tabs.length;
       tabs[n].focus(); show(n);
     });
+  });
+})();
+
+/* ───── collapse the long topic filter list ───── */
+(() => {
+  const btn = document.getElementById('more-filters');
+  if (!btn) return;
+  const hidden = $$('.more-f');
+  const label = btn.textContent;
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    hidden.forEach((c) => { c.hidden = open; });
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.textContent = open ? label : 'Fewer topics';
   });
 })();

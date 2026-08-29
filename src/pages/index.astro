@@ -6,7 +6,7 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grant, talks } = content;
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, affiliations, press, reviewer, grants, talks } = content;
 const imgs = import.meta.glob('../assets/images/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
@@ -154,10 +154,10 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 <section class="tight">
   <div class="wrap">
     <figure class="moment rv">
-      {pic('nrmp-poster.png') && <Image src={pic('nrmp-poster.png')} alt="Conference poster: An Agent-Based Model of Application Fever Dynamics in the National Resident Matching Program" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
+      {pic('g/fmms-sandiego.png') && <Image src={pic('g/fmms-sandiego.png')} alt="Presenting autonomous ship inspection work at the ASNE Fleet Maintenance and Modernization Symposium, San Diego" widths={[900, 1400, 1900]} sizes="100vw" loading="lazy" />}
       <figcaption class="overlay">
-        <h3>Application fever, end to end.</h3>
-        <p>The mechanism, the model, and the intervention points — NetLogo Conference 2026, Chicago.</p>
+        <h3>From model to the fleet.</h3>
+        <p>Autonomous ship inspection and work-order management — ASNE Fleet Maintenance &amp; Modernization Symposium, San Diego.</p>
       </figcaption>
     </figure>
   </div>
@@ -219,7 +219,9 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <div class="filters rv">
       <button class="chip" data-f="all" aria-pressed="true">All</button>
       {years.map((y) => <button class="chip" data-f={`y${y}`} aria-pressed="false">{y}</button>)}
-      {topics.map((t) => <button class="chip" data-f={`t${t}`} aria-pressed="false">{t}</button>)}
+      {topics.slice(0, 4).map((t) => <button class="chip" data-f={`t${t}`} aria-pressed="false">{t}</button>)}
+      {topics.slice(4).map((t) => <button class="chip more-f" data-f={`t${t}`} aria-pressed="false" hidden>{t}</button>)}
+      <button class="chip" id="more-filters" aria-expanded="false">+{topics.length - 4} topics</button>
       <input class="search" id="pub-q" type="search" placeholder="Search titles and venues…" aria-label="Search publications" />
     </div>
     <div id="pub-list">
@@ -346,19 +348,25 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   </div>
 </section>
 
-<!-- ═══ GRANT ═══ -->
+<!-- ═══ GRANTS ═══ -->
 <section class="tight">
   <div class="wrap">
-    <p class="eyebrow rv" style="margin-bottom:1.2rem">Awarded research grant</p>
-    <div class="card rv">
-      <h3 style="font-size:1.05rem;margin-bottom:.5rem">{grant.title}</h3>
-      <div class="rows" style="margin-top:.6rem">
-        <div class="row"><div class="t">Principal Investigator</div><div class="w">{grant.pi}</div></div>
-        <div class="row"><div class="t">Co-Principal Investigators</div><div class="w">{grant.copi}</div></div>
-        <div class="row"><div class="t">Funding agency</div><div class="w">{grant.agency}</div></div>
-        <div class="row"><div class="t">Sponsored amount</div><div class="w" style="color:var(--accent)">{grant.amount}</div></div>
-        <div class="row"><div class="t">Period</div><div class="w">{grant.period}</div></div>
-      </div>
+    <p class="eyebrow rv" style="margin-bottom:1.2rem">Awarded research grants</p>
+    <div class="grid g-2 stagger">
+      {grants.map((gr) => (
+        <div class="card">
+          <h3 style="font-size:1rem;margin-bottom:.2rem">{gr.title}</h3>
+          <div class="mono" style="color:var(--accent);font-size:1.3rem;margin:.5rem 0 .8rem">{gr.amount}</div>
+          <div class="rows">
+            <div class="row"><div class="t">Role</div><div class="w">{gr.role}</div></div>
+            <div class="row"><div class="t">Supervisor / PI</div><div class="w">{gr.pi}</div></div>
+            <div class="row"><div class="t">Agency</div><div class="w">{gr.agency}</div></div>
+            <div class="row"><div class="t">Period</div><div class="w">{gr.period}</div></div>
+            <div class="row"><div class="t">Contract</div><div class="w">{gr.contract}</div></div>
+            <div class="row"><div class="t">Project no.</div><div class="w">{gr.project}</div></div>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -370,7 +378,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <div class="press-grid stagger">
       {press.map((m) => (
         <a class="press-item" href={m.url} rel="noopener" target="_blank">
-          <img src={m.logo} alt={m.outlet} loading="lazy" width="110" height="22" />
+          <span class="chip-logo"><img src={m.logo} alt={m.outlet} loading="lazy" width="110" height="26" /></span>
           <span class="n">{m.outlet}</span>
           <span class="y">{m.year} ↗</span>
         </a>

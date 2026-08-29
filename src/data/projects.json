@@ -268,34 +268,5 @@
     "topics": [
       "Space Systems"
     ]
-  },
-  {
-    "id": "ai-threshold",
-    "title": "Bandwidth-Limited Intelligence",
-    "tag": "Theory · HICSS 2026",
-    "img": "thumb_ai_threshold-02.jpg",
-    "blurb": "Does engineered intelligence have a ceiling?",
-    "detail": "Proposes that engineered AI faces a bandwidth-limited intelligence ceiling arising from sensor and actuator capacity. Dual-channel model separating physical I/O from representational capacity.",
-    "stats": [
-      [
-        "Information",
-        "theory"
-      ],
-      [
-        "Observer-participant",
-        ""
-      ],
-      [
-        "HICSS",
-        "2026"
-      ],
-      [
-        "",
-        ""
-      ]
-    ],
-    "topics": [
-      "AI Theory"
-    ]
   }
 ]
