@@ -650,3 +650,8 @@ body::before{
 /* a paper title is not a section headline */
 .h2-sm{font-size:clamp(1.65rem,3.4vw,2.55rem);line-height:1.1}
 #research .lede{font-size:clamp(1rem,1.4vw,1.15rem);max-width:52ch}
+
+/* The studio headshot is 816x1280. Cap the frame so it is never asked
+   for more pixels than it has: 400px displayed is exactly 2x sharp. */
+.portrait{max-width:400px;margin-left:auto}
+@media (max-width:980px){.portrait{margin-inline:0}}

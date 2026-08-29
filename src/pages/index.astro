@@ -8,7 +8,11 @@ import gallery from '../data/gallery.json';
 
 const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, logoTiers, alma, almaLabel, press, reviewer, grants, talks, contributions } = content;
 const imgs = import.meta.glob('../assets/images/**/*.{jpg,jpeg,png}', { eager: true });
-const pic = (name) => imgs[`../assets/images/${name}`]?.default;
+const pic = (name) => {
+  const m = imgs[`../assets/images/${name}`];
+  if (!m) throw new Error(`Missing image: src/assets/images/${name}`);
+  return m.default;
+};
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
 const topics = [...new Set(publications.flatMap((p) => p.topics))].sort();
 const title = 'Joshit Mohanty | Agent-Based Modeling & Simulation';
@@ -36,7 +40,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       </div>
     </div>
     <figure class="portrait">
-      {pic('headshot.jpg') && <Image src={pic('headshot.jpg')} alt={`Portrait of ${profile.name}`} widths={[420, 700, 1000, 1400]} quality={86} sizes="(max-width:980px) 330px, 40vw" loading="eager" fetchpriority="high" />}
+      {pic('headshot.jpeg') && <Image src={pic('headshot.jpeg')} alt={`Portrait of ${profile.name}`} widths={[400, 620, 816]} quality={88} sizes="(max-width:980px) 330px, 40vw" loading="eager" fetchpriority="high" />}
       <figcaption class="cap">{profile.location} · {profile.authorization}</figcaption>
     </figure>
   </div>
