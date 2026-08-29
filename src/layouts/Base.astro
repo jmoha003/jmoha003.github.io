@@ -32,7 +32,7 @@ const works = publications.slice(0, 8).map((p) => ({
 }));
 ---
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
@@ -46,12 +46,12 @@ const works = publications.slice(0, 8).map((p) => ({
 <meta property="og:url" content={url} />
 <meta property="og:site_name" content={profile.name} />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<script is:inline set:html={`(()=>{try{const t=localStorage.getItem('theme');const d=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t||d)}catch(e){}})()`} />
+<script is:inline set:html={`(()=>{try{const t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'light')}catch(e){}})()`} />
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 {works.map((w) => <script type="application/ld+json" set:html={JSON.stringify(w)} />)}
 </head>
