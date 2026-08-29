@@ -6,7 +6,7 @@ import projects from '../data/projects.json';
 import publications from '../data/publications.json';
 import gallery from '../data/gallery.json';
 
-const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, logoTiers, alma, almaLabel, press, reviewer, grants, metricsNote, talks, contributions } = content;
+const { profile, metrics, capabilities, experience, additional, teaching, education, patents, awards, fellowships, record, certifications, leadership, research, logoTiers, alma, almaLabel, press, reviewer, grants, talks, contributions } = content;
 const imgs = import.meta.glob('../assets/images/**/*.{jpg,jpeg,png}', { eager: true });
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
@@ -56,7 +56,6 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
         </div>
       ))}
     </div>
-    <p class="rv" style="margin-top:.9rem;font-size:.74rem;color:var(--ink-3);max-width:70ch">{metricsNote}</p>
   </div>
 </section>
 
