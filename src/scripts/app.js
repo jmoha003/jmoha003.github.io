@@ -346,7 +346,7 @@ addEventListener('keydown', (e) => {
     g.stroke();
   };
 
-  // population mix across L1..L5 — the whole pool sliding up the levels
+  // population mix across L1..L5: the whole pool sliding up the levels
   const mixEl = document.getElementById('mix');
   const mix = () => {
     if (!mixEl) return;

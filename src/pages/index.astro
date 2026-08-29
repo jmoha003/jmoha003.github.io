@@ -11,7 +11,7 @@ const imgs = import.meta.glob('../assets/images/**/*.{jpg,jpeg,png}', { eager: t
 const pic = (name) => imgs[`../assets/images/${name}`]?.default;
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
 const topics = [...new Set(publications.flatMap((p) => p.topics))].sort();
-const title = 'Joshit Mohanty — Agent-Based Modeling & Simulation';
+const title = 'Joshit Mohanty | Agent-Based Modeling & Simulation';
 const description = 'Ph.D. candidate in Engineering Management & Systems Engineering at Old Dominion University. Agent-based models, digital twins, and applied AI for fleet operations, matching markets, healthcare and space systems.';
 ---
 <Base title={title} description={description}>
@@ -133,7 +133,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
           <div class="org">{e.org}</div>
           <div class="when">{e.period} · {e.loc}</div>
           {e.stealth
-            ? <span class="stealth">Stealth mode — company confidential</span>
+            ? <span class="stealth">Stealth mode, company confidential</span>
             : <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>}
         </div>
       ))}
@@ -146,7 +146,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   <div class="wrap">
     <p class="eyebrow rv">Interactive</p>
     <h2 class="h2 rv" style="margin:.7rem 0 .8rem">Application fever,<br /><span class="soft">running in your browser.</span></h2>
-    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. The lowest-scoring applicants catch it most — the published run reaches 21.3% in fever by year 10, from 3%.</p>
+    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy whoever scores above them. The lowest-scoring applicants catch it most. The published run reaches 21.3% in fever by year 10, up from 3%.</p>
     <div class="lab rv">
       <div class="lab-top">
         <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · prestige-biased transmission, two-stage match</span>
@@ -197,7 +197,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
             <div><b id="r-fever">0%</b><span>FEVER RATE</span></div>
             <div><b id="r-drift">+0%</b><span>ESCALATION</span></div>
           </div>
-          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5; amber and red are the fever zone. The pool has two inputs: a naive new cohort each year, and the carriers — unmatched applicants rejoining one level higher along the dashed edge, which thickens as fever builds. Flow proportions come from the live model: a faithful port of the NetLogo source, 52 interaction cycles a year and the two-stage match.</p>
+          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5; amber and red are the fever zone. The pool has two inputs: a naive new cohort each year, and the carriers: unmatched applicants rejoining one level higher along the dashed edge, which thickens as fever builds. Flow proportions come from the live model: a faithful port of the NetLogo source, 52 interaction cycles a year and the two-stage match.</p>
         </aside>
       </div>
     </div>
@@ -285,6 +285,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
           <div>
             <h4>{p.title}</h4>
             <div class="meta">{p.authors} · {p.venue}</div>
+            {p.doi && <a class="doi" href={`https://doi.org/${p.doi}`} rel="noopener" target="_blank">doi:{p.doi}</a>}
           </div>
           <div style="display:flex;gap:.35rem;flex-wrap:wrap">
             {p.citations && <span class="badge cit">{p.citations} cited</span>}
@@ -302,7 +303,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
       <a class="btn btn-g" href={profile.scholar} rel="noopener">Google Scholar ↗</a>
       <a class="btn btn-g" href={profile.orcid} rel="noopener">ORCID ↗</a>
       <a class="btn btn-g" href={profile.digitalCommons} rel="noopener">ODU Digital Commons ↗</a>
-      <span class="btn btn-g" style="cursor:default">74 citations · h-index 5</span>
+      <span class="btn btn-g" style="cursor:default">70+ citations, h-index 5</span>
     </div>
   </div>
 </section>
@@ -320,7 +321,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <div class="panel rows" id="panel-0" role="tabpanel" aria-labelledby="tab-0">
       {education.map((ed) => (
         <div class="row">
-          <div><div class="t">{ed.degree}</div><div class="s">{ed.org} — {ed.detail}</div></div>
+          <div><div class="t">{ed.degree}</div><div class="s">{ed.org} · {ed.detail}</div></div>
           <div class="w">{ed.note}</div>
         </div>
       ))}
@@ -365,7 +366,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
 
     <div class="panel rows" id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
       {teaching.map((t) => (
-        <div class="row"><div><div class="t">{t.role} — {t.org}</div><div class="s">{t.detail}</div></div><div class="w">{t.period}</div></div>
+        <div class="row"><div><div class="t">{t.role}, {t.org}</div><div class="s">{t.detail}</div></div><div class="w">{t.period}</div></div>
       ))}
     </div>
 

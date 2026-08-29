@@ -471,3 +471,6 @@ section{padding-block:clamp(3.2rem,6vw,5.5rem)}
 .alma-card img{max-height:72px;max-width:220px}
 .alma-card{padding:2rem 1.4rem 1.4rem}
 @media (max-width:680px){.logo-card{flex:0 0 calc(50% - .5rem);max-width:none}}
+.pub .doi{display:inline-block;margin-top:.3rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  border-bottom:1px solid transparent;transition:color .25s,border-color .25s;word-break:break-all}
+.pub .doi:hover{color:var(--accent);border-bottom-color:var(--accent)}

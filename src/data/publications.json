@@ -1,34 +1,371 @@
 [
- {"title":"An Agent-Based Model of Application Fever Dynamics in the National Resident Matching Program","authors":"J. Mohanty, A. J. Collins","venue":"Winter Simulation Conference 2026, Glasgow","year":2026,"status":"Accepted","note":"Invited","topics":["Simulation","Matching Markets"],"featured":true},
- {"title":"Detecting the Silo Trap in Multi-Agent Systems: A NetLogo Framework for Measuring Perspective Divergence","authors":"J. Mohanty, A. J. Collins","venue":"NetLogo Conference 2026, USA","year":2026,"status":"Presented","topics":["Simulation","Multi-Agent Systems"],"featured":true},
- {"title":"Application Fever as Emergent Behavior: An Agent-Based Model of Medical Residency Matching","authors":"J. Mohanty, A. J. Collins","venue":"NetLogo Conference 2026, USA","year":2026,"status":"Presented","topics":["Simulation","Matching Markets"],"featured":true},
- {"title":"A vs. I in AI: Is there a Threshold to \"Engineered\" Intelligence?","authors":"J. Mohanty","venue":"59th Hawaii International Conference on System Sciences (HICSS)","year":2026,"status":"Published","topics":["AI Theory","Systems"],"featured":true},
- {"title":"From PBFT to Blockchain: A Comprehensive Survey of Byzantine Fault-Tolerant Consensus","authors":"A. V. Hazarika, J. Mohanty","venue":"8th International Conference on Intelligent Sustainable Systems (ICISS)","year":2026,"status":"Published","citations":2,"topics":["Systems","Distributed Systems"]},
- {"title":"A Meta-Clustering Framework for Enhancing Conversational AI in the Healthcare Sector","authors":"J. Mohanty, S. K. Nayak, Vaishali, S. Alla, M. Shah, A. V. Hazarika","venue":"20th Annual System of Systems Engineering Conference (SoSE), Albania","year":2025,"status":"Published","citations":3,"topics":["NLP","Healthcare"]},
- {"title":"Bridging Emotions and Architecture: Sentiment Analysis in Modern Distributed Systems","authors":"M. Shah, A. V. Hazarika, M. Malhotra, S. C. Patil, J. Mohanty","venue":"International Conference on Advancements in Smart, Secure and Systems","year":2025,"status":"Published","citations":6,"topics":["NLP","Systems"]},
- {"title":"Digital Twin for Smart Societies: A Catalyst for Inclusive and Accessible Healthcare","authors":"J. Mohanty, S. Alla, Vaishali, N. Bheesetty, P. Chidipudi, S. P. C. Nandigam","venue":"6th International Conference on AI and Applied Mathematics in Engineering, Poland","year":2025,"status":"Published","citations":3,"topics":["Digital Twin","Healthcare"]},
- {"title":"Enhancing Document Intelligence by Mitigating Hallucinations in Large Language Models","authors":"S. Mullankandy, S. M. Venugopal, A. Gupta, J. Mohanty","venue":"IEEE International Conference on Data-Driven Social Change (ICDDSC)","year":2025,"status":"Published","citations":3,"topics":["NLP","AI Reliability"]},
- {"title":"Navigating the Frontier: Integrating Emerging Biomedical Technologies into Modern Healthcare","authors":"S. Alla, J. Mohanty, H. Sriraman, V. K. Chattu","venue":"Elsevier · Intelligent Biomedical Technologies and Applications for Healthcare 5.0","year":2025,"status":"Published","citations":16,"topics":["Healthcare"]},
- {"title":"Carbon Accountability Scores: A Process-Oriented Approach for Carbon Offsetting Using AI Agents","authors":"J. Mohanty, Vaishali","venue":"GSGA Research Conference, Old Dominion University","year":2025,"status":"Published","topics":["Sustainability","AI"]},
- {"title":"Digital Thread: Bridging Macro–Micro Services in System-of-Systems","authors":"J. Mohanty, M. Shah, A. V. Hazarika","venue":"GSGA Research Conference, Old Dominion University","year":2025,"status":"Published","topics":["Digital Twin","Systems"]},
- {"title":"GraphTreeMed: A Hybrid Graph-Tree RAG Architecture for Mission-Critical Medical Applications","authors":"J. Mohanty, S. K. Nayak, S. Lahiri","venue":"GSGA Research Conference, Old Dominion University","year":2025,"status":"Published","citations":1,"topics":["RAG","Healthcare"]},
- {"title":"Meta-Clustering for Specialized Language Models: Enhancing Contextual Adaptation and Mitigating Hallucinations in Diverse Healthcare Environments","authors":"J. Mohanty, Vaishali, S. K. Nayak, S. Lahiri","venue":"GSGA Research Conference, Old Dominion University","year":2025,"status":"Published","citations":2,"topics":["NLP","Healthcare"]},
- {"title":"TAMOS: Task-Aware Multi-Agent Orchestrator System","authors":"J. Mohanty, S. N. Nayak, S. Lahiri","venue":"GSGA Research Conference, Old Dominion University","year":2025,"status":"Published","citations":1,"topics":["Multi-Agent Systems","LLM"]},
- {"title":"Innovative Water Electrolysis Propulsion Systems for Small Satellites and Deep-Space Missions: A Scoping Review","authors":"P. Bheesetty, Marisha, J. Mohanty, S. Alla","venue":"XIII International Scientific Conference on Development Trends in Space Propulsion Systems, Warsaw","year":2024,"status":"Published","topics":["Space Systems"]},
- {"title":"Reinforcement Learning for Optimal Kicking Actions in Humanoid Robotics","authors":"S. Alla, N. Bheesetty, S. G. Komaragiri, P. Chidipudi, J. Mohanty, S. K. Chintala, J. Thomas, J. Vummadi, H. Volikatla, N. Kamuni","venue":"ASEM International Annual Conference, Virginia Beach","year":2024,"status":"Published","topics":["Machine Learning","Robotics"]},
- {"title":"Integrative Machine Learning Approaches for Enhanced Classification of Genomic Sequences: A Next-Generation Sequencing Perspective","authors":"J. Mohanty, S. Alla, S. Dodda, S. K. Chintala, S. R. Mallreddy, S. C. Macha, Y. Vasa, S. B. Bonala, N. Kamuni","venue":"ASEM International Annual Conference, Virginia Beach","year":2024,"status":"Published","citations":4,"topics":["Machine Learning","Healthcare"]},
- {"title":"Improving Neuropathological Analysis with AβGAN: Addressing Morphology Imbalance for Efficient Alzheimer's Disease Diagnosis","authors":"S. Alla, P. Chidipudi, N. Bheesetty, V. V. R. Velur, J. Mohanty, P. Bheesetty","venue":"6th International Conference on AI and Applied Mathematics in Engineering, Poland","year":2024,"status":"Published","topics":["Machine Learning","Healthcare"]},
- {"title":"Analysis of Space Debris Mitigation and Removal Techniques for Small Satellites in Low Earth Orbit in Purview of the FCC Guidelines","authors":"P. Baranwal, E. Rotherama, S. Mardhania, H. S. R., D. Josea, O. Jouinia, J. Mohanty","venue":"74th International Astronautical Congress, Baku","year":2023,"status":"Published","topics":["Space Systems"]},
- {"title":"Automated Prioritization of Maintenance Work Orders: A Sentiment Analysis Approach Using Natural Language Processing","authors":"C. Yalim, J. Mohanty, S. F. Kovacic, H. H. Handley","venue":"ASNE Fleet Maintenance & Modernization Symposium, San Diego","year":2023,"status":"Published","citations":5,"topics":["NLP","Defense"]},
- {"title":"Integrating Generative A.I. with Systems Thinking: Making Remote Teams More Efficient","authors":"J. Mohanty, A. Saeidi, S. Tippannavar, F. Javadnejad","venue":"Conference on Complex Systems, Salvador, Brazil","year":2023,"status":"Published","citations":3,"topics":["AI","Systems"]},
- {"title":"Digital Twin for Smart Societies: A Catalyst for Inclusivity and Growth","authors":"J. Mohanty, S. Alla","venue":"Conference proceedings","year":2023,"status":"Published","citations":3,"topics":["Digital Twin"]},
- {"title":"An Analytical Outlook of the Commercial Space Industry for the Last Frontier: Potential Entrepreneurial Evaluation of the African Space Sector","authors":"O. A. Asiyanbola, I. El Khantouti, A. Akinwale, K. Ahenkora-Duodu, R. Imam, R. Toukebri, J. Mohanty","venue":"New Space Journal, Vol. 9(3), 169–186","year":2021,"status":"Published","citations":5,"topics":["Space Systems"]},
- {"title":"Nanofluid Based Active Thermal Control System for Spacecraft","authors":"A. Mehra, V. P. Gokhale, C. V. Tamada, S. G. Sabbavarapu, M. Tiwari, A. Pawar, J. Mohanty","venue":"Global Space Exploration Conference (GLEX), Saint Petersburg","year":2021,"status":"Published","topics":["Space Systems"]},
- {"title":"Conceptual Design of a Mars Constellation for Global Communication Services using Small Satellites","authors":"D. Wischert, D. Stepanova, M. Romero, R. Colpari Carrizo, K. Soni, K. Bhale, J. Mohanty, M. Daryabari","venue":"71st International Astronautical Congress, Dubai","year":2020,"status":"Published","citations":7,"topics":["Space Systems"]},
- {"title":"A Systems Engineering Approach to Developing Logistics Architecture for the First Crewed Mission to Mars","authors":"J. Mohanty, A. Ivanov","venue":"71st International Astronautical Congress, Dubai","year":2020,"status":"Published","citations":3,"topics":["Space Systems"]},
- {"title":"Interplanetary Communication Architecture for Future Human Settlements","authors":"J. Mohanty, A. Metwally, R. Konurbayev, B. Meskoob","venue":"5th IAA Conference on University Satellite Missions, Rome","year":2020,"status":"Published","citations":3,"topics":["Space Systems"]},
- {"title":"Rocket Model with Implementation of Advantages of Additive Technology","authors":"J. Mohanty","venue":"SpaceUp, Moscow","year":2019,"status":"Published","topics":["Space Systems"]},
- {"title":"Drone-LiDAR Agricultural Land Monitoring System","authors":"J. Mohanty, M. K. Patro","venue":"2nd India International Science Festival, New Delhi","year":2016,"status":"Published","topics":["Robotics"]},
- {"title":"Fault Detection System using GSM Technology","authors":"A. Behera, J. Mohanty","venue":"2nd India International Science Festival, New Delhi","year":2016,"status":"Published","topics":["Systems"]},
- {"title":"Energy Harvesting on Aircrafts: Static Charge Energy Generation using Graphene","authors":"J. Mohanty, G. Misra, B. Meher","venue":"International Journal of Engineering Research in Electronics and Communication Engineering, Vol. 3(8)","year":2016,"status":"Published","topics":["Space Systems"]}
+  {
+    "title": "An Agent-Based Model of Application Fever Dynamics in the National Resident Matching Program",
+    "authors": "J. Mohanty, A. J. Collins",
+    "venue": "Winter Simulation Conference, Glasgow, UK",
+    "year": 2026,
+    "status": "Accepted",
+    "note": "Invited",
+    "topics": [
+      "Simulation",
+      "Matching Markets"
+    ],
+    "featured": true
+  },
+  {
+    "title": "Detecting the Silo Trap in Multi-Agent Systems: A NetLogo Framework for Measuring Perspective Divergence",
+    "authors": "J. Mohanty, A. J. Collins",
+    "venue": "NetLogo Conference, Chicago, USA",
+    "year": 2026,
+    "status": "Presented",
+    "topics": [
+      "Simulation",
+      "Multi-Agent Systems"
+    ],
+    "featured": true
+  },
+  {
+    "title": "Application Fever as Emergent Behavior: An Agent-Based Model of Medical Residency Matching",
+    "authors": "J. Mohanty, A. J. Collins",
+    "venue": "NetLogo Conference, Chicago, USA",
+    "year": 2026,
+    "status": "Presented",
+    "topics": [
+      "Simulation",
+      "Matching Markets"
+    ],
+    "featured": true
+  },
+  {
+    "title": "A vs. I in AI: Is there a Threshold to \"Engineered\" Intelligence?",
+    "authors": "J. Mohanty",
+    "venue": "59th Hawaii International Conference on System Sciences (HICSS), Hawaii, USA",
+    "year": 2026,
+    "status": "Published",
+    "topics": [
+      "AI Theory",
+      "Systems"
+    ],
+    "featured": true,
+    "doi": "10.24251/HICSS.2026.143"
+  },
+  {
+    "title": "From PBFT to Blockchain: A Comprehensive Survey of Byzantine Fault-Tolerant Consensus",
+    "authors": "A. V. Hazarika, J. Mohanty",
+    "venue": "8th International Conference on Intelligent Sustainable Systems (ICISS), India",
+    "year": 2026,
+    "status": "Published",
+    "citations": 2,
+    "topics": [
+      "Systems",
+      "Distributed Systems"
+    ],
+    "doi": "10.1109/ICISS67859.2026.11453852"
+  },
+  {
+    "title": "A Meta-Clustering Framework for Enhancing Conversational AI in the Healthcare Sector",
+    "authors": "J. Mohanty, S. K. Nayak, Vaishali, S. Alla, M. Shah, A. V. Hazarika",
+    "venue": "20th Annual System of Systems Engineering Conference (SoSE), Tirana, Albania",
+    "year": 2025,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "NLP",
+      "Healthcare"
+    ],
+    "doi": "10.1109/SoSE66311.2025.11083870"
+  },
+  {
+    "title": "Bridging Emotions and Architecture: Sentiment Analysis in Modern Distributed Systems",
+    "authors": "M. Shah, A. V. Hazarika, M. Malhotra, S. C. Patil, J. Mohanty",
+    "venue": "International Conference on Advancements in Smart, Secure and Systems (ASSIC), India",
+    "year": 2025,
+    "status": "Published",
+    "citations": 6,
+    "topics": [
+      "NLP",
+      "Systems"
+    ],
+    "doi": "10.1109/ASSIC64892.2025.11158682"
+  },
+  {
+    "title": "Digital Twin for Smart Societies: A Catalyst for Inclusive and Accessible Healthcare",
+    "authors": "J. Mohanty, S. Alla, Vaishali, N. Bheesetty, P. Chidipudi, S. P. C. Nandigam",
+    "venue": "6th International Conference on AI and Applied Mathematics in Engineering, Warsaw, Poland",
+    "year": 2025,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "Digital Twin",
+      "Healthcare"
+    ],
+    "doi": "10.36227/techrxiv.173921138.87440719/v1"
+  },
+  {
+    "title": "Enhancing Document Intelligence by Mitigating Hallucinations in Large Language Models",
+    "authors": "S. Mullankandy, S. M. Venugopal, A. Gupta, J. Mohanty",
+    "venue": "IEEE International Conference on Data-Driven Social Change (ICDDSC), India",
+    "year": 2025,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "NLP",
+      "AI Reliability"
+    ]
+  },
+  {
+    "title": "Navigating the Frontier: Integrating Emerging Biomedical Technologies into Modern Healthcare",
+    "authors": "S. Alla, J. Mohanty, H. Sriraman, V. K. Chattu",
+    "venue": "Elsevier, Intelligent Biomedical Technologies and Applications for Healthcare 5.0",
+    "year": 2025,
+    "status": "Published",
+    "citations": 16,
+    "topics": [
+      "Healthcare"
+    ],
+    "doi": "10.1016/B978-0-443-22038-8.00015-5"
+  },
+  {
+    "title": "Carbon Accountability Scores: A Process-Oriented Approach for Carbon Offsetting Using AI Agents",
+    "authors": "J. Mohanty, Vaishali",
+    "venue": "GSGA Research Conference, Old Dominion University, Norfolk, USA",
+    "year": 2025,
+    "status": "Published",
+    "topics": [
+      "Sustainability",
+      "AI"
+    ]
+  },
+  {
+    "title": "Digital Thread: Bridging Macro–Micro Services in System-of-Systems",
+    "authors": "J. Mohanty, M. Shah, A. V. Hazarika",
+    "venue": "GSGA Research Conference, Old Dominion University, Norfolk, USA",
+    "year": 2025,
+    "status": "Published",
+    "topics": [
+      "Digital Twin",
+      "Systems"
+    ]
+  },
+  {
+    "title": "GraphTreeMed: A Hybrid Graph-Tree RAG Architecture for Mission-Critical Medical Applications",
+    "authors": "J. Mohanty, S. K. Nayak, S. Lahiri",
+    "venue": "GSGA Research Conference, Old Dominion University, Norfolk, USA",
+    "year": 2025,
+    "status": "Published",
+    "citations": 1,
+    "topics": [
+      "RAG",
+      "Healthcare"
+    ]
+  },
+  {
+    "title": "Meta-Clustering for Specialized Language Models: Enhancing Contextual Adaptation and Mitigating Hallucinations in Diverse Healthcare Environments",
+    "authors": "J. Mohanty, Vaishali, S. K. Nayak, S. Lahiri",
+    "venue": "GSGA Research Conference, Old Dominion University, Norfolk, USA",
+    "year": 2025,
+    "status": "Published",
+    "citations": 2,
+    "topics": [
+      "NLP",
+      "Healthcare"
+    ]
+  },
+  {
+    "title": "TAMOS: Task-Aware Multi-Agent Orchestrator System",
+    "authors": "J. Mohanty, S. N. Nayak, S. Lahiri",
+    "venue": "GSGA Research Conference, Old Dominion University, Norfolk, USA",
+    "year": 2025,
+    "status": "Published",
+    "citations": 1,
+    "topics": [
+      "Multi-Agent Systems",
+      "LLM"
+    ]
+  },
+  {
+    "title": "Innovative Water Electrolysis Propulsion Systems for Small Satellites and Deep-Space Missions: A Scoping Review",
+    "authors": "P. Bheesetty, Marisha, J. Mohanty, S. Alla",
+    "venue": "XIII International Scientific Conference on Development Trends in Space Propulsion Systems, Warsaw, Poland",
+    "year": 2024,
+    "status": "Published",
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Reinforcement Learning for Optimal Kicking Actions in Humanoid Robotics",
+    "authors": "S. Alla, N. Bheesetty, S. G. Komaragiri, P. Chidipudi, J. Mohanty, S. K. Chintala, J. Thomas, J. Vummadi, H. Volikatla, N. Kamuni",
+    "venue": "ASEM International Annual Conference, Virginia Beach, USA",
+    "year": 2024,
+    "status": "Published",
+    "topics": [
+      "Machine Learning",
+      "Robotics"
+    ]
+  },
+  {
+    "title": "Integrative Machine Learning Approaches for Enhanced Classification of Genomic Sequences: A Next-Generation Sequencing Perspective",
+    "authors": "J. Mohanty, S. Alla, S. Dodda, S. K. Chintala, S. R. Mallreddy, S. C. Macha, Y. Vasa, S. B. Bonala, N. Kamuni",
+    "venue": "ASEM International Annual Conference, Virginia Beach, USA",
+    "year": 2024,
+    "status": "Published",
+    "citations": 4,
+    "topics": [
+      "Machine Learning",
+      "Healthcare"
+    ]
+  },
+  {
+    "title": "Improving Neuropathological Analysis with AβGAN: Addressing Morphology Imbalance for Efficient Alzheimer's Disease Diagnosis",
+    "authors": "S. Alla, P. Chidipudi, N. Bheesetty, V. V. R. Velur, J. Mohanty, P. Bheesetty",
+    "venue": "6th International Conference on AI and Applied Mathematics in Engineering, Warsaw, Poland",
+    "year": 2024,
+    "status": "Published",
+    "topics": [
+      "Machine Learning",
+      "Healthcare"
+    ],
+    "doi": "10.36227/techrxiv.173386099.92841064/v1"
+  },
+  {
+    "title": "Analysis of Space Debris Mitigation and Removal Techniques for Small Satellites in Low Earth Orbit in Purview of the FCC Guidelines",
+    "authors": "P. Baranwal, E. Rotherama, S. Mardhania, H. S. R., D. Josea, O. Jouinia, J. Mohanty",
+    "venue": "74th International Astronautical Congress, Baku, Azerbaijan",
+    "year": 2023,
+    "status": "Published",
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Automated Prioritization of Maintenance Work Orders: A Sentiment Analysis Approach Using Natural Language Processing",
+    "authors": "C. Yalim, J. Mohanty, S. F. Kovacic, H. H. Handley",
+    "venue": "ASNE Fleet Maintenance and Modernization Symposium, San Diego, USA",
+    "year": 2023,
+    "status": "Published",
+    "citations": 5,
+    "topics": [
+      "NLP",
+      "Defense"
+    ]
+  },
+  {
+    "title": "Integrating Generative A.I. with Systems Thinking: Making Remote Teams More Efficient",
+    "authors": "J. Mohanty, A. Saeidi, S. Tippannavar, F. Javadnejad",
+    "venue": "Conference on Complex Systems, Salvador, Brazil",
+    "year": 2023,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "AI",
+      "Systems"
+    ]
+  },
+  {
+    "title": "Digital Twin for Smart Societies: A Catalyst for Inclusivity and Growth",
+    "authors": "J. Mohanty, S. Alla",
+    "venue": "6th International Conference on AI and Applied Mathematics in Engineering, Warsaw, Poland",
+    "year": 2023,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "Digital Twin"
+    ]
+  },
+  {
+    "title": "An Analytical Outlook of the Commercial Space Industry for the Last Frontier: Potential Entrepreneurial Evaluation of the African Space Sector",
+    "authors": "O. A. Asiyanbola, I. El Khantouti, A. Akinwale, K. Ahenkora-Duodu, R. Imam, R. Toukebri, J. Mohanty",
+    "venue": "New Space Journal, Vol. 9(3), 169-186",
+    "year": 2021,
+    "status": "Published",
+    "citations": 5,
+    "topics": [
+      "Space Systems"
+    ],
+    "doi": "10.1089/space.2020.0016"
+  },
+  {
+    "title": "Nanofluid Based Active Thermal Control System for Spacecraft",
+    "authors": "A. Mehra, V. P. Gokhale, C. V. Tamada, S. G. Sabbavarapu, M. Tiwari, A. Pawar, J. Mohanty",
+    "venue": "Global Space Exploration Conference (GLEX), Saint Petersburg, Russia",
+    "year": 2021,
+    "status": "Published",
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Conceptual Design of a Mars Constellation for Global Communication Services using Small Satellites",
+    "authors": "D. Wischert, D. Stepanova, M. Romero, R. Colpari Carrizo, K. Soni, K. Bhale, J. Mohanty, M. Daryabari",
+    "venue": "71st International Astronautical Congress, Dubai, UAE",
+    "year": 2020,
+    "status": "Published",
+    "citations": 7,
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "A Systems Engineering Approach to Developing Logistics Architecture for the First Crewed Mission to Mars",
+    "authors": "J. Mohanty, A. Ivanov",
+    "venue": "71st International Astronautical Congress, Dubai, UAE",
+    "year": 2020,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Interplanetary Communication Architecture for Future Human Settlements",
+    "authors": "J. Mohanty, A. Metwally, R. Konurbayev, B. Meskoob",
+    "venue": "5th IAA Conference on University Satellite Missions, Rome, Italy",
+    "year": 2020,
+    "status": "Published",
+    "citations": 3,
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Rocket Model with Implementation of Advantages of Additive Technology",
+    "authors": "J. Mohanty",
+    "venue": "SpaceUp, Moscow, Russia",
+    "year": 2019,
+    "status": "Published",
+    "topics": [
+      "Space Systems"
+    ]
+  },
+  {
+    "title": "Drone-LiDAR Agricultural Land Monitoring System",
+    "authors": "J. Mohanty, M. K. Patro",
+    "venue": "2nd India International Science Festival, New Delhi, India",
+    "year": 2016,
+    "status": "Published",
+    "topics": [
+      "Robotics"
+    ]
+  },
+  {
+    "title": "Fault Detection System using GSM Technology",
+    "authors": "A. Behera, J. Mohanty",
+    "venue": "2nd India International Science Festival, New Delhi, India",
+    "year": 2016,
+    "status": "Published",
+    "topics": [
+      "Systems"
+    ]
+  },
+  {
+    "title": "Energy Harvesting on Aircrafts: Static Charge Energy Generation using Graphene",
+    "authors": "J. Mohanty, G. Misra, B. Meher",
+    "venue": "International Journal of Engineering Research in Electronics and Communication Engineering, Vol. 3(8)",
+    "year": 2016,
+    "status": "Published",
+    "topics": [
+      "Space Systems"
+    ]
+  }
 ]

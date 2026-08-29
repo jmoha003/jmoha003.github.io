@@ -3,7 +3,7 @@
     "name": "Joshit Mohanty",
     "role": "Ph.D. Candidate · Modeling & Simulation",
     "tagline": "I build simulations of systems that misbehave.",
-    "blurb": "Agent-based models, digital twins, and applied AI — for wherever individual decisions aggregate into system-wide dysfunction.",
+    "blurb": "Agent-based models, digital twins, and applied AI for wherever individual decisions aggregate into system-wide dysfunction.",
     "affiliation": "Engineering Management & Systems Engineering, Old Dominion University",
     "advisor": "Dr. Andrew J. Collins",
     "location": "Norfolk, VA",
@@ -31,9 +31,9 @@
   },
   "metrics": [
     {
-      "value": 713,
+      "value": 700,
       "prefix": "$",
-      "suffix": "K",
+      "suffix": "K+",
       "label": "Federal research funding contributed to"
     },
     {
@@ -42,14 +42,14 @@
       "label": "Simulation scenarios run on AWS HPC"
     },
     {
-      "value": 92,
-      "suffix": "%",
+      "value": 90,
+      "suffix": "%+",
       "label": "Work-order classification accuracy, in production"
     },
     {
-      "value": 74,
-      "suffix": "",
-      "label": "Google Scholar citations · h-index 5"
+      "value": 70,
+      "suffix": "+",
+      "label": "Google Scholar citations, h-index 5"
     }
   ],
   "capabilities": [
@@ -127,7 +127,7 @@
       "role": "Ph.D. Candidate, Engineering Management & Systems Engineering",
       "org": "Old Dominion University",
       "loc": "Norfolk, VA",
-      "period": "2026 — Present",
+      "period": "2026–Present",
       "current": true,
       "points": [
         "Complex systems, simulation, and organizational modeling.",
@@ -138,7 +138,7 @@
       "role": "Senior Research Engineer, Digital Twins",
       "org": "PlaSiV",
       "loc": "San Jose, CA",
-      "period": "May 2026 — Aug 2026",
+      "period": "May 2026–Aug 2026",
       "stealth": true,
       "points": []
     },
@@ -146,7 +146,7 @@
       "role": "Research Scientist, Modeling & Simulation",
       "org": "Old Dominion University",
       "loc": "Norfolk, VA",
-      "period": "Jan 2026 — May 2026",
+      "period": "Jan 2026–May 2026",
       "points": [
         "Multi-method simulation (agent-based + discrete event), 300M+ scenarios on AWS HPC.",
         "US medical residency matching market, 42,000+ applicants. NSF EAGER Grant #2333570 ($198,534).",
@@ -157,7 +157,7 @@
       "role": "Technical Program Lead, Fleet Analytics",
       "org": "ODU Research Foundation · US Department of Defense",
       "loc": "Norfolk, VA",
-      "period": "Sep 2023 — Dec 2024",
+      "period": "Sep 2023–Dec 2024",
       "points": [
         "$496K across 3 concurrent programs as Co-PI.",
         "NLP pipeline: 160,000+ records, 92% accuracy, 87% time reduction. In production.",
@@ -168,7 +168,7 @@
       "role": "Strategy Lead",
       "org": "Earth In Motion · Senate of Virginia, Senator Bill DeSteph",
       "loc": "Virginia Beach, VA",
-      "period": "Apr 2023 — Aug 2023",
+      "period": "Apr 2023–Aug 2023",
       "points": [
         "Zero to $98K revenue in 8 weeks, 100+ clients.",
         "Carbon tracking simulation under Verra VCS 4.7 and UN SDG standards.",
@@ -179,7 +179,7 @@
       "role": "Program Director",
       "org": "AATWRI Group",
       "loc": "Chennai, India",
-      "period": "Feb 2022 — Mar 2023",
+      "period": "Feb 2022–Mar 2023",
       "points": [
         "$100K product launch, 12-person team, 18% ahead of schedule."
       ]
@@ -188,7 +188,7 @@
       "role": "Systems Engineer",
       "org": "German Orbital Systems",
       "loc": "Berlin, Germany",
-      "period": "Jun 2019 — Aug 2019",
+      "period": "Jun 2019–Aug 2019",
       "points": [
         "Designed and prototyped CubeSat using shape memory alloy technology.",
         "Launched aboard SpaceX Falcon Heavy to low-Earth orbit. Still operational."
@@ -559,7 +559,7 @@
       "Can disagreement between the independently measured agent perspective and population perspective be detected at the final state of a simulation?",
       "Which parameters most strongly influence the probability that the two perspectives disagree?"
     ],
-    "method": "Axelrod (1997) cultural dissemination model as testbed. Full factorial design across a toroidal lattice and a scale-free network. No new model, no changed rules — any disagreement belongs to the measurements, not the model."
+    "method": "Axelrod (1997) cultural dissemination model as testbed. Full factorial design across a toroidal lattice and a scale-free network. No new model and no changed rules, so any disagreement belongs to the measurements rather than the model."
   },
   "fellowships": [
     {
@@ -588,8 +588,8 @@
       "75th Conference on Southern Association for College Student Affairs (5 proposals)"
     ],
     "professional": [
-      "Panel Judge, MassChallenge Incubator Boston — 50 US startups",
-      "Invited Mentor, MassChallenge Incubator Boston — 10 US startups"
+      "Panel Judge, MassChallenge Incubator Boston (50 US startups)",
+      "Invited Mentor, MassChallenge Incubator Boston (10 US startups)"
     ]
   },
   "talks": [
@@ -612,7 +612,7 @@
       "pi": "Dr. Andrew J. Collins",
       "agency": "National Science Foundation · ENG/CMMI, Operations Engineering",
       "amount": "$198,534",
-      "period": "Aug 2023 — Jul 2027",
+      "period": "Aug 2023–Jul 2027",
       "contract": "NSF EAGER #2333570",
       "project": "Old Dominion University Research Foundation",
       "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2333570"
@@ -623,7 +623,7 @@
       "pi": "Dr. Samuel Kovacic",
       "agency": "US Department of Defense",
       "amount": "$368,626",
-      "period": "Jan 2025 — Dec 2025",
+      "period": "Jan 2025–Dec 2025",
       "contract": "P000143798 25-52",
       "project": "ODU 500481-005"
     },
@@ -633,7 +633,7 @@
       "pi": "Dr. Samuel Kovacic",
       "agency": "US Dept. of Defense (Military Sealift Command) · CACI funded",
       "amount": "$146,336",
-      "period": "Aug 2023 — Sep 2024",
+      "period": "Aug 2023–Sep 2024",
       "contract": "CACI / ODU Research Foundation",
       "project": "ODU Research Foundation"
     }
