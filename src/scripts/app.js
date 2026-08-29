@@ -324,7 +324,8 @@ addEventListener('keydown', (e) => {
     document.getElementById('r-apps').textContent = 'L' + mean.toFixed(2);
     document.getElementById('r-fever').textContent = ((tot / n) * 100).toFixed(1) + '%';
     const base = hist[0] ? 2.0 : 2.0;
-    document.getElementById('r-drift').textContent = '+' + (((mean - base) / base) * 100).toFixed(1) + '%';
+    const dr = ((mean - base) / base) * 100;
+    document.getElementById('r-drift').textContent = (dr >= 0 ? '+' : '−') + Math.abs(dr).toFixed(1) + '%';
   };
 
   // one applicant, drawn as a small human figure
@@ -364,20 +365,23 @@ addEventListener('keydown', (e) => {
      ─────────────────────────────────────────────────────────── */
   const W = 560, H = 330;
   const NODES = {
-    cohort:   { x:  40, y: 126, w: 82, h: 76, t: 'COHORT',    s: 'naive L1–L3' },
-    influence:{ x: 172, y: 112, w: 126, h: 104, t: 'INFLUENCE', s: 'copy upward' },
-    match:    { x: 348, y: 112, w: 104, h: 104, t: 'MATCH',    s: 'visibility ×\nscore weight' },
-    exit:     { x: 486, y: 34,  w: 70, h: 58, t: 'MATCHED',   s: 'leaves' },
-    escal:    { x: 486, y: 226, w: 70, h: 62, t: 'UNMATCHED', s: '+1 level' },
+    intake:   { x:  26, y:  34, w: 104, h: 56, t: 'NEW COHORT', s: 'naive L1–L3' },
+    pool:     { x:  26, y: 148, w: 104, h: 78, t: 'POOL',       s: 'carriers +\nnewcomers' },
+    influence:{ x: 176, y: 136, w: 122, h: 102, t: 'INFLUENCE',  s: 'copy upward' },
+    match:    { x: 340, y: 136, w: 104, h: 102, t: 'MATCH',      s: 'visibility ×\nscore weight' },
+    exit:     { x: 480, y:  40, w: 74, h: 58, t: 'MATCHED',    s: 'leaves' },
+    escal:    { x: 480, y: 244, w: 74, h: 60, t: 'UNMATCHED',  s: '+1 level' },
   };
   const cx = (n) => n.x + n.w / 2, cy = (n) => n.y + n.h / 2;
   const N = NODES;
   const SEGS = [
-    [[N.cohort.x + N.cohort.w, cy(N.cohort)], [N.influence.x, cy(N.influence)]],
-    [[N.influence.x + N.influence.w, cy(N.influence)], [N.match.x, cy(N.match)]],
-    [[N.match.x + N.match.w, cy(N.match)], [N.exit.x, cy(N.exit)]],          // matched
-    [[N.match.x + N.match.w, cy(N.match)], [N.escal.x, cy(N.escal)]],        // unmatched
-    [[cx(N.escal), N.escal.y + N.escal.h], [cx(N.escal), 308], [52, 308], [52, N.cohort.y + N.cohort.h]], // carriers
+    [[cx(N.intake), N.intake.y + N.intake.h], [cx(N.pool), N.pool.y]],               // 0 intake -> pool
+    [[N.pool.x + N.pool.w, cy(N.pool)], [N.influence.x, cy(N.influence)]],           // 1 pool -> influence
+    [[N.influence.x + N.influence.w, cy(N.influence)], [N.match.x, cy(N.match)]],    // 2 influence -> match
+    [[N.match.x + N.match.w, cy(N.match)], [N.exit.x, cy(N.exit)]],                  // 3 matched
+    [[N.match.x + N.match.w, cy(N.match)], [N.escal.x, cy(N.escal)]],                // 4 unmatched
+    [[cx(N.escal), N.escal.y + N.escal.h], [cx(N.escal), 318], [cx(N.pool), 318],
+     [cx(N.pool), N.pool.y + N.pool.h]],                                             // 5 carriers -> pool
   ];
   let tokens = [], carrierShare = 0, matchShare = 0;
 
@@ -400,7 +404,7 @@ addEventListener('keydown', (e) => {
     const sample = agents.length ? agents : [];
     for (let i = 0; i < 30; i++) {
       const a = sample[(Math.random() * sample.length) | 0] || newAgent();
-      tokens.push({ seg: 0, t: -Math.random() * 0.9, lvl: a.apps, score: a.score, carrier: false });
+      tokens.push({ seg: 0, t: -Math.random() * 1.4, lvl: (Math.random() * 3 | 0) + 1, score: a.score, carrier: false });
     }
   };
 
@@ -410,11 +414,12 @@ addEventListener('keydown', (e) => {
       k.t += speed;
       if (k.t < 1) return;
       k.t = 0;
-      if (k.seg === 0) { k.seg = 1; if (Math.random() < 0.42) k.lvl = Math.min(5, k.lvl + 1); }  // influence
-      else if (k.seg === 1) { k.seg = Math.random() < matchShare ? 2 : 3; }                       // the match
-      else if (k.seg === 2) { k.dead = true; }                                                    // matched, gone
-      else if (k.seg === 3) { k.lvl = Math.min(5, k.lvl + 1); k.carrier = true; k.seg = 4; }      // escalate
-      else { k.dead = true; }                                                                     // returned
+      if (k.seg === 0) { k.seg = 1; }                                                            // joined the pool
+      else if (k.seg === 1) { k.seg = 2; if (Math.random() < 0.45) k.lvl = Math.min(5, k.lvl + 1); } // copied upward
+      else if (k.seg === 2) { k.seg = Math.random() < matchShare ? 3 : 4; }                       // the match
+      else if (k.seg === 3) { k.dead = true; }                                                    // matched, leaves
+      else if (k.seg === 4) { k.lvl = Math.min(5, k.lvl + 1); k.carrier = true; k.seg = 5; }      // escalates
+      else { k.seg = 1; k.t = 0; }                                                                // rejoins the POOL
     });
     tokens = tokens.filter((k) => !k.dead);
     if (tokens.length < 72) spawn();
@@ -435,7 +440,7 @@ addEventListener('keydown', (e) => {
 
     // edges
     SEGS.forEach((seg, i) => {
-      const carrier = i === 4;
+      const carrier = i === 5;
       g.strokeStyle = carrier ? '#f43f5e' : line;
       g.globalAlpha = carrier ? 0.28 + carrierShare * 0.72 : 0.85;
       g.lineWidth = carrier ? 1.4 + carrierShare * 5.5 : 1.4;
@@ -448,7 +453,7 @@ addEventListener('keydown', (e) => {
 
     // carrier edge label
     g.font = '9px ui-monospace, monospace'; g.fillStyle = '#f43f5e'; g.textAlign = 'center';
-    g.fillText(`carriers  ${(carrierShare * 100).toFixed(0)}%`, 290, 304);
+    g.fillText(`carriers  ${(carrierShare * 100).toFixed(0)}%`, 300, 314);
 
     // nodes
     Object.values(NODES).forEach((n) => {
