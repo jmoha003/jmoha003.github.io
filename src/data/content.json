@@ -650,14 +650,15 @@
   ],
   "grants": [
     {
-      "title": "NSF EAGER: US Medical Residency Matching",
+      "title": "EAGER: Demonstration of Scaling Impact on Coalition Formation in Agent-based Simulation",
       "role": "Graduate Research Assistant",
       "pi": "Dr. Andrew J. Collins",
-      "agency": "National Science Foundation",
+      "agency": "National Science Foundation · ENG/CMMI, Operations Engineering",
       "amount": "$198,534",
-      "period": "2023 — 2026",
+      "period": "Aug 2023 — Jul 2027",
       "contract": "NSF EAGER #2333570",
-      "project": "Old Dominion University"
+      "project": "Old Dominion University Research Foundation",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2333570"
     },
     {
       "title": "Corrosion Management System (CMS)",

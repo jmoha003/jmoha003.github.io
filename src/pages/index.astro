@@ -377,7 +377,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
     <div class="grid g-2 stagger">
       {grants.map((gr) => (
         <div class="card">
-          <h3 style="font-size:1rem;margin-bottom:.2rem">{gr.title}</h3>
+          <h3 style="font-size:1rem;margin-bottom:.2rem">{gr.url ? <a href={gr.url} rel="noopener" target="_blank">{gr.title} ↗</a> : gr.title}</h3>
           <div class="mono" style="color:var(--accent);font-size:1.3rem;margin:.5rem 0 .8rem">{gr.amount}</div>
           <div class="rows">
             <div class="row"><div class="t">Role</div><div class="w">{gr.role}</div></div>
