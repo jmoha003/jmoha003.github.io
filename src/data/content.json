@@ -3,7 +3,7 @@
     "name": "Joshit Mohanty",
     "role": "Ph.D. Candidate · Modeling & Simulation",
     "tagline": "I build simulations of systems that misbehave.",
-    "blurb": "Agent-based models, digital twins, and applied AI for wherever individual decisions aggregate into system-wide dysfunction.",
+    "blurb": "Agent-based models, digital twins, and applied AI for wherever individual decisions aggregate into system-wide dysfunction.",
     "affiliation": "Engineering Management & Systems Engineering, Old Dominion University",
     "advisor": "Dr. Andrew J. Collins",
     "location": "Norfolk, VA",
@@ -159,7 +159,7 @@
       "loc": "Norfolk, VA",
       "period": "Sep 2023–Dec 2024",
       "points": [
-        "$496K across 3 concurrent programs as Co-PI.",
+        "$496K across 3 concurrent programs as Co-PI.",
         "NLP pipeline: 160,000+ records, 92% accuracy, 87% time reduction. In production.",
         "Proposals securing $350K+ in federal funding."
       ]
@@ -534,7 +534,7 @@
     }
   ],
   "research": {
-    "title": "Dual-Perspective Measurement for Agent-Based Models",
+    "title": "Dual-Perspective Measurement for Agent-Based Models",
     "subtitle": "Testing the Adequacy of the Single-Perspective Measurement Convention",
     "status": "Dissertation proposal · August 2026",
     "committee": [

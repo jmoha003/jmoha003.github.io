@@ -590,3 +590,10 @@ body::before{
   .card,.work,.lab,.metrics,.alma-card,.press-item,.modal-box,.pal-box,.shot{background:var(--surface)}
   .nav{background:var(--bg)}
 }
+
+/* ---- typography: no orphans, balanced headings ----
+   text-wrap inherits, so setting it at the root covers every string
+   including captions and labels that a selector list would miss. */
+body{text-wrap:pretty}
+h1,h2,h3,h4,.h2,.hero h1,.contact h2,.moment figcaption h3,.work-body h3,
+.pub h4,.cap,.logo-card figcaption,.alma-note,.press-item .n,.metric .l{text-wrap:balance}
