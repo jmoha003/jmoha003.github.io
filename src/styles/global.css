@@ -659,3 +659,10 @@ body::before{
 /* the domain chips were sitting flush against the buttons */
 .hero .domains{margin-bottom:1.9rem}
 .hero .cta-row{margin-top:0}
+
+/* the name is the home tab: it takes an active state like the others */
+.brand{position:relative;padding-bottom:.15rem}
+.brand::after{content:'';position:absolute;left:1.25rem;right:0;bottom:-2px;height:1.5px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out);border-radius:2px}
+.brand:hover::after,.brand[aria-current="true"]::after{transform:scaleX(1)}
+.brand[aria-current="true"] .dot{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent)}

@@ -30,11 +30,12 @@ addEventListener('scroll', () => {
 }, { passive: true });
 topBtn?.addEventListener('click', () => scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }));
 
-/* scroll-spy */
+/* scroll-spy — the brand is the home tab, so it takes part too */
+const spyTargets = [...$$('#links a'), $('.brand')].filter(Boolean);
 const spy = new IntersectionObserver((es) => {
   es.forEach((e) => {
     if (!e.isIntersecting) return;
-    $$('#links a').forEach((a) =>
+    spyTargets.forEach((a) =>
       a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + e.target.id)));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });

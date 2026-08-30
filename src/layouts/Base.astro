@@ -63,7 +63,7 @@ const works = publications.slice(0, 8).map((p) => ({
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>{profile.name}</a>
+    <a class="brand" href="#top" aria-label="Home"><span class="dot" aria-hidden="true"></span>{profile.name}</a>
     <nav class="nav-links" id="links" aria-label="Sections">
       {nav.map(([label, href]) => <a href={href}>{label}</a>)}
     </nav>
