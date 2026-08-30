@@ -655,3 +655,7 @@ body::before{
    for more pixels than it has: 400px displayed is exactly 2x sharp. */
 .portrait{max-width:400px;margin-left:auto}
 @media (max-width:980px){.portrait{margin-inline:0}}
+
+/* the domain chips were sitting flush against the buttons */
+.hero .domains{margin-bottom:1.9rem}
+.hero .cta-row{margin-top:0}
