@@ -15,10 +15,10 @@ const pic = (name) => {
 };
 const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
 const topics = [...new Set(publications.flatMap((p) => p.topics))].sort();
-const title = 'Joshit Mohanty | Agent-Based Modeling & Simulation';
+const title = 'Joshit Mohanty';
 const description = 'Ph.D. candidate in Engineering Management & Systems Engineering at Old Dominion University. Agent-based models, digital twins, and applied AI for fleet operations, matching markets, healthcare and space systems.';
 ---
-<Base title={title} description={description}>
+<Base title={title} ogTitle="Joshit Mohanty | Agent-Based Modeling & Simulation" description={description}>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="top">
@@ -119,7 +119,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
   <div class="wrap">
     <p class="eyebrow rv">Interactive</p>
     <h2 class="h2 rv" style="margin:.7rem 0 .8rem">How application fever<br /><span class="soft">spreads.</span></h2>
-    <p class="lede rv" style="margin-bottom:2.2rem">Applicants copy the application strategy of whoever outranks them. The lowest-scoring catch it most.</p>
+    <p class="lede rv" style="margin-bottom:2.2rem;max-width:64ch">Every year roughly 48,000 US medical graduates compete for residency posts through a single centralised match. Nobody can see how much competition they face, so applicants copy the strategy of whoever outranks them and send more and more applications, until the volume overwhelms the people reading them.</p>
     <div class="lab rv">
       <div class="lab-top">
         <span class="lab-title"><span class="live-chip">LIVE</span> NRMP application-fever model · prestige-biased transmission, two-stage match</span>
@@ -170,7 +170,7 @@ const description = 'Ph.D. candidate in Engineering Management & Systems Enginee
             <div><b id="r-fever">0%</b><span>FEVER RATE</span></div>
             <div><b id="r-drift">+0%</b><span>ESCALATION</span></div>
           </div>
-          <p class="lab-note">Each figure is an applicant, coloured by application level L1–L5; amber and red are the fever zone. The pool has two inputs: a naive new cohort each year, and the carriers: unmatched applicants rejoining one level higher along the dashed edge, which thickens as fever builds. Flow proportions come from the live model: a faithful port of the NetLogo source, 52 interaction cycles a year and the two-stage match.</p>
+          <p class="lab-note"><b>Reading it.</b> Each figure is an applicant, coloured by how many applications they send; amber and red are the fever zone. The pool takes two inputs each year: a new cohort who arrive with no habits, and carriers, applicants who went unmatched and return sending one level more. Matched applicants leave. The dashed edge is that carrier loop, and it thickens as the behaviour spreads.</p><p class="lab-note" style="border-top:none;padding-top:0"><b>Why it generalises.</b> The mechanism needs only three things: participants who cannot see real demand, competition for scarce slots, and someone ahead of them to imitate. That describes far more than medicine — graduate admissions, job markets, sellers bidding for placement on Amazon or eBay, and order flow in equities, where traders read each other rather than the underlying value. <span style="opacity:.75">Ported from the NetLogo source: 52 interaction cycles a year, two-stage match.</span></p>
         </aside>
       </div>
     </div>

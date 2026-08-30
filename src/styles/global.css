@@ -634,9 +634,9 @@ body::before{
 .logo-chip,.press-item .chip-logo,.alma-card{
   background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(244,246,250,.88))}
 .logo-chip img,.press-item .chip-logo img,.alma-card img{
-  filter:grayscale(1) opacity(.72);transition:filter .35s var(--ease-out)}
+  transition:transform .35s var(--ease-out)}
 .logo-card:hover .logo-chip img,.press-item:hover .chip-logo img,.alma-card:hover img{
-  filter:grayscale(0) opacity(1)}
+  transform:scale(1.04)}
 :root[data-theme="light"] .logo-chip,:root[data-theme="light"] .press-item .chip-logo,
 :root[data-theme="light"] .alma-card{background:var(--glass-2)}
 .alma-card .alma-note{color:var(--ink-3)}

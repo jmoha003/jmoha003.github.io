@@ -3,7 +3,7 @@ import '../styles/global.css';
 import content from '../data/content.json';
 import publications from '../data/publications.json';
 const { profile } = content;
-const { title, description } = Astro.props;
+const { title, description, ogTitle } = Astro.props;
 const url = Astro.site?.href ?? 'https://joshitmohanty.com';
 const nav = [
   ['Work', '#work'], ['Experience', '#path'], ['Lab', '#lab'],
@@ -41,10 +41,11 @@ const works = publications.slice(0, 8).map((p) => ({
 <meta name="author" content={profile.name} />
 <link rel="canonical" href={url} />
 <meta property="og:type" content="profile" />
-<meta property="og:title" content={title} />
+<meta property="og:title" content={ogTitle ?? title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={url} />
 <meta property="og:site_name" content={profile.name} />
+<meta name="twitter:title" content={ogTitle ?? title} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="theme-color" content="#161115" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f2ede6" media="(prefers-color-scheme: light)" />

@@ -702,11 +702,6 @@ $$('img[data-logo]').forEach((img) => {
     const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4';
     g.fillStyle = accent; g.strokeStyle = accent;
 
-    if (hot) {                                                     // observation radius over targets
-      g.globalAlpha = 0.38; g.lineWidth = 1; g.setLineDash([3, 4]);
-      g.beginPath(); g.arc(px, py, ring + 6, 0, 6.2832); g.stroke();
-      g.setLineDash([]);
-    }
     flock.forEach((a, i) => {                                      // the followers
       g.globalAlpha = 0.55 - i * 0.09;
       turtle(a.x, a.y, a.ang, a.s);
@@ -717,3 +712,14 @@ $$('img[data-logo]').forEach((img) => {
   };
   tick();
 })();
+
+/* ───── external links open in a new tab ───── */
+$$('a[href]').forEach((a) => {
+  const href = a.getAttribute('href') || '';
+  if (href.startsWith('#') || href.startsWith('mailto:')) return;
+  let external = /^https?:\/\//i.test(href) && new URL(href, location.href).host !== location.host;
+  if (href.endsWith('.pdf')) external = true;            // documents too
+  if (!external) return;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+});
