@@ -148,7 +148,7 @@
       "loc": "Norfolk, VA",
       "period": "Jan 2026–May 2026",
       "points": [
-        "Multi-method simulation (agent-based + discrete event), 300M+ scenarios on AWS HPC.",
+        "Agent-based simulation, 300M+ scenarios on AWS HPC.",
         "US medical residency matching market, 42,000+ applicants. NSF EAGER Grant #2333570 ($198,534).",
         "7,000+ algorithm generations testing agent behavior evolution."
       ]
