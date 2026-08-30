@@ -610,10 +610,8 @@ $$('img[data-logo]').forEach((img) => {
 
 /* ═══════════════════════════════════════════════════════════
    AGENT CURSOR
-   The pointer is a turtle — the NetLogo agent silhouette — and a
-   small flock trails it under cohesion, separation and alignment.
-   Every agent points along its own heading. A click applies a
-   radial impulse: the flock scatters, then re-equilibrates.
+   The pointer is a turtle, the NetLogo agent silhouette, facing
+   its direction of travel. No flock, no orbit: one agent.
    ═══════════════════════════════════════════════════════════ */
 (() => {
   if (reduced) return;
@@ -636,7 +634,6 @@ $$('img[data-logo]').forEach((img) => {
   };
   addEventListener('resize', size); size();
 
-  // the NetLogo turtle: nose, two swept flanks, notched tail
   const turtle = (x, y, ang, s) => {
     g.save(); g.translate(x, y); g.rotate(ang);
     g.beginPath();
@@ -648,78 +645,27 @@ $$('img[data-logo]').forEach((img) => {
     g.restore();
   };
 
-  const N = 4;
-  const flock = Array.from({ length: N }, (_, i) => ({
-    x: innerWidth / 2, y: innerHeight / 2, vx: 0, vy: 0, ang: -Math.PI / 2,
-    s: 5.4 - i * 0.5, lag: 0.115 - i * 0.018,
-  }));
-  const lead = { x: innerWidth / 2, y: innerHeight / 2, ang: -2.2 };
+  const lead = { x: innerWidth / 2, y: innerHeight / 2, ang: -2.2, pulse: 0 };
   let px = innerWidth / 2, py = innerHeight / 2, hot = false, active = false;
 
   addEventListener('pointermove', (e) => {
     const dx = e.clientX - px, dy = e.clientY - py;
     px = e.clientX; py = e.clientY; active = true;
-    if (Math.hypot(dx, dy) > 1.6) lead.ang = Math.atan2(dy, dx);   // lead faces travel
+    if (Math.hypot(dx, dy) > 1.6) lead.ang = Math.atan2(dy, dx);
     hot = !!e.target.closest?.('a,button,input,summary,[role="tab"],.shot,.work,.logo-card,.alma-card');
   }, { passive: true });
-  addEventListener('pointerdown', () => {
-    flock.forEach((a) => {
-      const dx = a.x - px, dy = a.y - py, d = Math.hypot(dx, dy) || 1;
-      a.vx += (dx / d) * 8.5 + (Math.random() - 0.5) * 3.5;
-      a.vy += (dy / d) * 8.5 + (Math.random() - 0.5) * 3.5;
-    });
-  }, { passive: true });
+  addEventListener('pointerdown', () => { lead.pulse = 1; }, { passive: true });
   addEventListener('pointerleave', () => { active = false; }, { passive: true });
 
   const tick = () => {
     requestAnimationFrame(tick);
     g.clearRect(0, 0, w, h);
     if (!active) return;
-
-    lead.x += (px - lead.x) * 0.5; lead.y += (py - lead.y) * 0.5;
-    const ring = hot ? 32 : 23;
-
-    for (let i = 0; i < N; i++) {
-      const a = flock[i];
-      const ang = (i / N) * Math.PI * 2 + performance.now() / (hot ? 700 : 1300);
-      a.vx += (px + Math.cos(ang) * ring - a.x) * a.lag;
-      a.vy += (py + Math.sin(ang) * ring - a.y) * a.lag;
-      let sx = 0, sy = 0, ax = 0, ay = 0;
-      for (let j = 0; j < N; j++) {
-        if (j === i) continue;
-        const b = flock[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
-        if (d2 < 420 && d2 > 0.01) { sx += dx / d2; sy += dy / d2; }
-        ax += b.vx; ay += b.vy;
-      }
-      a.vx += sx * 30 + (ax / (N - 1) - a.vx) * 0.06;
-      a.vy += sy * 30 + (ay / (N - 1) - a.vy) * 0.06;
-      a.vx *= 0.8; a.vy *= 0.8;
-      a.x += a.vx; a.y += a.vy;
-      const sp = Math.hypot(a.vx, a.vy);
-      if (sp > 0.35) a.ang = Math.atan2(a.vy, a.vx);               // each faces its heading
-    }
-
-    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4';
-    g.fillStyle = accent; g.strokeStyle = accent;
-
-    flock.forEach((a, i) => {                                      // the followers
-      g.globalAlpha = 0.55 - i * 0.09;
-      turtle(a.x, a.y, a.ang, a.s);
-    });
-    g.globalAlpha = 1;                                             // the pointer itself
-    turtle(lead.x, lead.y, lead.ang, hot ? 8.4 : 7.2);
-    g.globalAlpha = 1;
+    lead.x += (px - lead.x) * 0.55; lead.y += (py - lead.y) * 0.55;
+    lead.pulse *= 0.86;
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7b2d5e';
+    g.fillStyle = accent;
+    turtle(lead.x, lead.y, lead.ang, (hot ? 8.6 : 7.4) * (1 + lead.pulse * 0.34));
   };
   tick();
 })();
-
-/* ───── external links open in a new tab ───── */
-$$('a[href]').forEach((a) => {
-  const href = a.getAttribute('href') || '';
-  if (href.startsWith('#') || href.startsWith('mailto:')) return;
-  let external = /^https?:\/\//i.test(href) && new URL(href, location.href).host !== location.host;
-  if (href.endsWith('.pdf')) external = true;            // documents too
-  if (!external) return;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-});
