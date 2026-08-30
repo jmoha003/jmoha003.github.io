@@ -6,7 +6,8 @@ const { profile } = content;
 const { title, description, ogTitle } = Astro.props;
 const url = Astro.site?.href ?? 'https://joshitmohanty.com';
 const nav = [
-  ['Work', '#work'], ['Experience', '#path'], ['Lab', '#lab'],
+  // order must track the page: Experience, Lab, Work, Research, Papers, Record, Gallery
+  ['Experience', '#path'], ['Lab', '#lab'], ['Work', '#work'],
   ['Research', '#research'], ['Papers', '#papers'], ['Record', '#detail'], ['Gallery', '#gallery'],
 ];
 const ld = {
