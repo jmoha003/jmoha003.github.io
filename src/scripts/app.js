@@ -20,6 +20,14 @@ $$('#links a').forEach((a) => a.addEventListener('click', () => {
   links.classList.remove('open'); burger?.setAttribute('aria-expanded', 'false');
 }));
 
+// The hero is position:sticky, so a plain #top anchor is treated as already
+// in view once it is pinned and the browser will not scroll. Do it explicitly.
+$('.brand')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  history.replaceState(null, '', location.pathname + location.search);
+});
+
 const prog = $('#prog'), topBtn = $('#top-btn');
 addEventListener('scroll', () => {
   const h = document.documentElement;
