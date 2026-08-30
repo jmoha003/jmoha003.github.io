@@ -4,7 +4,7 @@
   --bg:#f6f7f8; --bg-2:#eceef1; --surface:#ffffff; --surface-2:#f2f4f6;
   --line:#e0e4e9; --line-2:#cbd2da;
   --ink:#13181f; --ink-2:#4a5461; --ink-3:#7d8894;
-  --accent:#1f3f63; --accent-2:#152c47; --accent-ink:#fff;
+  --accent:#4f46e5; --accent-2:#3f37c9; --accent-ink:#fff;
   --warm:#8a6d1f; --danger:#9b2f28;
   --serif:'Instrument Serif',Georgia,serif;
   --sans:'SF Pro Display','SF Pro Text',Inter,system-ui,-apple-system,'Helvetica Neue',sans-serif;
@@ -21,10 +21,10 @@
   --ease:cubic-bezier(.28,.11,.32,1);--ease-out:cubic-bezier(.16,1,.3,1);
 }
 :root[data-theme="dark"]{
-  --bg:#0f1319; --bg-2:#151b23; --surface:#1a212b; --surface-2:#212a35;
-  --line:#28323f; --line-2:#384555;
+  --bg:#0e1017; --bg-2:#141722; --surface:#191d2b; --surface-2:#202436;
+  --line:#272c3d; --line-2:#373d52;
   --ink:#eef2f7; --ink-2:#aab6c4; --ink-3:#7c8896;
-  --accent:#7fb3dd; --accent-2:#5d97c7; --accent-ink:#0c1017;
+  --accent:#a5a0fb; --accent-2:#8b84f7; --accent-ink:#0d0f1a;
   --warm:#d9b45f; --danger:#e08279;
   --shadow:0 1px 2px rgba(0,0,0,.45),0 16px 40px -20px rgba(0,0,0,.6);
 }
@@ -43,7 +43,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* ---- utilities ---- */
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2rem)}
 .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.6rem}
-.eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
+.eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent),transparent)}
 .h2{font-weight:700;font-size:var(--t-h2);line-height:1.04;letter-spacing:var(--track-tight)}
 .h2 .soft{color:var(--ink-3)}
 .lede{color:var(--ink-2);font-size:var(--t-body);max-width:38ch;line-height:1.38;letter-spacing:var(--track-snug)}
@@ -84,7 +84,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
   padding:.34rem .7rem;border-radius:100px;margin-bottom:1.4rem}
 .status .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2.6s infinite}
 .hero h1{font-weight:700;font-size:var(--t-display);line-height:.94;letter-spacing:var(--track-tight);margin-bottom:.7rem}
-.hero h1 em{font-style:normal;background:linear-gradient(115deg,var(--accent),var(--ink) 74%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;background:linear-gradient(112deg,var(--accent),color-mix(in srgb,var(--accent) 38%,var(--ink)) 82%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero .role{font-size:1.05rem;font-weight:500;color:var(--ink-2);letter-spacing:.02em;margin-bottom:1.5rem}
 .hero .tag{font-size:var(--t-body);color:var(--ink-2);max-width:44ch;margin-bottom:2rem;line-height:1.45}
 .hero .tag b{color:var(--ink);font-weight:600}
@@ -104,7 +104,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);position:relative}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
 .metric{background:var(--surface);padding:clamp(1.2rem,2.6vw,1.9rem);transition:background .3s}
 .metric:hover{background:var(--surface-2)}
-.metric .n{font-weight:700;font-size:clamp(2.1rem,5vw,3.5rem);line-height:1;color:var(--ink);letter-spacing:var(--track-tight);font-variant-numeric:tabular-nums}
+.metric .n{font-weight:700;font-size:clamp(2.1rem,5vw,3.5rem);line-height:1;color:var(--accent);letter-spacing:var(--track-tight);font-variant-numeric:tabular-nums}
 .metric .l{font-size:.8rem;color:var(--ink-3);margin-top:.5rem;line-height:1.35}
 
 /* ---- generic card grid ---- */
@@ -604,10 +604,10 @@ h1,h2,h3,h4,.h2,.hero h1,.contact h2,.moment figcaption h3,.work-body h3,
    up, genuinely translucent plates, and a specular top edge. */
 body::before{
   background:
-    radial-gradient(58vw 58vw at 8% 4%,  color-mix(in srgb,var(--accent) 24%,transparent), transparent 64%),
-    radial-gradient(50vw 50vw at 92% 26%, color-mix(in srgb,#5b7fa6 20%,transparent), transparent 62%),
-    radial-gradient(48vw 48vw at 26% 62%, color-mix(in srgb,#6f7f92 14%,transparent), transparent 62%),
-    radial-gradient(62vw 62vw at 78% 96%, color-mix(in srgb,#2f4a68 16%,transparent), transparent 64%);
+    radial-gradient(56vw 56vw at 6% 2%,  color-mix(in srgb,var(--accent) 30%,transparent), transparent 62%),
+    radial-gradient(48vw 48vw at 94% 22%, color-mix(in srgb,#7c6df0 26%,transparent), transparent 60%),
+    radial-gradient(46vw 46vw at 22% 60%, color-mix(in srgb,#3fa9d8 18%,transparent), transparent 62%),
+    radial-gradient(60vw 60vw at 80% 96%, color-mix(in srgb,#4f46e5 20%,transparent), transparent 64%);
   filter:blur(48px);opacity:.5;
 }
 :root[data-theme="dark"] body::before{opacity:.72;filter:blur(46px)}
